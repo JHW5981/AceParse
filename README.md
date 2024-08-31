@@ -1,4 +1,6 @@
-<div style="display: flex; align-items: center;">
-  <img src="./assets/logo.png" alt="sadpd-logo" style="width: 50px; margin-right: 10px;"/>
-  <h2>Structured Academic Document Parsing Dataset</h2>
-</div>
+<p align="center">
+  <img src="./assets/logo.png" alt="sadpd-logo" width="15%">
+  <h3 align="center">
+  A unified toolkit for Deep Learning Based Document Image Analysis
+  </h3>
+</p>
