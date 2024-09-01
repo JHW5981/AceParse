@@ -97,7 +97,7 @@ def extract_ocr_content(text):
     matches = pattern.findall(text)
     
     return matches
-with open("/home/jihuawei2/维是勉哉/SDPD/comparison/results/acaparser.json") as fp:
+with open("./comparisons/results/acaparser.json") as fp:
     acaparser_results = json.load(fp)
 
 acaparser_labels = acaparser_results['label']
