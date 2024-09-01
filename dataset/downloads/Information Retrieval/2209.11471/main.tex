@@ -1,0 +1,259 @@
+%% This is file `sample-authordraft.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% samples.dtx  (with options: `authordraft')
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from sample-authordraft.tex.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file samples.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+%%
+%% The first command in your LaTeX source must be the \documentclass command.
+\documentclass[acmart,,natbib=true,anonymous=false]{acmart}
+% \documentclass[sigconf]{acmart}
+\usepackage{subfiles}
+\usepackage{longtable}
+\usepackage{xcolor, soul}
+\usepackage{multirow}
+\usepackage[title]{appendix}
+\usepackage{subfigure}
+\usepackage[ruled,vlined]{algorithm2e}
+
+%% NOTE that a single column version may be required for 
+%% submission and peer review. This can be done by changing
+%% the \doucmentclass[...]{acmart} in this template to 
+%% \documentclass[manuscript,screen,review]{acmart}
+%% 
+%% To ensure 100% compatibility, please check the white list of
+%% approved LaTeX packages to be used with the Master Article Template at
+%% https://www.acm.org/publications/taps/whitelist-of-latex-packages 
+%% before creating your document. The white list page provides 
+%% information on how to submit additional LaTeX packages for 
+%% review and adoption.
+%% Fonts used in the template cannot be substituted; margin 
+%% adjustments are not allowed.
+%%
+%% \BibTeX command to typeset BibTeX logo in the docs 
+
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    \normalfont B\kern-0.5em{\scshape i\kern-0.25em b}\kern-0.8em\TeX}}}
+
+%% Rights management information.  This information is sent to you
+%% when you complete the rights form.  These commands have SAMPLE
+%% values in them; it is your responsibility as an author to replace
+%% the commands and values with those provided to you when you
+%% complete the rights form.
+\setcopyright{acmcopyright}
+\copyrightyear{2022}
+\acmYear{2022}
+\acmDOI{}
+
+%% These commands are for a PROCEEDINGS abstract or paper.
+\acmConference[CARS@RecSys'22]{Workshop on Context-Aware Recommender Systems}{Seattle, WA, USA}
+% \acmBooktitle{Workshop on Context-Aware Recommender Systems (CARS@RecSys' 22), September 23, 2022, Seattle, USA}
+% \acmPrice{15.00}
+% \acmISBN{978-1-4503-XXXX-X/18/06}
+
+%%
+%% Submission ID.
+%% Use this when submitting an article to a sponsored event. You'll
+%% receive a unique submission ID from the organizers
+%% of the event, and this ID should be used as the parameter to this command.
+%%\acmSubmissionID{123-A56-BU3}
+
+%%
+%% The majority of ACM publications use numbered citations and
+%% references.  The command \citestyle{authoryear} switches to the
+%% "author year" style.
+%%
+%% If you are preparing content for an event
+%% sponsored by ACM SIGGRAPH, you must use the "author year" style of
+%% citations and references.
+%% Uncommenting
+%% the next command will enable that style.
+%%\citestyle{acmauthoryear}
+
+%%
+%% end of the preamble, start of the body of the document source.
+\begin{document}
+\definecolor{holden-color}{rgb}{0.2, 0.65, 0.99}
+\newcommand{\holden}[1]{\textcolor{holden-color}{$_{Holden}$[#1]}}
+% \newcommand{\holden}[1]{}
+
+\newcommand{\kmy}[1]{\textcolor{purple}{$_{min}$[#1]}}
+\newcommand{\yd}[1]{\textcolor{pink}{$_{yiding}$[#1]}}
+\newcommand{\plm}[1]{\textcolor{red}{$_{plm}$[#1]}}
+\definecolor{yisong-color}{rgb}{0.2, 0.65, 0.99}
+\newcommand{\yisong}[1]{\textcolor{yisong-color}{$_{Yis}$[#1]}}
+% \newcommand{\yisong}[1]{}
+%%
+%% The "title" command has an optional parameter,
+%% allowing the author to define a "short title" to be used in page headers.
+% Min5: suggest new title
+% Min5: Prerequisite Driven Recommendation
+\title{Modeling and Leveraging Prerequisite Context in Recommendation}
+
+% \title{Knowledge-driven Recommender: Do Not Forget Prerequisite Impact in Knowledge Linkage}
+% \title{Joint Learning of Prerequisite Relation and User Behavior in Recommender}
+
+%%
+%% The "author" command and its associated commands are used to define
+%% the authors and their affiliations.
+%% Of note is the shared affiliation of the first two authors, and the
+%% "authornote" and "authornotemark" commands
+%% used to denote shared contribution to the research.
+% \author{Anonymous}
+\author{Hengchang Hu}
+\email{hengchang.hu@u.nus.edu}
+\affiliation{%
+  \institution{National University of Singapore}
+  \streetaddress{AS6}
+  \country{Singapore}
+}
+\author{Liangming Pan}
+\affiliation{%
+  \institution{National University of Singapore}
+  \country{Singapore}
+}
+\author{Yiding Ran}
+\affiliation{%
+  \institution{National University of Singapore}
+  \country{Singapore}
+}
+\author{Min-Yen Kan}
+\email{kanmy@comp.nus.edu.sg}
+\affiliation{%
+  \institution{National University of Singapore}
+  \country{Singapore}
+}
+
+%%
+%% By default, the full list of authors will be used in the page
+%% headers. Often, this list is too long, and will overlap
+%% other information printed in the page headers. This command allows
+%% the author to define a more concise list
+%% of authors' names for this purpose.
+\renewcommand{\shortauthors}{Hengchang Hu, et al.}
+
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
+\begin{abstract}
+
+% Music listening preferences at a given time depend on a wide range of contextual factors, such as user emotional state, location and activity at listening time, the day of the week, the time of the day, etc. It is therefore of great importance to take them into account when recommending music. However, it is very difficult to develop context-aware recommender systems that consider these factors, both because of the difficulty of detecting some of them, such as emotional state, and because of the drawbacks derived from the inclusion of many factors, such as sparsity problems in contextual pre-filtering. This work involves the proposal of a method for the detection of the user contextual state when listening to music based on the social tags of music items. The intrinsic characteristics of social tagging that allow for the description of items in multiple dimensions can be exploited to capture many contextual dimensions in the user listening sessions. The embeddings of the tags of the first items played in each session are used to represent the context of that session. Recommendations are then generated based on both user preferences and the similarity of the items computed from tag embeddings. Social tags have been used extensively in many recommender systems, however, to our knowledge, they have been hardly used to dynamically infer contextual states.
+
+% 除了时间地点等，之前积累的用户信息（user profile）进行推荐
+%%%% Version 2nd %%%%%%%
+% Summary
+% are defined as necessary preconditions
+Prerequisites can play a crucial role in users’ decision-making 
+% MinCR: not sure this clause helps.  What is it trying to do? Fixed differently.
+% \holden{while providing background knowledge}, 
+yet recommendation systems have not fully utilized such contextual background knowledge. Traditional recommendation systems (RS) mostly enrich user--item interactions where the context consists of static user profiles and item descriptions, ignoring the contextual logic and constraints that underlie them. 
+% MinCR: Rewritten. You have simple spelling and POS errors, please try harder not to introduce new errors with your fixes.
+% \holden{For example, 
+% the recommendation of an item to a user may be only in the constrain that the user has interacted with % another item, due to the preconditinal knowledge he/she has obtained.}
+For example, a RS may recommend an item on the condition that the user has interacted with another item as its prerequisite. 
+Modeling prerequisite context from conceptual side information can overcome this weakness. 
+We propose Prerequisite Driven Recommendation (PDR), a generic context-aware framework where prerequisite context is explicitly modeled to facilitate recommendation. We first design a Prerequisite Knowledge Linking (PKL) algorithm, to curate datasets facilitating PDR research. Employing it, we build a 75k+ high-quality prerequisite concept dataset which spans three domain.
+We then contribute PDRS, a neural instantiation of PDR. By jointly optimizing both the prerequisite learning and recommendation tasks through multi-layer perceptrons, we find PDRS consistently outperforms baseline models in all three domains, by an average margin of 7.41\%. 
+Importantly, PDRS performs especially well in cold-start scenarios
+with improvements of up to 17.65\%. 
+% We further conduct an in-depth study of our induced prerequisite graphs,
+% finding intrinsically-motivated induced prerequisite chains. 
+% Our extrinsic validation of PDRS shows that the fine-grained modeling of prerequisite knowledge from both the user and item perspectives result in varying efficacy across domains under cold start.  
+
+\end{abstract}
+
+
+
+%%
+%% The code below is generated by the tool at http://dl.acm.org/ccs.cfm.
+%% Please copy and paste the code instead of the example below.
+%%
+\begin{CCSXML}
+<ccs2012>
+   <concept>
+       <concept_id>10002951.10003317.10003347.10003350</concept_id>
+       <concept_desc>Information systems~Recommender systems</concept_desc>
+       <concept_significance>500</concept_significance>
+    </concept>
+    <concept>
+        <concept_id>10002951.10003227.10003351.10003269</concept_id>
+        <concept_desc>Information systems~Collaborative filtering</concept_desc>
+        <concept_significance>300</concept_significance>
+    </concept>
+   <concept>
+       <concept_id>10002951.10003317.10003318.10003321</concept_id>
+       <concept_desc>Information systems~Content analysis and feature selection</concept_desc>
+       <concept_significance>300</concept_significance>
+    </concept>
+ </ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Information systems~Recommender systems}
+\ccsdesc[300]{Information systems~Content analysis and feature selection}
+\ccsdesc[300]{Information systems~Collaborative filtering}
+
+%%
+%% Keywords. The author(s) should pick words that accurately describe
+%% the work being presented. Separate the keywords with commas.
+\keywords{Recommendation Systems, Prerequisites, Context-aware Recommendation}
+
+%% A "teaser" image appears between the author and affiliation
+%% information and the body of the document, and typically spans the
+%% page.
+
+%%
+%% This command processes the author and affiliation and title
+%% information and builds the first part of the formatted document.
+\maketitle
+
+% \subfile{sec/intro.tex}
+\subfile{sec/intro_story.tex}
+\subfile{sec/preliminaries.tex}
+\subfile{sec/approach.tex}
+\subfile{sec/experiments.tex}
+\subfile{sec/discussion.tex}
+\subfile{sec/rw.tex}
+\subfile{sec/conclusion.tex}
+
+%%
+%% The acknowledgments section is defined using the "acks" environment
+%% (and NOT an unnumbered section). This ensures the proper
+%% identification of the section in the article metadata, and the
+%% consistent spelling of the heading.
+
+% \begin{acks}
+% We thank Mr. Miao for insightful discussion. We acknowledge the support of NVIDIA Corporation for their donation of the Titan X GPU that facilitated this research. 
+% \end{acks}
+
+%%
+%% The next two lines define the bibliography style to be used, and
+%% the bibliography file.
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{bibliography}
+
+%%
+%% If your work has an appendix, this is the place to put it.
+\appendix
+\begin{appendices}
+\subfile{sec/appendix.tex}
+\end{appendices}
+
+\end{document}
+\endinput
+

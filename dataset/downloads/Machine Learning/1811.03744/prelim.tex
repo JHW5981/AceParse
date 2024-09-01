@@ -1,0 +1,102 @@
+% !TEX root =  main.tex
+
+\section{Preliminaries} \label{sec:prelims}
+
+We write $B(r)$ to denote the radius-$r$ ball in $\mathbb{R}^d$, i.e. $B(r) = \{x \in \mathbb{R}^d: x_1^2 + \cdots + x_d^2 \leq r^2\}$.
+If $f$ is a probability density over $\R^d$ and $S \subset \R^d$ is a subset of its domain, we write $f_S$ to denote the density of $f$ conditioned on $S$.
+
+\subsection{Shift-invariance}
+Roughly speaking, the shift-invariance of a distribution measures how
+much it changes (in total variation distance) when it is subjected to
+a small translation.  The notion of shift-invariance has typically
+been used for discrete distributions (especially in the context of
+proving discrete limit theorems, see e.g.~\citep{CGS11} and many
+references therein).  We give a natural continuous analogue of this
+notion below.
+
+\begin{definition}~\label{def:shift-invariance} 
+Given a probability density $f$ over $\mathbb{R}^d$, a unit vector $v$, and a positive real value $\kappa$, we say that the \emph{shift-invariance of $f$ in direction $v$ at scale $\kappa$}, denoted $\si(f,v,\kappa)$, is
+\begin{equation} \label{eq:yyy}
+\si(f,v,\kappa) \eqdef 
+{\frac 1 \kappa} \cdot \sup_{\kappa' \in [0,\kappa]} \int_{\R^d} 
+   \left|f(x+ \kappa' v) - f(x)\right| dx.
+\end{equation}
+\end{definition}
+
+Intuitively, if $\si(f,v,\kappa)=\beta$, then for any direction (unit vector) $v$ 
+% in which the density $f$ has a non-trivial component, 
+the variation distance between $f$ and a shift of $f$ by $\kappa'$ in direction $v$ is at most $\kappa \beta$ for all $0 \leq \kappa' \leq \kappa$.
+\blue{The factor ${\frac 1 \kappa}$ in the definition
+means that $\si(f,v,\kappa)$ does not necessarily go to zero
+as $\kappa$ gets small; the effect of shifting by $\kappa$ is measured
+relative to $\kappa$.}
+
+
+Let
+\[
+\si(f,\kappa) \eqdef \sup \{ \si(f,v,\kappa) : v \in \mathbb{R}^d, \Vert v \Vert_2 =1\}.
+\]
+For any 
+% ``shift-invariance'' function
+constant $c$
+we define the class of densities $\CSI(c, d)$  to consist of all $d$-dimensional densities $f$ with the property that $\si(f,\kappa) \le c$ for all $\kappa > 0.$  
+
+\blue{We could obtain an equivalent definition if we 
+removed the factor ${\frac 1 \kappa}$
+from  the definition of $\si(f,v,\kappa)$, and required that 
+$\si(f,v,\kappa) \leq c \kappa$ for all $\kappa > 0$.  This could of course
+be generalized to enforce bounds on the modified $\si(f,v,\kappa)$ that are not linear in
+$\kappa$.  We have chosen to focus on linear bounds in this paper to have cleaner theorems and proofs.}
+
+\blue{We include ``sup'' in the definition due to the
+fact that smaller shifts can sometimes have bigger effects.
+For example, a sinusoid with period $\xi$ is unaffected by a
+shift of size $\xi$, but profoundly affected by a
+shift of size $\xi/2$.  Because of possibilities like this,
+to capture the intuitive notion that ``small shifts do not
+lead to large changes'', we seem to need to evaluate the
+worst case over shifts of at most a certain size.}
+
+
+\ignore{
+\begin{remark}
+For the rest of the paper, for the sake of simplicity we assume that the covariance matrix of $f \in \CSI(c,d)$ has full rank.  This assumption is without loss of generality because, as is implicit in the arguments of Lemma~\ref{lem:transformation}, if the rank is less than $d$ (and hence the density $f$ is supported in an affine subspace of dimension strictly less than $d$), then as a consequence of the shift-invariance of $f$, a small number of draws from $f$ will reveal the affine span of the entire distribution, and the entire algorithm can be carried out within that lower dimensional subspace.
+\end{remark}
+}
+% \pnote{With the new definition, the covariance matrix of
+% any $f \in \CSI(c,d)$ has full rank already.}
+
+As described earlier, given a nonincreasing ``tail bound'' function $g: \R^+ \to (0,1)$ which is absolutely continuous and satisfies $\lim_{t \to +\infty} g(t) = 0$, we further define the class of densities $\CSI(c,d,g)$ to consist of those $f \in \CSI(c,d)$ which have the additional property that $f$ has \emph{$g$-light tails}, meaning that 
+for all $t > 0$, it holds that 
+$
+\Prx_{\bx \leftarrow f}\left[|| \bx - \mu || > t \right] \leq g(t),$
+where $\mu \in \R^d$ is the mean of $f.$
+
+\begin{remark} \label{remark:tail-weight}
+It will be convenient in our analysis to consider only tail bound functions $g$ that satisfy $\min\{r \in \R: g(r) \leq 1/2\} \geq 1/10$ (the constants $1/2$ and $1/10$ are arbitrary here and could be replaced by any other absolute 
+positive
+constants).  This is without loss of generality, since any tail bound function $g$ which does not meet this criterion can simply be replaced by a weaker tail bound function $g^\ast$ which does meet this criterion, and clearly if $f$ has $g$-light tails then $f$ also has $g^\ast$-light tails.
+\end{remark}
+
+We will (ab)use the notation $g^{-1}(\epsilon)$ to mean
+$\inf \{ t : g(t) \leq \epsilon \}$.
+
+The complexity of learning with a tail bound $g$ will be expressed in part
+using
+\[
+I_g \eqdef \int_0^{\infty} g(\sqrt{z}) \; dz.
+\]
+We remark that the quantity $I_g$ is the ``right" quantity in the sense that the integral $I_g$ is finite as long as the density has ``non-trivial decay". More precisely, note that by Chebyshev's inequality, $g(\sqrt{z}) = O(z^{-1})$. Since the integral $\int O(z^{-1}) dz$ diverges, this means that if $I_g$ is finite, then the density $f$ has a decay sharper than the trivial decay implied by Chebyshev's inequality.
+
+
+\subsection{Fourier transform of high-dimensional distributions}
+
+% Our proof requires the basics of multidimensional Fourier analysis.  We recall the relevant background results and notation in Appendix~\ref{ap:fourier}.
+% 
+
+In this subsection we gather some helpful facts from multidimensional
+Fourier analysis.
+
+\input{fourier}
+
+

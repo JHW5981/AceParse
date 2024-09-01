@@ -1,0 +1,241 @@
+% !TEX root =  main.tex
+
+\section{A restricted problem:  learning shift-invariant distributions with bounded support} 
+\label{sec:restricted}
+
+As sketched in Section~\ref{sec:approach}, we begin by presenting and
+analyzing a density estimation algorithm for densities that, in addition
+to being shift-invariant, have support bounded in $B(1/2)$.  
+Our analysis also captures the fact that,
+to achieve accuracy $\epsilon$, an algorithm often only
+needs the density to be learned to have shift invariance at
+a scale slightly finer than $\epsilon$.  
+
+\begin{lemma} \label{lem:finite-support}
+There is an algorithm \textsf{learn-bounded} with the following property:  
+For all constant $d$, 
+for all $\epsilon, \delta > 0$, all $0 < \kappa < \epsilon < 1/2$,
+and all $d$-dimensional densities $f$ 
+with support in $B(1/2)$
+such that
+$\kappa \si(f, \kappa) \leq \epsilon/2$,
+% let $f$ be any density (unknown to the algorithm) which belongs to ${\CSI}(c,d)$,
+% where $c \geq 1$ and $d$ are constants. 
+given 
+% any confidence parameter $\delta$, the values $d,\eps$, and 
+access to independent draws from $f$, the algorithm runs in time 
+ \[
+O_{d}\bigg( \frac{1}{\epsilon^2}
+          \left( \frac{1}{\kappa} \right)^{2 d}
+          \log^{4 d} \left( \frac{1}{\kappa} \right)
+          \log \left( \frac{1}{\kappa \delta} \right) \bigg)
+\]
+uses 
+\[
+O_{d}\bigg( \frac{1}{\epsilon^2}
+          \left( \frac{1}{\kappa} \right)^d
+          \log^{2d} \left( \frac{1}{\kappa} \right)
+          \log \left( \frac{1}{\kappa \delta} \right)\bigg) 
+\]
+samples, and with probability $1-\delta$, outputs a hypothesis
+ $h:[-1,1]^d \rightarrow \mathbb{R}^+$ such that $\int_{x \in \mathbb{R}^d} |f(x) - h(x)| \le \epsilon$. 
+ 
+Further, 
+given any point $z \in [-1,1]^d$, $h(z)$ can be computed in time 
+$
+O_{d} \left( {\frac {\log^{2d}
+      (1/\kappa)}{\kappa^d}} \right)$
+and satisfies
+$h(z) \le 
+O_{d} \left( {\frac {\log^{2d} (1/\kappa)}{\kappa^d}} \right)$.
+\end{lemma}
+
+\begin{proof}
+Let $0 <  \gamma := \frac{\kappa}{\sqrt{d}}$, 
+and let us define $q= f \ \ast  \ b_{d,\gamma}$.  (Here $\ast$ denotes convolution and $b_{d,\gamma}$ is the mollifier defined in Section~\ref{sec:mollifier}.)  We make a few simple observations about $q$:
+\begin{itemize}
+\item[(i)] Since $\gamma \leq 1/2,$  we have that $q$ is a density supported on $B(1)$. 
+\item[(ii)] Since $d$ is a constant, 
+a draw from $b_{d,\gamma}$  can be generated in 
+% time $2^{O(d)}$\ignore{$\mathsf{poly}(d)$} 
+constant time.   
+Thus given a draw from $f$, 
+% in time $2^{O(d)}$\ignore{$\mathsf{poly}(d)$} 
+one can generate a draw from $q$ 
+in constant time, simply by generating a draw from $b_{d,\gamma}$ and adding it to the draw from $f$.
+\item[(iii)]  By Young's inequality (Claim~\ref{clm:Young}), we have that 
+$\Vert q \Vert_2 \le \Vert f \Vert_1 \cdot \Vert b_{d,\gamma} \Vert_2$. Noting that $f$ is a density and thus $\Vert f \Vert_1=1$ and applying Fact~\ref{fact:b-sup-density}, we obtain that $\Vert q \Vert_2$ is finite. As a consequence, the Fourier coefficients of $q$ are well-defined. 
+\end{itemize}
+\noindent \emph{Preliminary analysis.}
+We first observe that because $b_{d,\gamma}$ is supported on $[-\gamma,\gamma]^d$, the distribution $q$ may be viewed as an average of different shifts of $f$ where each shift is by a distance at most $\gamma \sqrt{d} \leq \kappa$. Fix any direction $v$ and consider a shift of $f$ in direction $v$ by some distance at most $\gamma \sqrt{d} \leq \kappa$. Since 
+% $f$ belongs to ${\CSI'}(c,d)$, 
+$\kappa \si(f, \kappa) \leq \epsilon/2$,
+we have that the variation distance between $f$ and this shift in direction $v$ is at most $\epsilon/2$.  Averaging over all such shifts, it follows that
+\begin{equation}~\label{eq:tv-distance}
+\dtv(q,f) \leq \eps/2.
+\end{equation}
+
+Next, we observe that by Claim~\ref{clm:convolution}, for any $\xi \in
+\mathbb{Z}^d$, we have $\widehat{q}(\xi) = \widehat{f}(\xi) \cdot
+\widehat{b_{d,\gamma}} (\xi)$. Since $f$ is a pdf, $|\widehat{f}(\xi)
+| \le 1$, and thus we have $|\widehat{q}(\xi)| \leq
+|\widehat{b_{d,\gamma}} (\xi)|$. Also, for any parameter $k \in
+\mathbb{Z}^+$, define $C_k = \{\xi \in \mathbb{Z}^d: \Vert \xi
+\Vert_\infty = k\}$.
+Let us fix another parameter $T$ (to be determined later). 
+Applying Claim~\ref{clm:Fourier-b}, we obtain
+\begin{eqnarray}
+&& \sum_{\xi: \Vert \xi \Vert_\infty > T} |\widehat{q}(\xi)|^2 \le  \sum_{\xi: \Vert \xi \Vert_\infty > T} |\widehat{b_{d,\gamma}}(\xi)|^2 \le \sum_{k > T} \sum_{\xi: \Vert \xi \Vert_\infty =k}|\widehat{b_{d,\gamma}}(\xi)|^2  \nonumber \\ 
+&& \le \sum_{k > T} |C_k| \cdot    e^{-2 \cdot \sqrt{\gamma \cdot k}} \cdot (\gamma \cdot k)^{-3/2} \  
+\leq \sum_{k > T} (2k+1)^d \cdot    e^{-2 \cdot \sqrt{\gamma \cdot k}} \cdot (\gamma \cdot k)^{-3/2}. \nonumber
+\end{eqnarray}
+An easy calculation shows that 
+if $T \ge \frac{4d^2}{\gamma} \cdot \ln^2 \bigg(\frac{d}{\gamma}\bigg)$, then $\sum_{\xi: \Vert \xi \Vert_\infty > T} |\widehat{q}(\xi)|^2 \le  2 (2T+1)^d \cdot e^{-2 \cdot \sqrt{\gamma \cdot T}} \cdot  (\gamma \cdot T)^{-3/2}.$
+If we now set $T$ to be 
+$\frac{4d^2}{\gamma} \cdot \ln^2 \bigg(\frac{d}{\gamma}\bigg) + \frac{1}{\gamma} \cdot \ln^2 \bigg( \frac{8 }{\epsilon}\bigg)$, then $\sum_{\xi: \Vert \xi \Vert_\infty > T} |\widehat{q}(\xi)|^2  \le \frac{\epsilon^2}{8}.$ 
+
+% \noindent 
+\emph{The algorithm.}
+We first observe that for any $\xi \in \mathbb{Z}^d$, the Fourier coefficient $\widehat{q}(\xi)$ can be 
+estimated
+to good accuracy using relatively few draws from $q$ (and hence from $f$, recalling (ii) above).  More precisely, as an easy consequence of the definition of the Fourier transform, we have:
+\begin{observation}~\label{obs:compute-Fourier}
+For any $\xi \in \mathbb{Z}^d$, the Fourier coefficient $\widehat{q}(\xi)$ can be 
+estimated
+to 
+within
+additive error 
+% $\pm \eta$ 
+of magnitude at most $\eta$
+with confidence $1-\beta$ using $O(1/\eta^2 \cdot \log(1/\beta))$ draws from $q$. 
+\end{observation}
+Let us define the set $\mathsf{Low}$ of low-degree Fourier coefficients as $\mathsf{Low} = \{\xi \in \mathbb{Z}^d : \Vert \xi \Vert_\infty \le T\}$. 
+Thus, $|\mathsf{Low}| \le (2T+1)^d$.  Thus, using $S = O(\eta^{-2} \cdot \log (T/ \delta))$ draws from $f$, by Observation~\ref{obs:compute-Fourier}, with probability $1-\delta$, we can compute
+a set of values $\{\widehat{u}(\xi)\}_{\xi \in \mathsf{Low}}$ such that 
+\begin{equation}\label{eq:approx}
+\textrm{For all }\xi \in \mathsf{Low}, \ |\widehat{u}(\xi) - \widehat{q}(\xi)| \le \eta. 
+\end{equation}
+Recalling (ii), 
+% the time complexity of computing 
+the sequence $\{\widehat{u}(\xi)\}_{\xi \in \mathsf{Low}}$ 
+can be computed in $O(|S| \cdot |\mathsf{Low}|)$ time. 
+Define $\widehat{u}(\xi) =0$ for $\xi \in \mathbb{Z}^d \setminus \mathsf{Low}$. Combining (\ref{eq:approx}) with this, we get 
+\begin{eqnarray}
+\sum_{\xi \in \mathbb{Z}^d}  |\widehat{u}(\xi) - \widehat{q}(\xi)|^2 &\le& \sum_{\xi \in \mathsf{Low}} \ |\widehat{u}(\xi) - \widehat{q}(\xi)|^2 + \sum_{\xi \not \in \mathsf{Low}} \ |\widehat{u}(\xi) - \widehat{q}(\xi)|^2  \nonumber \\&\le& \sum_{\xi \in \mathsf{Low}} \ |\widehat{u}(\xi) - \widehat{q}(\xi)|^2 + \frac{\epsilon^2 }{8} \nonumber \\
+&\le& | \mathsf{Low}| \cdot \eta^2 +  \frac{\epsilon^2}{8}  \le (2T+1)^d \cdot \eta^2 + \frac{\epsilon^2 }{8}. \nonumber 
+\end{eqnarray}
+Thus, setting $\eta$ as $\eta^2 = (2T+1)^{-d} \cdot \frac{\epsilon^2}{8} $, we get that \begin{eqnarray}\sum_{\xi \in \mathbb{Z}^d}  |\widehat{u}(\xi) - \widehat{q}(\xi)|^2 \le \frac{\epsilon^2}{4}. \label{eq:eta-bound} \end{eqnarray}
+Note that by definition $\widehat{u} : \mathbb{Z}^d \rightarrow \mathbb{C}$ satisfies $\sum_{\xi \in \mathbb{Z}^d} |\widehat{u}(\xi) |^2 < \infty$. Thus, we can apply the Fourier inversion formula (Claim~\ref{clm:inversion}) to obtain a function $u: [-1,1]^d \rightarrow \mathbb{C}$ such that 
+\begin{equation}~\label{eq:Parseval-eqn}
+\int_{[-1,1]^d} |u(x) - q(x)|^2  dx = \frac{1}{2^d} \cdot \big( \sum_{\xi \in \mathbb{Z}^d} |\widehat{u}(\xi) - \widehat{q}(\xi)|^2 \big) \le \frac{\epsilon^2}{4 \cdot 2^d},
+\end{equation}
+where the first equality follows by Parseval's identity (Claim~\ref{clm:Parseval}). By the Cauchy-Schwarz inequality, 
+\[
+\int_{[-1,1]^d} |u(x) - q(x)|  dx  \leq \sqrt{2^d} \cdot \sqrt{\int_{[-1,1]^d} |u(x) - q(x)|^2  dx }.
+\]
+Plugging in (\ref{eq:Parseval-eqn}), we obtain 
+$
+\int_{[-1,1]^d} |u(x) - q(x)|  dx \le \frac{\epsilon}{2}.$
+Let us finally define $h$ (our final hypothesis), $h: [-1,1]^d \rightarrow \mathbb{R}^+$, as follows: 
+$h(x) = \max \{0, \mathsf{Re}(u(x))\}$. Note that since $q(x)$ is a non-negative real value for all $x$, we have 
+\begin{equation} \label{eq:pickle}
+\int_{[-1,1]^d} |h(x) - q(x)|  dx \le \int_{[-1,1]^d} |u(x) - q(x)|  dx \le \frac{\epsilon}{2}. 
+\end{equation}
+Finally, recalling that by (\ref{eq:tv-distance}) we have $\dtv(f,q) \le \frac{\epsilon}{2}$, it follows that 
+$
+\int_{[-1,1]^d} |h(x) - f(x)|  dx  \le \epsilon.$
+
+\emph{Complexity analysis.}
+We now analyze the time and sample complexity of this algorithm as well as the complexity of computing $h$. First of all, observe that plugging in the value of $\gamma$ and recalling that $d$ is a constant, we get that $T  = 
+\frac{4d^2}{\gamma} \cdot \ln^2 \bigg(\frac{d}{\gamma}\bigg) + \frac{1}{\gamma} \cdot \ln^2 \bigg( \frac{8 }{\epsilon}\bigg)
+ =
+O\left({\frac {\log^2(1/\kappa)}{\kappa}}\right)$. Combining this with the choice of $\eta$ (set just above (\ref{eq:eta-bound})),  we get that the algorithm uses
+\begin{align*}
+& S = O\bigg( \frac{1}{\eta^2} \cdot \log \bigg(\frac{|\mathsf{Low}|}{\delta} \bigg) \bigg) 
+= O\bigg( \frac{1}{\eta^2} \cdot \log \bigg(\frac{T}{\delta} \bigg) \bigg) 
+= O\left( \frac{(2 T + 1)^d \cdot \log \bigg(\frac{T}{\delta} \bigg)}{\epsilon^2} \right)  \\
+& = O_{d}\bigg( \frac{1}{\epsilon^2}
+          \left( \frac{1}{\kappa} \right)^d
+          \log^{2d} \left( \frac{1}{\kappa} \right)
+          \log \left( \frac{1}{\kappa \delta} \right)\bigg) 
+\end{align*}
+draws from $p$.
+Next, as we have noted before, computing the sequence $\{\widehat{u}(\xi)\}$ takes time 
+\begin{align*}
+O(S \cdot |\mathsf{Low}|)
+  & = O_{d}\bigg( \frac{1}{\epsilon^2}
+          \left( \frac{1}{\kappa} \right)^d
+          \log^{2d} \left( \frac{1}{\kappa} \right)
+          \log \left( \frac{1}{\kappa \delta} \right) T^d \bigg) 
+     \\
+  & = O_{d}\bigg( \frac{1}{\epsilon^2}
+          \left( \frac{1}{\kappa} \right)^{2 d}
+          \log^{4 d} \left( \frac{1}{\kappa} \right)
+          \log \left( \frac{1}{\kappa \delta} \right) \bigg). \\
+\end{align*}
+
+
+To compute the function $u$ (and hence $h$) at any point $x \in
+[-1,1]^d$ takes time
+$O(|\mathsf{Low}|) = 
+  O_{d} \left( {\frac {\log^{2d}
+      (1/\kappa)}{\kappa^d}} \right).$ This is because
+the Fourier inversion formula (Claim~\ref{clm:inversion}) has at most
+$O(|\mathsf{Low}|)$ non-zero terms.
+
+Finally, we prove the upper bound on $h$.  
+If the training examples are $x_1,...,x_S$, then
+for any $z \in [-1,1]^d$, we have
+\begin{align*}
+& h(z) \leq | u(z) |
+     = \left| \sum_{\xi \in \mathsf{Low}} \frac{1}{2^d} \cdot \hat{u} (\xi) \cdot e^{ \pi i \cdot \langle \xi, z \rangle} \right|
+     = \left| \sum_{\xi \in \mathsf{Low}} \frac{1}{2^d} \cdot 
+     \left( \frac{1}{S} \sum_{t=1}^S e^{\pi i \langle \xi, x_t \rangle} 
+       \right)
+         \cdot e^{ \pi i \cdot \langle \xi, z \rangle} \right| \\
+&      \leq \frac{|\mathsf{Low}|}{2^d} 
+    =  O_{d} \left( {\frac {\log^{2d} (1/\kappa)}{\kappa^d}} \right),
+\end{align*}
+completing the proof.
+\end{proof}
+
+
+With an eye towards our ultimate goal of obtaining noise-tolerant density estimation algorithms, the next corollary says that the algorithm in Lemma~\ref{lem:finite-support} is robust to noise. All the parameters have the same meaning and relations as in Lemma~\ref{lem:finite-support}.  
+
+\begin{corollary}~\label{corr:agnostic}
+Let $f'$ be a density supported in $B(1/2)$\footnote{Looking ahead, while in general an  ``$\eps$-noisy'' version of $f$ need not be supported in $B(1/2)$, the reduction we employ will in fact ensure that we only need to deal with noisy distributions that are in fact supported in $B(1/2).$
+} such that there is a $d$-dimensional density $f$ satisfying the following two properties: (i) $f$ satisfies all the conditions in the hypothesis of Lemma~\ref{lem:finite-support}, and (ii) $f'$ is an $\eps$-corrupted version of $f$, i.e. $f'=(1-\eps)f + \eps f_{\mathrm{noise}}$ for some density $f_{\mathrm{noise}}.$ 
+Then given access to samples from $f'$,  the algorithm
+ \textsf{learn-bounded}  returns a hypothesis $h: [-1,1]^d \rightarrow \mathbb{R}^+$ which satisfies $\int_{x \in \mathbb{R}^d} |f'(x) - h(x)| \le 2 \epsilon$. All the other guarantees including the sample complexity and time complexity remain the same as Lemma~\ref{lem:finite-support}. 
+\end{corollary}
+
+\begin{proof}
+% This corollary follows from a simple observation about  the proof of Lemma~\ref{lem:finite-support}. Namely, the only property\pnote{Don't we also use that it is smooth?} of $q$ (defined in the proof of Lemma~\ref{lem:finite-support}) that is used in the proof is that the function $q$ is supported in $[-1,1]^d$. 
+The proof of Lemma~\ref{lem:finite-support} can be broken down into
+two parts: 
+\begin{itemize}
+\item $f$ can be approximated by $q$, and
+\item $q$ can be learned.
+\end{itemize}
+The argument that $q$ can be learned only used two facts about it:
+\begin{itemize}
+\item it is supported in $[-1,1]^d$, and
+\item it has few nonzero Fourier coefficients.
+\end{itemize}
+So, now 
+consider the distribution $q' = f' \ast b_{d,\gamma}$ where $b_{d,\gamma}$ is the same distribution as in Lemma~\ref{lem:finite-support}.
+Because $q'$ is the result of convolving $f'$ (a density supported in $B(1/2)$ with $b_{d,\gamma}$, it is supported in 
+$[-1,1]^d$, and has the same Fourier concentration property that
+we used for $q$.  Thus,
+the algorithm will return a hypothesis distribution $h(x)$ such that the analogue of (\ref{eq:pickle}) holds, i.e.
+\begin{equation}~\label{eq:h-guarantee} \int_{[-1,1]^d} |h(x)  - q'(x)| dx \le \frac{\epsilon}{2}.\end{equation} 
+Recalling that the density $f'$ can be expressed as 
+$(1-\epsilon) f + \epsilon f_{\mathrm{noise}}$ where $f_{\mathrm{noise}}$ is some density supported in $B(1/2)$, we now have
+\begin{eqnarray*}
+\dtv(q', f') = \dtv(f' \ast b_{d,\gamma} , f') &=& \dtv((1-\epsilon) f \ast b_{d,\gamma} + \epsilon f_{\mathrm{noise}} \ast b_{d,\gamma}, (1-\epsilon) f + \epsilon f_{\mathrm{noise}})  \\
+&\le& (1-\epsilon) \dtv(f \ast b_{d,\gamma}, f) + \epsilon \dtv(f_{\mathrm{noise}} \ast b_{d,\gamma}, f_{\mathrm{noise}})\\
+&\le& \epsilon/2 + \epsilon \le 3 \epsilon/2. 
+\end{eqnarray*}
+The penultimate inequality uses (\ref{eq:tv-distance}) and the fact that the total variation distance between any two distributions is bounded by $1$. Combining the above with (\ref{eq:h-guarantee}), the corollary is proved.
+\end{proof}
+

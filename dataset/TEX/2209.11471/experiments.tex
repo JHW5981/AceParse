@@ -1,0 +1,175 @@
+\section{Experiments}
+\label{s:exp}
+
+% We compare the impact of prerequisite incorporation under different recommendation scenarios, then analyze results focusing mainly on course recommendation, as it is the most knowledge-intensive scenario.
+
+% \subsection{Experimental Settings}
+% \subsubsection{Datasets.} 
+To the best of our knowledge, no existing datasets are specifically designed for \textit{prerequisite context} modeling.  
+Hence, we modify the existing datasets SSG-Data, MovieLens, and Amazon Books\footnote{(S) \url{https://www.skillsfuture.gov.sg/}, (M) \url{https://grouplens.org/datasets/movielens/}, and (A) \url{https://jmcauley.ucsd.edu/data/amazon/} \label{fn:web}}
+which all contain textual descriptions of items.
+SSG-Data (\textbf{Course}) is an exhaustive anonymized listing of life-long course-taking history of citizen participants in 9 month period in \textit{SkillsFuture Singapore (SSG)}, which is not publicly available yet. Course \textit{content} and \textit{objectives} are used as an item's documents. 
+We also use the public MovieLens 100K and Amazon Books as {\bf Movie} and {\bf Book} datasets, where the crawled textual description from IMDB and TMDB\footnote{\url{https://www.imdb.com}, and \url{ https://themoviedb.org}} serve as movies' documents, and the crawled textual overview from Goodreads and Google Books\footnote{\url{https://www.goodreads.com/} and \url{https://books.google.com/}} serve as books' documents.
+To align the task with (binary) recommendation, where only implicit feedback is available, we deem interactions with $ratings \ge 3$ as positive feedback in the movie and book scenarios. We provide detailed dataset statistics in Appendix~A. 
+% \footnote{https://holdenhu.github.io/assets/pdf/pdrs\_appendix.pdf}
+
+To obtain the user's state of knowledge $\mathcal{C}_u^p$, $\mathcal{C}_u^t$, 
+we assume that users have mastered the knowledge contained in items that they have previously interacted with,
+and take concepts from the
+documents of first 30\% and the last 20\% of items they interacted with as their prior and target knowledge, respectively.
+To maintain strict training and testing separation, we only use the remaining 50\% of knowledge concepts for training and testing our PDRS. 
+We also follow the common practice \cite{lei2020interactive} and only retain user records with more than three interactions, to ensure each user has at least one item for evaluating recommendation performance and one item each for modeling prior and target knowledge.
+
+% \subsection{Baselines \& Evaluation Metrics}
+We assess our PDRS method against traditional recommendation models (ItemPop, ItemKNN \cite{sarwar2001item}, and NeuMF \cite{he2017neural}) and lightweight yet effective feature-incorporated models (GCMC  \cite{berg2017graph} with optimized dropout rate $0.5$, and DeepFM \cite{guo2017deepfm} with optimized dropout rate $0.2$). 
+% Defaultly, we take user and item IDs as feature inputs and set optimal knowledge concept embedding dimension empirically at $64$. 
+% rewriten
+% Min: re-written again by Min
+We also compare against two-widely accepted models of GCMC and DeepFM to validate whether our prerequisite context representation is effective
+by replacing their user and item IDs feature inputs and modifying them to accept our KEM-derived $64$-dimension feature embedding (denoted as GCMC+KEM and DeepFM+KEM).
+% systematically tuned the hyperparameters of all the compared models
+Specifically, the feature embedding dimensions, and node dropout rates are tuned for optimal performance, set as $\{8,8,16\}$, and $0.5$, respectively. The optimal knowledge concept embedding dimension is set empirically at $64$.
+We also employ two weak baselines: BPR \cite{rendle2012bpr} and SVD \cite{koren2009matrix} for a comprehensive comparison. 
+
+% 4. \textbf{GCMC} \cite{berg2017graph} uses the encoder--decoder framework on a bipartite graph to complete the interaction matrix. 
+% We take user and item IDs as feature inputs for the encoders and decode their embeddings bilinearly. The feature embedding dimensions, and node dropout rates are tuned for optimal performance, set as $\{8,8,16\}$, and $0.5$, respectively. The optimal knowledge concept embedding dimension is set empirically at $64$. GCMC can also be modified to accept our KEM pretraining, adding the corresponding prior and target knowledge embedding and the item knowledge embedding. We denote this version as \textbf{GCMC+KEM}). 
+
+% 5. \textbf{DeepFM} \cite{guo2017deepfm}
+% is a feature-based factorization model. We combine two categorical fields --- user and item IDs --- as sparse input features.  Dropout is tuned optimally to $0.2$. Like GCMC, we can hybridize DeepFM to leverage KEM as a dense input feature (denoted as \textbf{DeepFM+KEM}). 
+
+
+
+We split our interaction data into (80\%, 10\%, 10\%) to serve as training, validation and testing, respectively.  For studying warm-start, we leave one item out per user.  For the user (item) cold-start (also called new item) scenarios, users (items) in validation/testing set do not appear in the training set. For each test case, we follow the common practice \cite{he2017neural}, ranking 100 items --- 99 negative samples and 1 positive sample. We use Hit Ratio@k (HR@k) and Normalized Discounted Cumulative Gain@k (NDCG@k) \cite{Shani2011evaluating} as top-$k$ ranking-based accuracy measures.
+
+% \subsection{Baselines}
+% We assess our PDRS method against traditional recommendation models (Models 1--3) and state-of-the-art (SOTA) deep matrix factorization models (4--5). We also use SOTA feature-incorporated models to assess PDRS's capability of exploiting side information.
+
+% 1. \textbf{ItemPop} recommends the most popular items based on number of interactions in the training set, for all users. 
+
+% 2. \textbf{ItemKNN} \cite{sarwar2001item} is a memory-based \cite{yu2004probabilistic} collaborative filtering method which recommends the nearest neighbors of items a user has interacted with in the training set, based on cosine similarity of the interaction vector. 
+
+% 3. \textbf{NeuMF} \cite{he2017neural} marries general matrix factorization with the flexibility of deep learning via multi-layer perceptron (MLP; also featured in our model), concatenating their hidden states from two channels for final recommendation. 
+
+\subsection{Main Results}
+\begin{table*}[t!]
+\setlength{\abovecaptionskip}{-0.05cm}
+% \setlength{\belowcaptionskip}{-0cm}
+% \small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{p{0.5cm}l|llll|llll|llll}
+\hline
+\multicolumn{2}{c|}{\multirow{2}{*}{Model}} & \multicolumn{4}{c|}{Course}  & \multicolumn{4}{c|}{Movie} & \multicolumn{4}{c}{Book}                                                                                 \\
+\multicolumn{1}{c}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c}{H@2} & \multicolumn{1}{c}{H@10} & \multicolumn{1}{c}{N@2} & \multicolumn{1}{c|}{N@10} & \multicolumn{1}{c}{H@2} & \multicolumn{1}{c}{H@10} & \multicolumn{1}{c}{N@2} & \multicolumn{1}{c|}{N@10} & \multicolumn{1}{c}{H@2} & \multicolumn{1}{c}{H@10} & \multicolumn{1}{c}{N@2} & \multicolumn{1}{c}{N@10} \\ \hline
+
+\multicolumn{1}{c|}{\multirow{7}{*}{}} &
+ItemPop & 0.4541 & 0.7813 & 0.3973 & 0.5300 & 0.2504 & 0.5905 & 0.2152 & 0.3496  & 0.2305 & 0.4740 & 0.2003 & 0.2865 \\
+\multicolumn{1}{c|}{} & ItemKNN & \textbf{0.7122} & 0.8076  & \textbf{0.6551} & 0.6785 & 0.2631 & 0.4613 & 0.2299 & 0.3092 & 0.0890 & 0.1178 & 0.0818 & 0.0944 \\
+\multicolumn{1}{c|}{Without} & SVD & 0.5934                   & 0.8256                     & 0.5863                    & 0.6672                       & 0.2720                   & 0.6552                     & 0.2288                    & 0.3789                       & 0.2025                   & 0.4002                     & 0.1791                    & 0.2527                      \\
+\multicolumn{1}{c|}{Prereq.} & BPR                                         & 0.6650                   & 0.8396                     & 0.6317                    & 0.6794                       & 0.2882                   & 0.6673                     & 0.2469                    & 0.3958                       & 0.2048                   & 0.4043                     & 0.1820                    & 0.2712                      \\
+\multicolumn{1}{c|}{Knowl.} & NeuMF                                       & 0.6859                   & 0.8455                     & 0.6257                    & 0.6811                       & 0.2899                   & 0.6641                     & 0.2467                    & 0.3936                       & 0.2178                   & 0.4404                     & 0.1876                    & 0.2748                      \\
+\multicolumn{1}{c|}{} & GCMC                                        & 0.4081                   & 0.7661                     & 0.3471                    & 0.4928                       & 0.2518                   & 0.5904                     & 0.2165                    & 0.3511                       & 0.2234                   & 0.4734                     & 0.2234                    & 0.2929                      \\
+\multicolumn{1}{c|}{} & DeepFM                                      & 0.5329                   & 0.8154                     & 0.4630                    & 0.5799                       & 0.2695                   & 0.6457                     & 0.2341                    & 0.3821                       & 0.2236                   & 0.4431                     & 0.1915                    & 0.2751                      \\
+\hline
+\multicolumn{1}{c|}{With} & GCMC+KEM                                    & 0.4512                   & 0.7996                     & 0.3821                    & 0.5241                       & 0.2618                   & 0.6066                     & 0.2266                    & 0.350                       & 0.2319                   & 0.4885                     & \textbf{0.2251}           & 0.2992                      \\
+\multicolumn{1}{c|}{Prereq.} & DeepFM+KEM                                  & 0.6786                   & 0.8723                     & 0.6101                    & 0.6895                       & 0.3034                   & 0.6737                     & 0.2125                    & 0.4100                       & 0.2365                   & 0.4910                     & 0.2026                    & 0.3003                      \\
+\multicolumn{1}{c|}{Knowl.} & PDRS                                        & 0.6894          & \textbf{0.8789}            & 0.6390           & \textbf{0.7142}              & \textbf{0.3290}          & \textbf{0.6993}            & \textbf{0.2825}           & \textbf{0.4281}              & \textbf{0.2427}          & \textbf{0.5150}            & 0.2110                    & \textbf{0.3172}             \\ \hline
+\end{tabular}
+}
+\caption{Hit Ratio (H) and NDCG (N) @$K$ on the Course, Movie, and Book datasets. Bold figures highlight best performers.}
+\vspace{-0.3cm}
+\label{tab:results}
+\end{table*}
+
+\begin{table}
+\setlength{\abovecaptionskip}{-0.5cm}
+\parbox{.56\linewidth}{
+    \centering
+    \footnotesize
+    \begin{tabular}{ccc|cc|cc|cc}
+    % \toprule[2pt]
+    \toprule
+    \multicolumn{1}{c}{\multirow{2}{*}{$\mathcal{C}^p$}} & \multicolumn{1}{c}{\multirow{2}{*}{$\mathcal{C}^t$}} & \multicolumn{1}{c|}{\multirow{2}{*}{$\mathcal{C}^i$}}    & \multicolumn{2}{c|}{$Course$}       & \multicolumn{2}{c|}{$Movie$} & \multicolumn{2}{c}{$Book$} \\ 
+    & &  & H@10 & \multicolumn{1}{c|}{N@10} & H@10 & \multicolumn{1}{c|}{N@10} & H@10 & \multicolumn{1}{c}{N@10} \\ 
+    
+    \midrule
+     &  &  &                                 0.8192 & 0.6117 & 0.6444 & 0.3796 & 0.4460 & 0.2749  \\
+    \checkmark  &             &            & 0.8626 & 0.6944 & 0.6598 & 0.4003 & 0.4579 & 0.2810  \\
+                & \checkmark  &            & 0.8556 & 0.6929 & 0.6714 & 0.4026 & 0.4669 & 0.2859  \\ 
+                &             & \checkmark & 0.8422 & 0.6539 & 0.6731 & 0.3991 & 0.4684 & 0.2826  \\            
+    \checkmark  & \checkmark  &            & \textit{0.8682} & \textit{0.7099} & 0.6705 & 0.4043 & 0.4644 & 0.2809   \\
+    \checkmark  &             & \checkmark & 0.8633 & 0.6968 & \textit{0.6940} & \textit{0.4208} & 0.4898 & 0.3053 \\
+                & \checkmark  & \checkmark & 0.8639 & 0.6978 & 0.6851 & 0.4134 & \textit{0.4966} & \textit{0.3062}  \\
+    \checkmark  & \checkmark  & \checkmark & \textbf{0.8789} & \textbf{0.7142} & \textbf{0.6993} & \textbf{0.4281} & \textbf{0.5150} & \textbf{0.3172}  \\
+    \bottomrule
+    \end{tabular}
+    \caption{Ablation study on PDRS. $\mathcal{C}^p$, $\mathcal{C}^t$ and $\mathcal{C}^i$ represent user prior concepts, user target concepts, and concepts contained by item. Bold figures indicated leading performers; italicized figures, second-best.}
+    \label{tab:variable}
+}
+\hfill
+\parbox{.42\linewidth}{
+    \centering
+    \footnotesize
+    \begin{tabular}{c|cc|cc}
+    % \hline
+    \toprule
+                 & \multicolumn{2}{c|}{\textit{User Cold Start}}                     & \multicolumn{2}{c}{\textit{Item Cold Start}} \\
+     & \multicolumn{1}{c}{H@10} & \multicolumn{1}{c|}{N@10} & H@10& N@10      \\ 
+    %  \hline
+    \midrule
+    ItemPop    & 0.7013 & 0.5010     & -  & -    \\
+    SVD        & 0.347  & 0.2259     & 0.0661 & 0.0234 \\
+    NeuMF      & 0.7097 & 0.4314     & 0.0036 & 0.0012 \\
+    BPR        & 0.3787 & 0.2690     & 0.0915 & 0.0414 \\ 
+    % \hline
+    \midrule
+    PDRS                         & \textbf{0.8337} & \textbf{0.6005}    & \textbf{0.1989} & \textbf{0.1110}  \\
+    PDRS (w/o $\mathcal{C}_{u/v}$)  & 0.6381 & 0.3977    & 0.0729 & 0.0271     \\ 
+    % \hline
+    \bottomrule
+    \end{tabular}
+    \caption{Cold start evaluation on Course recommendation.  PDRS uses knowledge from both user side and item side.  PDRS w/o $\mathcal{C}_{u/v}$ denotes the ablation of user/item context in user/item cold start, respectively.}
+    \label{tab:cold}
+}
+\end{table}
+
+% \begin{table}[t!]
+% % \setlength{\abovecaptionskip}{-0.1cm}
+% % \setlength{\belowcaptionskip}{-0cm}
+% \footnotesize
+% \begin{tabular}{ccc|cc|cc|cc}
+% % \toprule[2pt]
+% \toprule
+% \multicolumn{1}{c}{\multirow{2}{*}{$\mathcal{K}^p$}} & \multicolumn{1}{c}{\multirow{2}{*}{$\mathcal{K}^t$}} & \multicolumn{1}{c|}{\multirow{2}{*}{$\mathcal{K}^i$}}    & \multicolumn{2}{c|}{$Course$}       & \multicolumn{2}{c|}{$Movie$} & \multicolumn{2}{c}{$Book$} \\ 
+% & &  & H@10 & \multicolumn{1}{c|}{N@10} & H@10 & \multicolumn{1}{c|}{N@10} & H@10 & \multicolumn{1}{c}{N@10} \\ 
+
+% % \midrule[2pt]
+% \midrule
+%  &  &  &                                 0.8192 & 0.6117 & 0.6444 & 0.3796 & 0.4460 & 0.2749  \\
+% \checkmark  &             &            & 0.8626 & 0.6944 & 0.6598 & 0.4003 & 0.4579 & 0.2810  \\
+%             & \checkmark  &            & 0.8556 & 0.6929 & 0.6714 & 0.4026 & 0.4669 & 0.2859  \\ 
+%             &             & \checkmark & 0.8422 & 0.6539 & 0.6731 & 0.3991 & 0.4684 & 0.2826  \\            
+% \checkmark  & \checkmark  &            & \textit{0.8682} & \textit{0.7099} & 0.6705 & 0.4043 & 0.4644 & 0.2809   \\
+% \checkmark  &             & \checkmark & 0.8633 & 0.6968 & \textit{0.6940} & \textit{0.4208} & 0.4898 & 0.3053 \\
+%             & \checkmark  & \checkmark & 0.8639 & 0.6978 & 0.6851 & 0.4134 & \textit{0.4966} & \textit{0.3062}  \\
+% \checkmark  & \checkmark  & \checkmark & \textbf{0.8789} & \textbf{0.7142} & \textbf{0.6993} & \textbf{0.4281} & \textbf{0.5150} & \textbf{0.3172}  \\
+
+% % \bottomrule[2pt]
+% \bottomrule
+
+% \end{tabular}
+% \caption{Ablation study on PDRS. $\mathcal{K}^p$, $\mathcal{K}^t$ and $\mathcal{K}^i$ represent user prior knowledge, user target knowledge, and knowledge contained by item. Bold figures indicated leading performers; italicized figures, second-best.}
+% \vspace{-1cm}
+% \label{tab:variable}
+% \end{table}
+
+Table~\ref{tab:results} shows recommendation performance.
+In general, PDRS outperforms the baselines across all three datasets, in terms of both HR and NDCG, demonstrating the effectiveness of prerequisite context. One exception is that PDRS performs worse than ItemKNN on course recommendation when $k = 2$. We believe this is due to the differing levels of sparsity on the item side: there are $\frac{89K}{4.3K}=20.7$ records per item for courses, but only $\frac{409K}{70K}=5.8$ records per item for books. This makes it easier to find similar items in the former, but more difficult in the latter. This gain evaporates when $k$ increases to 10, as ItemKNN only recommends accurately for users who choose courses similar to previous ones; however we see that users do manifest individualized learning pathways in courses, which ItemKNN does not generalize to. 
+GCMC and DeepFM perform well, outperforming other baselines, but they improve dramatically with addition of encoded prerequisite information from KEM, validating that prerequisites play an important role in recommendation tasks.
+The variants utilizing KEM pretraining (GCMC+KEM, DeepFM+KEM, PDRS) all improve over their corresponding base models.
+Among these three models, PDRS performs best.
+
+% Let us examine PDRS in more depth. 
+To verify which form of side information in PDRS is most responsible for performance gains (i.e., user prior knowledge, user target knowledge, and item concept in Table~\ref{tab:variable}), we conduct an ablation study (Table~\ref{tab:variable}). When no side information is used, the model functions just as matrix factorisation. For all three recommendation scenarios, the results are best when all forms of side information are used, and worst when none are leveraged. The result of introducing a single form of side information shows that user context plays the most important role in course recommendation (+\underline{5.3}\% with $\mathcal{C}^p$, +4.4\% with $\mathcal{C}^t$, and +2.8\% with $\mathcal{C}^i$), whereas item context is more helpful for movie and book recommendation 
+% (+2.4\% with $\mathcal{K}^p$, +4.1\% with $\mathcal{K}^t$, and +4.5\% with $\mathcal{K}^i$ for movies; and +2.7\% with $\mathcal{K}^p$, +4.7\% with $\mathcal{K}^t$, and +5.0\% with $\mathcal{K}^i$ for books). 
+(+\{2.4, 4.1, \underline{4.4}\}\% for movies and +\{2.7, 4.7, \underline{5.0}\}\% for books on \{$\mathcal{C}^p$,$\mathcal{C}^t$,$\mathcal{C}^i$\}, respectively.
+Interestingly, the three datasets exhibit different optimal combinations of two forms of side information. For courses, combining user prior and target knowledge is best, likely because learners do choose necessary bridging courses based on their target course.  In contrast, in movie recommendation, the optimal combination is $\mathcal{C}^p$ and $\mathcal{C}^i$. Watchers may choose based more on their experience with relatable plots and characters.  For book recommendation, $\mathcal{C}^t$ and $\mathcal{C}^i$ is the best combination. We surmise that readers choose from their preferred book category (correlated in our PDRS by target knowledge).  

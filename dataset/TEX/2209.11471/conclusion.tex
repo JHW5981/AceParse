@@ -1,0 +1,33 @@
+\section{Conclusion and Future Work}
+
+To the best of our knowledge, we are the first to explore the use of prerequisites --- an overlooked but crucial form of context --- for recommendation.
+We introduce Prerequisite Knowledge Linking (PKL) method to induce a prerequisite graph automatically, through semi-supervised learning over both general and domain-specific features.
+We instantiate our formalism in the form of a Prerequisite Driven Recommendation System (PDRS; \S3) embodied as a modern neural architecture, which adopts joint training to optimise the model for the twin objectives of knowledge linking prediction and recommendation.
+We demonstrate that prerequisite context is a functional booster to solve cold-start problem, and can benefit recommenders universally through our experiments on our Course, Movie, and Book datasets (\S4).
+
+% Holden: @Min. I rewrite the future work in a short paragraph, which needs double checking.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+While our PDRS is a simple instantiation of a prerequisite driven recommendation, its elegance leads to synergistic performance gains. Designing more sophisticated models to leverage captured prerequisite knowledge is open  future work. 
+As our prerequisite graph is a structured format of knowledge, future work may seek more complex encoding methods, such as typical translation-based methods (e.g., TransE \cite{bordes2013translating}, TransH \cite{wang2014knowledge}).
+%as in general knowledge graphs.
+Moreover, our work opens the door for studying user's state of knowledge in dynamic scenarios, such as conversational recommendation and long-term sequential recommendation.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% To do
+% - Framewrok重新画. k
+% - KPL和PLK等保持一致
+% - Intro和Conclusion中提及我们的简单性. k
+%   - g和f都用的MLP. k
+% - 检查引用有误错误
+% - Conclusion中加上contribution
+% - 花十分钟过一下appendix
+% - 把看起来特别复杂的地方简化
+% - user knowledge / item knowledge => context
+% - 检查K^i的使用
+% - knowledge concept, concept, prerequisite concept, prerequisite knowledge的使用
+% - RW recheck
+
+% - Recheck 3.2
+% - Recheck 3.3
+% - Recheck the defintion of PDR and PDRS
+% - check conclusion

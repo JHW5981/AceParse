@@ -1,0 +1,88 @@
+\subsection{Discussion: Is prerequisite context beneficial for Cold-start Problem?}
+User cold-start (also termed as new-user) and item cold-start problems \cite{schein2002methods,lam2008addressing} are major recommendation system concerns. Table~\ref{tab:cold} compares PDRS in the course recommendation against baselines in user and item cold-start scenarios. 
+
+From the table, item cold start is more serious than user cold start, as evidenced by the drastic drop in performance in the former case. Missing item interactions --- in addition to high user sparsity --- makes item and user representations inaccurate. Note that as ItemKNN locates items similar to users' previous interactions and ItemPop uses item popularity, both baseline models do not apply to this item cold start scenario. 
+The performance of latent factor based approaches (SVD, BPR) severely drops in such cold start scenarios. NeuMF, being able to learn nonlinear relationships, is aware of more complex information from interaction data, yielding comparable HR@10. 
+PDRS significantly outperforms baselines in both cold start scenarios, validating the value added by prerequisite knowledge modeling in recommendation accuracy. By comparing the use of user side information in user cold start problem, we observe the advantage of user information. The same applies to items with item information linking items to users through knowledge linkage. 
+
+
+\subsection{Discussion: Is our induced prerequisite knowledge accurate?}
+\label{sec:rq1}
+PDRS relies on accurate and comprehensive prerequisite inference from documents. To verify the reliability of our automatically compiled prerequisites, 
+we also conduct a quality evaluation of our induced prerequisite graphs. 
+
+Recall that during relation inferring in prerequisite graphs (\S~\ref{sec:data_construct}), we train a logistic regression model to predict the strength of prerequisite edges between concepts.
+We validate our PKL score fitted from the use of features, and evaluate using precision, recall and F1. 
+We take 80\% as training samples and the remaining 20\% as test.
+We compare against two baselines in this knowledge learning prediction task: 1) Hyponym Pattern Method (HPM) \cite{wang2016using}: detects whether prerequisites among noun phrases pairs in sentences fulfill 10 lexico-syntactic patterns (e.g., ``\textit{Python} (NP1), one of the \textit{Programming Language} (NP2)''). 
+2) Reference Distance (RD) \cite{liang2015measuring}: where
+we modify RD's feature extraction methodology to be able to apply it to our task ({\it cf} \ref{sec:data_construct}) by empirically tuning a symmetric threshold $\theta=0.15$, which is used for an $RD(k_i,k_j)$ of $[-1,-\theta), [-\theta,\theta], (\theta,1]$ denoting a posterior, neutral, or prior prerequisite relationship.
+% Recall that RD outputs a real-valued score for prerequisite detection between two knowledge concepts. 
+% By empirical tuning, we set a symmetric threshold $\theta=0.15$ to determine whether a prerequisite exists; i.e., an $RD(k_i,k_j)$ of $[-1,-\theta), [-\theta,\theta], (\theta,1]$ denoting a posterior, neutral, or prior prerequisite relationship, respectively. 
+% {\bf 3.} Finally, we compare against an ablated form of our KPL component by testing only the \textbf{Asymmetric Distance (AsyD)} module. \\
+
+Table~\ref{tab:KPL} shows the macroscopic comparative results against the Course ground truth. Both AsyD and the final
+PKL outperform the other two baselines by large margins ($+15$ F1).  The performance improvement is mostly attributed to domain-specific features (AsyD is much better than RD),
+whereas general domain features brought in by the final PKL bring a minor boost.
+% The microscopic cases (such as \textit{{'Machine learning' $\rightarrow$ 'Deep Learning'}} is recorded by a high prerequisite linkage score $0.78$) further support the enough reliability of our approach. More detailed micro analysis can be found in Appendix~\ref{appendix:micro} and Appendix~\ref{appendix:cases}.
+We zoom in on a typical microscopic case study of the  {\it machine learning} knowledge concept from the Course dataset. Table~\ref{tab:pre-sample} lists knowledge concepts that frequently co-occur with {\it machine learning}. Large, positive PKL scores indicate that \textit{machine learning} is a prerequisite of the knowledge concept.  We see that concepts on the right, high-PKL column have higher probability of being recommended to users who master {\it machine learning}, compared to concepts on the left, low-PKL side. As an example, people taking up a course on {\it machine learning} usually have learned \textit{python}. Prerequisite linking in our other two datasets is less intuitive, but meaningful nonetheless. 
+% More details can be found in Appendix~\ref{appendix:micro} and Appendix~\ref{appendix:cases}.
+
+
+
+
+
+
+
+\begin{table}
+\setlength{\abovecaptionskip}{-0.3cm}
+\parbox{.30\linewidth}{
+    \setlength{\abovecaptionskip}{-0.2cm}
+    \centering
+    \footnotesize
+    \begin{tabular}{c|ccc}
+    \toprule
+    Approach & Precision & Recall & F1 \\ \midrule
+    HPM & 66.68 & 16.09 & 25.92 \\
+    RD & 59.37 & 47.44 & 52.79 \\
+    AsyD (Ours) & \textbf{77.08} & 60.66 & 67.89 \\
+    PKL (Ours) & 76.00 & \textbf{62.29} & \textbf{68.47} \\
+    \bottomrule
+    \end{tabular}
+    \caption{Prerequisite extraction performance (\%) on our Course dataset. AsyD is an ablated form of our prerequisite inferring component by testing only the Asymmetric Distance (AsyD) module. Bold figures highlight the best performer.}
+    \label{tab:KPL}
+}
+\hfill
+\parbox{.65\linewidth}{
+    \footnotesize
+    \begin{tabular}{c|cl|cl|cl}
+    \hline
+    Domain & Knowledge           & \multicolumn{1}{c|}{PKL} & Knowledge                & \multicolumn{1}{c|}{PKL} & Knowledge            & \multicolumn{1}{c}{PKL} \\ \hline
+    \multicolumn{1}{l|}{\multirow{3}{*}{\textit{Course}}} & Python            & 0.38                     & Code                   & 0.50                     & Feature Learning   & 0.73                    \\
+    & Machine Principle & 0.34                     & Program                & 0.50                     & Deep Learning      & 0.78                    \\
+    & Computer Basic    & 0.34                     & Database               & 0.50                     & Algorithm Analysis & 0.73                    \\ \hline
+    
+     
+    \multicolumn{1}{l|}{\multirow{3}{*}{\textit{Movie}}} & Voldemort  & 0.38   & Policeman            & 0.56             &  Handsome Boy  & 0.75                    \\
+    & Triwizard Tournament & 0.34        &  Battle              & 0.50                     & Europe     & 0.78                    \\
+    & Evil Dragon & 0.31         &       Merchant         & 0.50       & Fate of Human & 0.93                    \\ \hline
+    
+    \multicolumn{1}{l|}{\multirow{3}{*}{\textit{Book }}} & Scientist & 0.39  & Atom Bomb & 0.50  & Space Travel   & 0.91           \\
+    & 21$^{th}$ Centuries & 0.35   &  Flash & 0.50      & Ethologist    & 0.80       \\
+    & World War & 0.35   &    Earthquake  & 0.50      &  Star Trek     &   0.87      \\ \hline
+    
+    \end{tabular}
+    \caption{Example  Prerequisite Knowledge Linkage (PKL) scores for items $PKL$(\textit{`Machine Learning'}, knowledge) from Course, $PKL$(\textit{`Harry Potter'}, knowledge) from Movie, and $PKL$(\textit{`Alien'}, knowledge) from Book.}
+    \label{tab:pre-sample}
+}
+
+\end{table}
+
+
+
+% \subsection{Discussion: Are our PDRS sensitive to hyperparameter?}
+% We look into how PDRS handles both knowledge prerequisite and user/item encodings as the model complexity (in terms of hidden layers) is varied. As shown in Table~\ref{tab:pretrain}, models with or without pretraining both perform best with $L=4$.
+% Fewer layers are insufficient to learn the complex relationship between embeddings (especially for PDRS to learn the relation between knowledge embedding from both user and item), whereas larger numbers suggest over-fitting. 
+
+% PDRS with pretraining achieves better performance with more hidden layers, but is worse than the case without pretraining, when number of layers is small (i.e., $L=1,2,3$). It can be seen that using pretraining may yield more accurate user/item and knowledge embeddings as initial values for PDRS. Again, too few layers may be insufficiently rich to model embeddings for recommendation. We also exam the sensitivity of our PDRS to the dimension in \ref{appendix:para}
+

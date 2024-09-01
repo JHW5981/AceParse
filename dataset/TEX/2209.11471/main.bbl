@@ -1,0 +1,550 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{40}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{#1}\fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[\protect\citeauthoryear{Agrawal, Golshan, and Papalexakis}{Agrawal
+  et~al\mbox{.}}{2016}]%
+        {agrawal2016toward}
+\bibfield{author}{\bibinfo{person}{Rakesh Agrawal}, \bibinfo{person}{Behzad
+  Golshan}, {and} \bibinfo{person}{Evangelos Papalexakis}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Toward data-driven design of educational courses: a
+  feasibility study.}
+\newblock \bibinfo{journal}{\emph{Journal of Educational Data Mining}}
+  \bibinfo{volume}{8}, \bibinfo{number}{1} (\bibinfo{year}{2016}),
+  \bibinfo{pages}{1--21}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Berg, Kipf, and Welling}{Berg
+  et~al\mbox{.}}{2017}]%
+        {berg2017graph}
+\bibfield{author}{\bibinfo{person}{Rianne van~den Berg},
+  \bibinfo{person}{Thomas~N Kipf}, {and} \bibinfo{person}{Max Welling}.}
+  \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Graph convolutional matrix completion}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1706.02263}}
+  (\bibinfo{year}{2017}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Bordes, Usunier, Garcia-Duran, Weston, and
+  Yakhnenko}{Bordes et~al\mbox{.}}{2013}]%
+        {bordes2013translating}
+\bibfield{author}{\bibinfo{person}{Antoine Bordes}, \bibinfo{person}{Nicolas
+  Usunier}, \bibinfo{person}{Alberto Garcia-Duran}, \bibinfo{person}{Jason
+  Weston}, {and} \bibinfo{person}{Oksana Yakhnenko}.}
+  \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{Translating embeddings for modeling
+  multi-relational data}.
+\newblock \bibinfo{journal}{\emph{Advances in neural information processing
+  systems}}  \bibinfo{volume}{26} (\bibinfo{year}{2013}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Chen, Chen, Xu, Zhang, Cao, Qin, and Zha}{Chen
+  et~al\mbox{.}}{2019}]%
+        {chen2019personalized}
+\bibfield{author}{\bibinfo{person}{Xu Chen}, \bibinfo{person}{Hanxiong Chen},
+  \bibinfo{person}{Hongteng Xu}, \bibinfo{person}{Yongfeng Zhang},
+  \bibinfo{person}{Yixin Cao}, \bibinfo{person}{Zheng Qin}, {and}
+  \bibinfo{person}{Hongyuan Zha}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Personalized fashion recommendation with visual
+  explanations based on multimodal attention network: Towards visually
+  explainable recommendation}. In \bibinfo{booktitle}{\emph{Proceedings of the
+  42nd International ACM SIGIR Conference on Research and Development in
+  Information Retrieval}}. \bibinfo{pages}{765--774}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Chen, Gonz{\'a}lez-Brenes, and Tian}{Chen
+  et~al\mbox{.}}{2016}]%
+        {chen2016joint}
+\bibfield{author}{\bibinfo{person}{Yetian Chen}, \bibinfo{person}{Jos{\'e}~P
+  Gonz{\'a}lez-Brenes}, {and} \bibinfo{person}{Jin Tian}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Joint discovery of skill prerequisite graphs and
+  student Models.}
+\newblock \bibinfo{journal}{\emph{International Educational Data Mining
+  Society}} (\bibinfo{year}{2016}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Chen, Wuillemin, and Labat}{Chen
+  et~al\mbox{.}}{2015}]%
+        {chen2015discovering}
+\bibfield{author}{\bibinfo{person}{Yang Chen}, \bibinfo{person}{Pierre-Henr
+  Wuillemin}, {and} \bibinfo{person}{Jean-Marc Labat}.}
+  \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{Discovering Prerequisite Structure of Skills
+  through Probabilistic Association Rules Mining.}
+\newblock \bibinfo{journal}{\emph{International Educational Data Mining
+  Society}} (\bibinfo{year}{2015}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Devlin, Chang, Lee, and Toutanova}{Devlin
+  et~al\mbox{.}}{2018}]%
+        {devlin2018bert}
+\bibfield{author}{\bibinfo{person}{Jacob Devlin}, \bibinfo{person}{Ming-Wei
+  Chang}, \bibinfo{person}{Kenton Lee}, {and} \bibinfo{person}{Kristina
+  Toutanova}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Bert: Pre-training of deep bidirectional
+  transformers for language understanding}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1810.04805}}
+  (\bibinfo{year}{2018}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Gong and Zhang}{Gong and Zhang}{2016}]%
+        {gong2016hashtag}
+\bibfield{author}{\bibinfo{person}{Yuyun Gong} {and} \bibinfo{person}{Qi
+  Zhang}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Hashtag recommendation using attention-based
+  convolutional neural network.}. In \bibinfo{booktitle}{\emph{IJCAI}}.
+  \bibinfo{pages}{2782--2788}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Gordon, Zhu, Galstyan, Natarajan, and
+  Burns}{Gordon et~al\mbox{.}}{2016}]%
+        {gordon2016modeling}
+\bibfield{author}{\bibinfo{person}{Jonathan Gordon}, \bibinfo{person}{Linhong
+  Zhu}, \bibinfo{person}{Aram Galstyan}, \bibinfo{person}{Prem Natarajan},
+  {and} \bibinfo{person}{Gully Burns}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Modeling concept dependencies in a scientific
+  corpus}. In \bibinfo{booktitle}{\emph{Proceedings of the 54th Annual Meeting
+  of the Association for Computational Linguistics (Volume 1: Long Papers)}}.
+  \bibinfo{pages}{866--875}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Guo, Tang, Ye, Li, and He}{Guo
+  et~al\mbox{.}}{2017}]%
+        {guo2017deepfm}
+\bibfield{author}{\bibinfo{person}{Huifeng Guo}, \bibinfo{person}{Ruiming
+  Tang}, \bibinfo{person}{Yunming Ye}, \bibinfo{person}{Zhenguo Li}, {and}
+  \bibinfo{person}{Xiuqiang He}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{DeepFM: a factorization-machine based neural
+  network for CTR prediction}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1703.04247}}
+  (\bibinfo{year}{2017}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{He, Liao, Zhang, Nie, Hu, and Chua}{He
+  et~al\mbox{.}}{2017}]%
+        {he2017neural}
+\bibfield{author}{\bibinfo{person}{Xiangnan He}, \bibinfo{person}{Lizi Liao},
+  \bibinfo{person}{Hanwang Zhang}, \bibinfo{person}{Liqiang Nie},
+  \bibinfo{person}{Xia Hu}, {and} \bibinfo{person}{Tat-Seng Chua}.}
+  \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Neural collaborative filtering}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 26th international conference on
+  world wide web}}. \bibinfo{pages}{173--182}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Hidasi, Karatzoglou, Baltrunas, and
+  Tikk}{Hidasi et~al\mbox{.}}{2015}]%
+        {hidasi2015session}
+\bibfield{author}{\bibinfo{person}{Bal{\'a}zs Hidasi},
+  \bibinfo{person}{Alexandros Karatzoglou}, \bibinfo{person}{Linas Baltrunas},
+  {and} \bibinfo{person}{Domonkos Tikk}.} \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{Session-based recommendations with recurrent neural
+  networks}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1511.06939}}
+  (\bibinfo{year}{2015}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Justeson and Katz}{Justeson and Katz}{1995}]%
+        {justeson1995technical}
+\bibfield{author}{\bibinfo{person}{John~S Justeson} {and}
+  \bibinfo{person}{Slava~M Katz}.} \bibinfo{year}{1995}\natexlab{}.
+\newblock \showarticletitle{Technical terminology: some linguistic properties
+  and an algorithm for identification in text}.
+\newblock \bibinfo{journal}{\emph{Natural language engineering}}
+  \bibinfo{volume}{1}, \bibinfo{number}{1} (\bibinfo{year}{1995}),
+  \bibinfo{pages}{9--27}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Koren, Bell, and Volinsky}{Koren
+  et~al\mbox{.}}{2009}]%
+        {koren2009matrix}
+\bibfield{author}{\bibinfo{person}{Yehuda Koren}, \bibinfo{person}{Robert
+  Bell}, {and} \bibinfo{person}{Chris Volinsky}.}
+  \bibinfo{year}{2009}\natexlab{}.
+\newblock \showarticletitle{Matrix factorization techniques for recommender
+  systems}.
+\newblock \bibinfo{journal}{\emph{Computer}} \bibinfo{volume}{42},
+  \bibinfo{number}{8} (\bibinfo{year}{2009}), \bibinfo{pages}{30--37}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Lam, Vu, Le, and Duong}{Lam
+  et~al\mbox{.}}{2008}]%
+        {lam2008addressing}
+\bibfield{author}{\bibinfo{person}{Xuan~Nhat Lam}, \bibinfo{person}{Thuc Vu},
+  \bibinfo{person}{Trong~Duc Le}, {and} \bibinfo{person}{Anh~Duc Duong}.}
+  \bibinfo{year}{2008}\natexlab{}.
+\newblock \showarticletitle{Addressing cold-start problem in recommendation
+  systems}. In \bibinfo{booktitle}{\emph{Proceedings of the 2nd international
+  conference on Ubiquitous information management and communication}}.
+  \bibinfo{pages}{208--211}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Laurence and Margolis}{Laurence and
+  Margolis}{1999}]%
+        {laurence1999concepts}
+\bibfield{author}{\bibinfo{person}{Stephen Laurence} {and}
+  \bibinfo{person}{Eric Margolis}.} \bibinfo{year}{1999}\natexlab{}.
+\newblock \showarticletitle{Concepts and cognitive science}.
+\newblock \bibinfo{journal}{\emph{Concepts: core readings}}
+  \bibinfo{volume}{3} (\bibinfo{year}{1999}), \bibinfo{pages}{81}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Lei, Liu, Li, Zha, and Li}{Lei
+  et~al\mbox{.}}{2016}]%
+        {lei2016comparative}
+\bibfield{author}{\bibinfo{person}{Chenyi Lei}, \bibinfo{person}{Dong Liu},
+  \bibinfo{person}{Weiping Li}, \bibinfo{person}{Zheng-Jun Zha}, {and}
+  \bibinfo{person}{Houqiang Li}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Comparative deep learning of hybrid representations
+  for image recommendations}. In \bibinfo{booktitle}{\emph{Proceedings of the
+  IEEE conference on computer vision and pattern recognition}}.
+  \bibinfo{pages}{2545--2553}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Lei, Zhang, He, Miao, Wang, Chen, and
+  Chua}{Lei et~al\mbox{.}}{2020}]%
+        {lei2020interactive}
+\bibfield{author}{\bibinfo{person}{Wenqiang Lei}, \bibinfo{person}{Gangyi
+  Zhang}, \bibinfo{person}{Xiangnan He}, \bibinfo{person}{Yisong Miao},
+  \bibinfo{person}{Xiang Wang}, \bibinfo{person}{Liang Chen}, {and}
+  \bibinfo{person}{Tat-Seng Chua}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Interactive path reasoning on graph for
+  conversational recommendation}. In \bibinfo{booktitle}{\emph{Proceedings of
+  the 26th ACM SIGKDD International Conference on Knowledge Discovery \& Data
+  Mining}}. \bibinfo{pages}{2073--2083}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Li, Liu, Jiang, and Zhang}{Li
+  et~al\mbox{.}}{2016}]%
+        {li2016hashtag}
+\bibfield{author}{\bibinfo{person}{Yang Li}, \bibinfo{person}{Ting Liu},
+  \bibinfo{person}{Jing Jiang}, {and} \bibinfo{person}{Liang Zhang}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Hashtag recommendation with topical attention-based
+  LSTM}. In \bibinfo{booktitle}{\emph{Proceedings of COLING 2016, the 26th
+  International Conference on Computational Linguistics: Technical Papers}}.
+  \bibinfo{pages}{3019--3029}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Liang, Wu, Huang, and Giles}{Liang
+  et~al\mbox{.}}{2015}]%
+        {liang2015measuring}
+\bibfield{author}{\bibinfo{person}{Chen Liang}, \bibinfo{person}{Zhaohui Wu},
+  \bibinfo{person}{Wenyi Huang}, {and} \bibinfo{person}{C~Lee Giles}.}
+  \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{Measuring prerequisite relations among concepts}.
+  In \bibinfo{booktitle}{\emph{Proceedings of the 2015 conference on empirical
+  methods in natural language processing}}. \bibinfo{pages}{1668--1674}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Liang, Ye, Wu, Pursel, and Giles}{Liang
+  et~al\mbox{.}}{2017}]%
+        {liang2017recovering}
+\bibfield{author}{\bibinfo{person}{Chen Liang}, \bibinfo{person}{Jianbo Ye},
+  \bibinfo{person}{Zhaohui Wu}, \bibinfo{person}{Bart Pursel}, {and}
+  \bibinfo{person}{C Giles}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Recovering concept prerequisite relations from
+  university course dependencies}. In \bibinfo{booktitle}{\emph{Proceedings of
+  the AAAI Conference on Artificial Intelligence}}, Vol.~\bibinfo{volume}{31}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Livne, Unger, Shapira, and Rokach}{Livne
+  et~al\mbox{.}}{2019}]%
+        {livne2019deep}
+\bibfield{author}{\bibinfo{person}{Amit Livne}, \bibinfo{person}{Moshe Unger},
+  \bibinfo{person}{Bracha Shapira}, {and} \bibinfo{person}{Lior Rokach}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Deep context-aware recommender system utilizing
+  sequential latent context}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1909.03999}}
+  (\bibinfo{year}{2019}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Mihalcea and Tarau}{Mihalcea and
+  Tarau}{2004}]%
+        {mihalcea2004textrank}
+\bibfield{author}{\bibinfo{person}{Rada Mihalcea} {and} \bibinfo{person}{Paul
+  Tarau}.} \bibinfo{year}{2004}\natexlab{}.
+\newblock \showarticletitle{Textrank: Bringing order into text}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 2004 conference on empirical
+  methods in natural language processing}}. \bibinfo{pages}{404--411}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Ohland, Yuhasz, and Sill}{Ohland
+  et~al\mbox{.}}{2004}]%
+        {ohland2004identifying}
+\bibfield{author}{\bibinfo{person}{Matthew~W Ohland}, \bibinfo{person}{Amy~G
+  Yuhasz}, {and} \bibinfo{person}{Benjamin~L Sill}.}
+  \bibinfo{year}{2004}\natexlab{}.
+\newblock \showarticletitle{Identifying and removing a calculus prerequisite as
+  a bottleneck in Clemson's General Engineering Curriculum}.
+\newblock \bibinfo{journal}{\emph{Journal of Engineering Education}}
+  \bibinfo{volume}{93}, \bibinfo{number}{3} (\bibinfo{year}{2004}),
+  \bibinfo{pages}{253--257}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Pan, Li, Li, and Tang}{Pan
+  et~al\mbox{.}}{2017a}]%
+        {pan2017prerequisite}
+\bibfield{author}{\bibinfo{person}{Liangming Pan}, \bibinfo{person}{Chengjiang
+  Li}, \bibinfo{person}{Juanzi Li}, {and} \bibinfo{person}{Jie Tang}.}
+  \bibinfo{year}{2017}\natexlab{a}.
+\newblock \showarticletitle{Prerequisite relation learning for concepts in
+  moocs}. In \bibinfo{booktitle}{\emph{Proceedings of the 55th Annual Meeting
+  of the Association for Computational Linguistics (Volume 1: Long Papers)}}.
+  \bibinfo{pages}{1447--1456}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Pan, Wang, Li, Li, and Tang}{Pan
+  et~al\mbox{.}}{2017b}]%
+        {pan2017course}
+\bibfield{author}{\bibinfo{person}{Liangming Pan}, \bibinfo{person}{Xiaochen
+  Wang}, \bibinfo{person}{Chengjiang Li}, \bibinfo{person}{Juanzi Li}, {and}
+  \bibinfo{person}{Jie Tang}.} \bibinfo{year}{2017}\natexlab{b}.
+\newblock \showarticletitle{Course concept extraction in moocs via
+  embedding-based graph propagation}. In \bibinfo{booktitle}{\emph{Proceedings
+  of the Eighth International Joint Conference on Natural Language Processing
+  (Volume 1: Long Papers)}}. \bibinfo{pages}{875--884}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Rendle, Freudenthaler, Gantner, and
+  Schmidt-Thieme}{Rendle et~al\mbox{.}}{2012}]%
+        {rendle2012bpr}
+\bibfield{author}{\bibinfo{person}{Steffen Rendle}, \bibinfo{person}{Christoph
+  Freudenthaler}, \bibinfo{person}{Zeno Gantner}, {and} \bibinfo{person}{Lars
+  Schmidt-Thieme}.} \bibinfo{year}{2012}\natexlab{}.
+\newblock \showarticletitle{BPR: Bayesian personalized ranking from implicit
+  feedback}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1205.2618}}
+  (\bibinfo{year}{2012}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Sarwar, Karypis, Konstan, and Riedl}{Sarwar
+  et~al\mbox{.}}{2001}]%
+        {sarwar2001item}
+\bibfield{author}{\bibinfo{person}{Badrul Sarwar}, \bibinfo{person}{George
+  Karypis}, \bibinfo{person}{Joseph Konstan}, {and} \bibinfo{person}{John
+  Riedl}.} \bibinfo{year}{2001}\natexlab{}.
+\newblock \showarticletitle{Item-based collaborative filtering recommendation
+  algorithms}. In \bibinfo{booktitle}{\emph{Proceedings of the 10th
+  international conference on World Wide Web}}. \bibinfo{pages}{285--295}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Schein, Popescul, Ungar, and Pennock}{Schein
+  et~al\mbox{.}}{2002}]%
+        {schein2002methods}
+\bibfield{author}{\bibinfo{person}{Andrew~I Schein},
+  \bibinfo{person}{Alexandrin Popescul}, \bibinfo{person}{Lyle~H Ungar}, {and}
+  \bibinfo{person}{David~M Pennock}.} \bibinfo{year}{2002}\natexlab{}.
+\newblock \showarticletitle{Methods and metrics for cold-start
+  recommendations}. In \bibinfo{booktitle}{\emph{Proceedings of the 25th annual
+  international ACM SIGIR conference on Research and development in information
+  retrieval}}. \bibinfo{pages}{253--260}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Shani and Gunawardana}{Shani and
+  Gunawardana}{2011}]%
+        {Shani2011evaluating}
+\bibfield{author}{\bibinfo{person}{Guy Shani} {and} \bibinfo{person}{Asela
+  Gunawardana}.} \bibinfo{year}{2011}\natexlab{}.
+\newblock \showarticletitle{Evaluating recommendation systems}.
+\newblock In \bibinfo{booktitle}{\emph{Recommender systems handbook}}.
+  \bibinfo{publisher}{Springer}, \bibinfo{pages}{257--297}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Sun, Wu, Zhang, Fu, Hong, and Wang}{Sun
+  et~al\mbox{.}}{2020}]%
+        {sun2020dual}
+\bibfield{author}{\bibinfo{person}{Peijie Sun}, \bibinfo{person}{Le Wu},
+  \bibinfo{person}{Kun Zhang}, \bibinfo{person}{Yanjie Fu},
+  \bibinfo{person}{Richang Hong}, {and} \bibinfo{person}{Meng Wang}.}
+  \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Dual learning for explainable recommendation:
+  Towards unifying user preference prediction and review generation}. In
+  \bibinfo{booktitle}{\emph{Proceedings of The Web Conference 2020}}.
+  \bibinfo{pages}{837--847}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Sun, Guo, Yang, Fang, Guo, Zhang, and
+  Burke}{Sun et~al\mbox{.}}{2019}]%
+        {sun2019research}
+\bibfield{author}{\bibinfo{person}{Zhu Sun}, \bibinfo{person}{Qing Guo},
+  \bibinfo{person}{Jie Yang}, \bibinfo{person}{Hui Fang},
+  \bibinfo{person}{Guibing Guo}, \bibinfo{person}{Jie Zhang}, {and}
+  \bibinfo{person}{Robin Burke}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Research commentary on recommendations with side
+  information: A survey and research directions}.
+\newblock \bibinfo{journal}{\emph{Electronic Commerce Research and
+  Applications}}  \bibinfo{volume}{37} (\bibinfo{year}{2019}),
+  \bibinfo{pages}{100879}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Talukdar and Cohen}{Talukdar and
+  Cohen}{2012}]%
+        {talukdar2012crowdsourced}
+\bibfield{author}{\bibinfo{person}{Partha Talukdar} {and}
+  \bibinfo{person}{William Cohen}.} \bibinfo{year}{2012}\natexlab{}.
+\newblock \showarticletitle{Crowdsourced comprehension: predicting prerequisite
+  structure in wikipedia}. In \bibinfo{booktitle}{\emph{Proceedings of the
+  Seventh Workshop on Building Educational Applications Using NLP}}.
+  \bibinfo{pages}{307--315}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Vuong, Nixon, and Towle}{Vuong
+  et~al\mbox{.}}{2011}]%
+        {vuong2011method}
+\bibfield{author}{\bibinfo{person}{Annalies Vuong}, \bibinfo{person}{Tristan
+  Nixon}, {and} \bibinfo{person}{Brendon Towle}.}
+  \bibinfo{year}{2011}\natexlab{}.
+\newblock \showarticletitle{A method for finding prerequisites within a
+  curriculum.}. In \bibinfo{booktitle}{\emph{EDM}}. \bibinfo{pages}{211--216}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Wang, Wu, Liu, and Xie}{Wang
+  et~al\mbox{.}}{2020}]%
+        {wang2020fine}
+\bibfield{author}{\bibinfo{person}{Heyuan Wang}, \bibinfo{person}{Fangzhao Wu},
+  \bibinfo{person}{Zheng Liu}, {and} \bibinfo{person}{Xing Xie}.}
+  \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Fine-grained interest matching for neural news
+  recommendation}. In \bibinfo{booktitle}{\emph{Proceedings of the 58th annual
+  meeting of the association for computational linguistics}}.
+  \bibinfo{pages}{836--845}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Wang, Ororbia, Wu, Williams, Liang, Pursel,
+  and Giles}{Wang et~al\mbox{.}}{2016}]%
+        {wang2016using}
+\bibfield{author}{\bibinfo{person}{Shuting Wang}, \bibinfo{person}{Alexander
+  Ororbia}, \bibinfo{person}{Zhaohui Wu}, \bibinfo{person}{Kyle Williams},
+  \bibinfo{person}{Chen Liang}, \bibinfo{person}{Bart Pursel}, {and}
+  \bibinfo{person}{C~Lee Giles}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Using prerequisites to extract concept maps
+  fromtextbooks}. In \bibinfo{booktitle}{\emph{Proceedings of the 25th acm
+  international on conference on information and knowledge management}}.
+  \bibinfo{pages}{317--326}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Wang, Zhang, Feng, and Chen}{Wang
+  et~al\mbox{.}}{2014}]%
+        {wang2014knowledge}
+\bibfield{author}{\bibinfo{person}{Zhen Wang}, \bibinfo{person}{Jianwen Zhang},
+  \bibinfo{person}{Jianlin Feng}, {and} \bibinfo{person}{Zheng Chen}.}
+  \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{Knowledge graph embedding by translating on
+  hyperplanes}. In \bibinfo{booktitle}{\emph{Proceedings of the AAAI conference
+  on artificial intelligence}}, Vol.~\bibinfo{volume}{28}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Xu, Shen, Liu, and Shen}{Xu
+  et~al\mbox{.}}{2018}]%
+        {xu2018graphcar}
+\bibfield{author}{\bibinfo{person}{Qidi Xu}, \bibinfo{person}{Fumin Shen},
+  \bibinfo{person}{Li Liu}, {and} \bibinfo{person}{Heng~Tao Shen}.}
+  \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Graphcar: Content-aware multimedia recommendation
+  with graph autoencoder}. In \bibinfo{booktitle}{\emph{The 41st International
+  ACM SIGIR Conference on Research \& Development in Information Retrieval}}.
+  \bibinfo{pages}{981--984}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Yang, Liu, Carbonell, and Ma}{Yang
+  et~al\mbox{.}}{2015}]%
+        {yang2015concept}
+\bibfield{author}{\bibinfo{person}{Yiming Yang}, \bibinfo{person}{Hanxiao Liu},
+  \bibinfo{person}{Jaime Carbonell}, {and} \bibinfo{person}{Wanli Ma}.}
+  \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{Concept graph learning from educational data}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the Eighth ACM International
+  Conference on Web Search and Data Mining}}. \bibinfo{pages}{159--168}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Zheng, Noroozi, and Yu}{Zheng
+  et~al\mbox{.}}{2017}]%
+        {zheng2017joint}
+\bibfield{author}{\bibinfo{person}{Lei Zheng}, \bibinfo{person}{Vahid Noroozi},
+  {and} \bibinfo{person}{Philip~S Yu}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Joint deep modeling of users and items using
+  reviews for recommendation}. In \bibinfo{booktitle}{\emph{Proceedings of the
+  tenth ACM international conference on web search and data mining}}.
+  \bibinfo{pages}{425--434}.
+\newblock
+
+
+\end{thebibliography}

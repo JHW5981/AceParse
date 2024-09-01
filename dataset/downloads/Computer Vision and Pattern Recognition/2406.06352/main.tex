@@ -1,0 +1,82 @@
+% CVPR 2024 Paper Template; see https://github.com/cvpr-org/author-kit
+
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\pdfoutput=1
+
+%%%%%%%%% PAPER TYPE  - PLEASE UPDATE FOR FINAL VERSION
+\usepackage{cvpr}              % To produce the CAMERA-READY version
+%\usepackage[review]{cvpr}      % To produce the REVIEW version
+% \usepackage[pagenumbers]{cvpr} % To force page numbers, e.g. for an arXiv version
+
+% Import additional packages in the preamble file, before hyperref
+\input{preamble}
+
+% It is strongly recommended to use hyperref, especially for the review version.
+% hyperref with option pagebackref eases the reviewers' job.
+% Please disable hyperref *only* if you encounter grave issues, 
+% e.g. with the file validation for the camera-ready version.
+%
+% If you comment hyperref and then uncomment it, you should delete *.aux before re-running LaTeX.
+% (Or just hit 'q' on the first LaTeX run, let it finish, and you should be clear).
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,citecolor=cvprblue]{hyperref}
+
+%%%%%%%%% PAPER ID  - PLEASE UPDATE
+\def\paperID{19} % *** Enter the Paper ID here
+\def\confName{CVPR}
+\def\confYear{2024}
+
+%%%%%%%%% TITLE - PLEASE UPDATE
+\title{Latent Directions: A Simple Pathway to Bias Mitigation in Generative AI}
+
+%%%%%%%%% AUTHORS - PLEASE UPDATE
+% \author{Carolina Lopez Olmos\\
+% Technical University of Denmark\\
+% Microsoft\\
+% {\tt\small clopezolmos@microsoft.com}
+% % For a paper whose authors are all at the same institution,
+% % omit the following lines up until the closing ``}''.
+% % Additional authors and addresses can be added with ``\and'',
+% % just like the second author.
+% % To save space, use either the email address or home page, not both
+% \and
+% Alexandros Neophytou\\
+% Microsoft\\
+% {\tt\small alexandros.neophytou@microsoft.com}
+% \and
+% Sunando Sengupta\\
+% Microsoft\\
+% {\tt\small sunando.sengupta@microsoft.com}
+% \and
+% Dim P. Papadopoulos\ref{dtu}\\
+% Technical University of Denmark\\
+% {\tt\small dimp@dtu.dk}
+% }
+
+\author{Carolina López Olmos$^{1,2}$ \quad 
+Alexandros Neophytou$^{2}$ \quad 
+Sunando Sengupta$^{2}$ \quad 
+Dim P. Papadopoulos$^{1}$ \quad \\
+$^1$ Technical University of Denmark \quad $^2$ Microsoft \\
+{\tt\small  \{clopezolmos, alexandros.neophytou, sunando.sengupta\}@microsoft.com, dimp@dtu.dk
+} }
+
+\begin{document}
+\maketitle
+\input{sec/0_abstract}    
+\input{sec/1_intro}
+\input{sec/2_tool_understanding}
+\input{sec/3_proposed_method}
+\input{sec/4_experiments}
+\input{sec/5_conclusion}
+
+{
+    \small
+    \bibliographystyle{ieeenat_fullname}
+    \bibliography{main}
+}
+
+% WARNING: do not forget to delete the supplementary pages from your submission 
+%\input{sec/X_suppl}
+
+\end{document}

@@ -1,0 +1,26 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Related work}{}% 2
+\BOOKMARK [1][-]{section.3}{BAM dataset and models}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{BAM dataset construction}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Common feature \(CF\) and commonality}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Relative importance of BAM models}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.4}{Relative importance of BAM inputs}{section.3}% 7
+\BOOKMARK [1][-]{section.4}{Metrics with/without BAM dataset}{}% 8
+\BOOKMARK [2][-]{subsection.4.1}{Setup}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.2}{Model contrast score \(MCS\)}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.3}{Input dependence rate \(IDR\)}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.4}{Input independence rate \(IIR\)}{section.4}% 12
+\BOOKMARK [1][-]{section.5}{Evaluation with/without BAM}{}% 13
+\BOOKMARK [2][-]{subsection.5.1}{Attributions between models with MCS}{section.5}% 14
+\BOOKMARK [2][-]{subsection.5.2}{Attributions between inputs with IDR}{section.5}% 15
+\BOOKMARK [2][-]{subsection.5.3}{Attributions between functionally similar inputs with IIR}{section.5}% 16
+\BOOKMARK [1][-]{section.6}{Discussion}{}% 17
+\BOOKMARK [1][-]{section.7}{Conclusions}{}% 18
+\BOOKMARK [1][-]{appendix.A}{Details in creating \040for input independence}{}% 19
+\BOOKMARK [1][-]{appendix.B}{Discussions on \040versus common feature}{}% 20
+\BOOKMARK [1][-]{appendix.C}{Other measures for input independence}{}% 21
+\BOOKMARK [1][-]{appendix.D}{DNN Architecture and training}{}% 22
+\BOOKMARK [1][-]{appendix.E}{Details of interpretability methods compared}{}% 23
+\BOOKMARK [1][-]{appendix.F}{Details of computing TCAV scores}{}% 24
+\BOOKMARK [1][-]{appendix.G}{Details of model contrast score baseline}{}% 25
+\BOOKMARK [1][-]{appendix.H}{Full size figures}{}% 26

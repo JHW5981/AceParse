@@ -1,0 +1,437 @@
+% !TEX root =  main.tex
+
+\section{Efficiently learning multivariate log-concave densities} \label{sec:logconcave}
+
+In this section we present our main application, which is an efficient algorithm for noise-tolerantly learning $d$-dimensional log-concave densities.  We prove the following:
+
+\begin{theorem} [Restatement of Theorem~\ref{thm:log-concave-intro}] \label{thm:log-concave}
+There is an algorithm with the following property:  Let $f$ be a unknown log-concave density over $\mathbb{R}^d$ and let $f'$ be an $\eps$-corruption of $f$.\ignore{ whose covariance matrix $\Sigma$ has full rank}\ignore{\rnote{Do we need this assumption?  
+
+Suppose first that we were only claiming a noiseless result.  If the log-concave distribution could be lower dimensional, I guess we could run a pre-processing step which uses $m$ samples to identify a lower-dimensional subspace $A$ containing almost all (has to be at least $1-\eps$) of the mass, if one exists, and then run the learning algorithm on ($f$ restricted to $A$) over $\mathbb{R}^{|A|}$.  But we are trying to handle noise.
+
+If there is noise (the semi-agnostic setting), I guess we can draw $m$ samples and guess all possible noisy subsets, and thus identify the low-dimensional subspace $A$ where the noiseless distribution lives; and then as above, run the learning algorithm on ($f$ restricted to $A$).  Note that any noisy examples which lie outside the subspace $A$ will be discarded.  This should work, though it requires an additional step of hypothesis testing because of guessing the noisy subsets.
+
+What will the overhead of doing this guessing be?  I guess we have to try all subsets of size $\eps m$ out of the $m$-element sample, so this incurs running time ${m \choose \eps m} \approx 2^{H(\eps) m}$ at least. How big does $m$ need to be for the preprocessing to work?  If $m=d/\eps$ then this would be $(1/\eps)^d$ which is fine.  If $m=d/\eps^2$ then this is $(1/\eps)^{1/\eps}$ which is too expensive for us.}} 
+Given any error parameter $\eps>0$ and confidence parameter $\delta > 0$ and access to independent draws from $f'$, the algorithm with probability $1-\delta$ outputs a hypothesis density ${h}:\mathbb{R}^d \rightarrow \mathbb{R}^{\geq 0}$ such that $\int_{x \in \mathbb{R}^d} |f'(x) - {h}(x)| \le O(\epsilon)$.  
+The algorithm runs in time 
+\[
+O_d
+\left(
+  \left(
+          \frac{1}{\epsilon} \right)^{2 d + 2}
+          \log^{7 d} \left( \frac{1}{\epsilon} \right)
+          \log \left( \frac{1}{\epsilon \delta}
+  \right) \log \frac{1}{\delta}
+\right)
+\] 
+and uses 
+\[
+O_d
+\left( 
+          \left( \frac{1}{\epsilon} \right)^{d+2}
+          \log^{4d} \left( \frac{1}{\epsilon} \right)
+          \log \left( \frac{1}{\epsilon \delta} 
+ \right) \log \frac{1}{\delta}
+\right)
+\] samples.  
+\end{theorem}
+
+We will establish Theorem~\ref{thm:log-concave} in two stages.
+First, we will show that  any log-concave $f$ that is nearly
+isotropic in fact belongs to a suitable class $\CSI(c,d)$; given
+this, the theorem follows immediately from
+Theorem~\ref{thm:main-semiagnostic} and a straightforward tracing
+through of the resulting time and sample complexity bounds.  Then,
+we will reduce to the near-isotropic case, similarly to what was
+done in \citep{LovaszVempala07,balcan2013active}.
+
+First, let us state the theorem for the well-conditioned case.  For this, the following definitions
+will be helpful.
+\begin{definition}~\label{def:PSD-aprx}
+ Let $\Sigma$ and $\tilde{\Sigma}$ be two positive semidefinite matrices.  We say that $\Sigma$ and $\tilde{\Sigma}$ are 
+ \emph{$C$-approximations}
+of each other (denoted by $\Sigma \approx_C \tilde{\Sigma}$) if for every $x \in \mathbb{R}^n$ such that $x^T \widetilde{\Sigma} x \neq 0$, we have
+$$
+\frac1C \le \frac{x^T \Sigma x}{x^T \widetilde{\Sigma} x} \le C. 
+$$
+\end{definition}
+\begin{definition}~\label{def:C.round}
+Say that the probability distribution is $C$-nearly-isotropic if
+its covariance matrix $C$-approximates $I$, the $d$-by-$d$ identity matrix.
+\end{definition}
+
+\begin{theorem} \label{thm:log-concave.round}
+There is an algorithm with the following property:  Let $f$ be a unknown $C$-nearly-isotropic log-concave density over $\mathbb{R}^d$ and let $f'$ be an $\eps$-corruption of $f$, where $C$ and $d$ are constants.
+
+Given any error parameter $\eps>0$ and confidence parameter $\delta > 0$ and access to independent draws from $f'$, the algorithm with probability $1-\delta$ outputs a hypothesis density ${h}:\mathbb{R}^d \rightarrow \mathbb{R}^{\geq 0}$ such that $\int_{x \in \mathbb{R}^d} |f'(x) - {h}(x)| \le O(\epsilon)$.  
+The algorithm runs in time 
+\[
+O_{C,d}
+\left(
+          \left( \frac{1}{\epsilon} \right)^{2 d + 2}
+          \log^{7 d} \left( \frac{1}{\epsilon}  \right) 
+          \log \left( \frac{1}{\epsilon \delta}
+  \right) \log \frac{1}{\delta}
+\right)
+\] 
+and uses 
+\[
+O_{C,d}
+\left( 
+          \left( \frac{1}{\epsilon} \right)^{d+2}
+          \log^{4d} \left( \frac{1}{\epsilon} \right)
+          \log \left( \frac{1}{\epsilon \delta} 
+ \right) \log \frac{1}{\delta}
+\right)
+\] samples.  
+\end{theorem}
+
+By Theorem~\ref{thm:main-semiagnostic}, Theorem~\ref{thm:log-concave.round} is an immediate consequence of the following theorem on the
+shift-invariance of near-isotropic log-concave distributions.
+\begin{theorem}
+\label{t:lc_shift_invariant}
+Let $f$ be a $C$-nearly-isotropic log-concave density in $\mathbb{R}^d$,
+for constants $C$ and $d$.  Then, for $g(t) = e^{-\Omega(t)},$ 
+there is a constant $c_1=O_{C,d}(1)$ such that $f \in \CSI(c_1, d, g)$.
+\end{theorem}
+\begin{proof}
+The fact that $f$ has $e^{-\Omega(t)}$-light tails directly follows from Lemma~5.17 of
+\citep{LovaszVempala07}, so it remains to prove that there is
+a constant $c_1$ such that
+$f \in \CSI(c_1, d)$.  
+Because membership in $\CSI(c_1, d)$ requires that a condition
+be satisfied for all directions $v$, rotating a distribution does not affect its membership
+in $\CSI(c_1, d)$.
+
+Choose a unit vector $v$ and $\kappa>0$.  
+By rotating the distribution if necessary, 
+we may assume that $v=e_1$, and our goal of showing that $\si(f,e_1,\kappa) \leq c_1$
+is equivalent to showing that
+\begin{equation}\label{eq:AAA}
+\int |f(x) - f(x + \kappa' e_1)| dx \leq c_1 \kappa
+\end{equation}
+for all $\kappa' \leq \kappa.$
+
+We bound the integral of the LHS as follows.  Fix some value of $x' \eqdef (x_2, \ldots, x_d)$. 
+Let us define $L_{x'} \eqdef \{ (x_1, x_2, \ldots, x_d) : x_1 \in \R \}$
+to be the line through $(0,x_2, \ldots, x_d)$ and $(1,x_2, \ldots, x_d)$.
+Since the restriction of a concave function to a line is concave, the
+restriction of a log-concave distribution to a line is log-concave.  Since
+\begin{equation}
+\label{e:reduce.to.1d}
+\int |f(x) - f(x + \kappa' e_1)|\; dx
+ = \int_{x'} \int_{x_1} |f(x_1,x_2,...,x_d) - f(x_1 + \kappa', x_2,...,x_d)| \; dx_1 dx'
+\end{equation}
+we are led to examine the one-dimensional log-concave measure
+$f(\cdot,x_2,...,x_d)$.
+% Note that $L_{x_{-2}}$ is a line segment for any choice of $x_{-2}$.
+%  The crucial fact that we now use is due to 
+% Pr\'{e}kopa~\cite{Prekopa73} 
+% \citep{Prekopa73} 
+% which says that log-concave measures remain log-concave upon restriction of coordinates. 
+% \begin{fact}~\label{fact:Prekopa}
+% If $f: \mathbb{R}^d \rightarrow \mathbb{R}$ is a log-concave measure, then for any $x_2, \ldots, x_d \in \mathbb{R}$, the function  $f_{x_{-2}} (x_1) = f(x_1, \ldots, x_d)$ is also a log-concave measure. 
+% \end{fact}% 
+The following will be useful for that.
+% It seemed like this might follow from Corollary 5.2 of
+% https://arxiv.org/pdf/1605.00162.pdf, but that also assumes
+% the $\ell$ is Radon.
+\begin{claim}~\label{clm:integral}
+Let $\ell: \mathbb{R} \rightarrow \mathbb{R}$ be a log-concave measure. Then, $$\int |\ell(t) - \ell(t+h) | dt \le 3h \cdot \max_{t \in \R} \ell(t).$$
+\end{claim}
+\begin{proof}
+Log-concave measures are unimodal (see \citep{ibragimov1956composition}).
+Let $z$ be the mode of $\ell$, so that $\ell$ is non-decreasing 
+on the interval $[-\infty,z]$ and non-increasing in $[z,\infty]$. 
+We have
+\begin{align*}
+& \int |\ell(t) - \ell(t+h) | \; dt \\
+& = \int_{-\infty}^{z-h} |\ell(t) - \ell(t+h) | \; dt 
+       + \int_{z-h}^{z} |\ell(t) - \ell(t+h) | \; dt 
+       + \int_{z}^{\infty} |\ell(t) - \ell(t+h) | \; dt \\
+& = \int_{-\infty}^{z-h} \ell(t+h) - \ell(t) \; dt 
+       + \int_{z-h}^{z} |\ell(t) - \ell(t+h) | \; dt 
+       + \int_{z}^{\infty} \ell(t) - \ell(t+h) \; dt \\
+& \hspace{4.5in} \mbox{(since $z$ is the mode of $\ell$)} \\
+& = \int_{z-h}^{z} \ell(t) \; dt 
+       + \int_{z-h}^{z} |\ell(t) - \ell(t+h) | \; dt 
+       + \int_{z}^{z+h} \ell(t) \; dt \\
+& \leq 3 h \max_{t \in \R} \ell(t).
+\end{align*}
+\end{proof}
+
+Returning to the proof of Theorem~\ref{t:lc_shift_invariant}, applying
+Claim~\ref{clm:integral} with (\ref{e:reduce.to.1d}), we get
+\begin{equation} \label{eq:potato}
+\int |f(x) - f(x + \kappa' e_1)|\; dx
+ \le 3 \kappa'
+ \int_{x'} \left(\max_{x_1 \in L_{x'}} f(x_1,x')\right) \; dx'.
+ %3 h \max_x \ell(x).
+\end{equation}
+Now, since an isotropic log-concave distribution $g$ satisfies
+$g(x) \leq K \exp(-\| x \|)$ for an absolute constant $K$ (see Theorem~5.1 of \cite{SaumardWellner14}) , our $C$-nearly-isotropic log-concave distribution $f$ satisfies $f(x) \leq C^d K \exp(-\|x\|) = O_{C,d}(\exp(-\|x\|))$.\ignore{\pnote{How
+about this treatment, which emphasizes the fact that $C$ and $d$ are
+constants more?  ($C$ and $d$ are also removed from the O below.)}}
+Plugging this into (\ref{eq:potato}), we get
+\begin{align*} \label{eq:tuber}
+\int |f(x) - f(x + \kappa' e_1)|\; dx
+ &\le O_{C,d}( \kappa' )
+ \int_{x'} \left(\max_{x_1 \in L_{x'}} \exp(-\|(x_1,x')\|)\right) \; dx'\\
+ &\le O_{C,d}( \kappa' )
+ \int_{x'} \exp(-\|x'\|) \; dx'.
+\end{align*}
+\ignore{Applying the fact \citep{LovaszVempala07} that
+$\max_x \ell(x) \leq C^d 2^{8d} \cdot d^{d/2} = O(1)$ completes the proof.}
+Since the integral converges, this finishes the proof.
+\end{proof}
+
+% \begin{remark}
+% For the rest of the paper, for the sake of simplicity we assume that the covariance matrix of $f \in \CSI(c,d)$ has full rank.  This assumption is without loss of generality because, as is implicit in the arguments of Lemma~\ref{lem:transformation}, if the rank is less than $d$ (and hence the density $f$ is supported in an affine subspace of dimension strictly less than $d$), then as a consequence of the shift-invariance of $f$, a small number of draws from $f$ will reveal the affine span of the entire distribution, and the entire algorithm can be carried out within that lower dimensional subspace.
+% \end{remark}
+
+Finally, we turn to the problem of
+learning log-concave distributions that are not $C$-nearly-isotropic. To learn in this case, we need to
+rescale the axes if necessary to transform the distribution so that 
+it is $C$-nearly-isotropic. To compute this rescaling, we will first assume that there is no noise present in the samples. (The trick to handle noise is simple and will be discussed later.)
+First, as has often been observed, we may assume without loss of
+generality that the covariance matrix of the target has full rank,
+since, otherwise the algorithm can efficiently find the
+affine span of the entire distribution (possibly up to a negligible amount of probability mass), and the algorithm can be carried out within that lower dimensional subspace.
+To bring the distribution to nearly isotropic position, we will be using ideas from 
+\citep{LovaszVempala07}.  (We require the additional analysis below, rather than invoking their results as a black box, to cope with the
+fact that the mean is unknown.)
+
+Our starting point is the
+following lemma due to 
+Lov{\'{a}}sz and Vempala \cite{LovaszVempala07}.
+\begin{lemma}~\label{lem:Rudelson}
+Let $f$ be a zero-mean log-concave density on $\mathbb{R}^d$.  For $m
+= O(d \log^3 d)$, if $\Sigma$ denotes the (population) covariance
+matrix of $f$ and $\hat{\mathbf{\Sigma}}$ is the empirical covariance matrix
+from $m$ samples of $f$, then, with probability $9/10$,
+$\hat{\mathbf{\Sigma}}$ is a $11/10$ approximation to $\Sigma$.
+\end{lemma}
+
+Lemma~\ref{lem:Rudelson} enables us to estimate the covariance
+matrix if we know the mean.  To apply it when we do not, we appear
+to need an estimate of the mean that is especially good in
+directions with low variance.  The following is aimed at obtaining such an estimate.
+
+Recall that, for a set $A$ of real-valued functions on a common domain
+$X$, the {\em pseudo-dimension} of $A$,
+which is denoted by $\mathrm{Pdim}(A)$,
+is the VC-dimension of the set
+of indicator functions, one for each $a \in A$, for whether
+$(x,y)$ satisfies $a(x) \geq y$.
+We will use the following standard VC bound.
+% \footnote{There are bounds
+% known on the number of examples needed to get
+% $\frac{\left| \E_{x \sim D}(f(x)) - \frac{1}{m} \sum_{x' \in S} f(x') \right|}
+%       {\sqrt{\Var{f}}}
+% \leq \epsilon.$
+% It might be more elegant to apply these bounds, but the proof that
+% we have now is arguably not too bad.  We may need those bounds when we
+% start to try to treat heavier tails.
+% }
+\begin{lemma}[\cite{Tal94}]
+\label{l:vc}
+For any set $A$ of functions with a common domain $X$ and ranges
+contained in $[-M,M]$, for any distribution $D$, 
+$m = O(\frac{M^2( \mathrm{Pdim}(A) + \log(1/\gamma))}{\epsilon^2})$
+suffices for a set $S$ of $m$ examples 
+drawn according to $D$, with probability $1-\gamma$, 
+to have all $a \in A$ have 
+\[
+\left| \E_{\bx \sim D}(a(\bx)) - \frac{1}{m} \sum_{x' \in S} a(x') \right|
+\leq \epsilon.
+\]
+\end{lemma}
+
+The proof of the following lemma follows a similar lemma in \citep{KLS:09jmlr}.
+\begin{lemma}
+\label{l:pdim.mean}
+Fix 
+% a probability distribution $P$, and 
+a function $b$ from
+$\R^d$ to $\R^+$.  Define $a_u = b(u) \cdot (u \cdot x)$.
+The pseudo-dimension of $\{ a_u : u \in B(1) \}$ is $O(d)$.
+\end{lemma}
+\begin{proof} Any $(x,y)$ satisfies 
+$a_u(x) \geq y$ iff
+\[
+b(u) (u \cdot x) \geq y.
+\]
+Thus, the set of indicator functions
+for $a_u(x) \geq y$ can be embedded into the set of homogeneous halfspaces
+over $\R^{d+1}$, which is known to have VC-dimension $O(d).$
+\end{proof}
+
+Now we are ready for the result we require on estimating the mean:
+
+\begin{lemma}
+\label{l:mean}
+Fix any log-concave distribution $f$ over $\R^d$
+and any
+$\alpha > 0$.
+For $m = O\left(\frac{d \log^2(d/\alpha)}{\alpha^2}\right)$, 
+ with probability at least $3/4$,
+a multiset $S$ of $m$ samples drawn i.i.d. from $f$ 
+satisfies, for all unit length $u$,
+\begin{equation}
+\label{e:mean}
+\frac{| \E_{\bx \sim S}( u \cdot \bx) - \E_{\bx \sim f}(u \cdot \bx)|}
+     {\sqrt{\Var_{\bx \sim f}(u \cdot \bx)}}
+ \leq \alpha.
+\end{equation}
+\end{lemma}
+\begin{proof} Translating the distribution $f$ translates both $\E_{\bx
+  \sim S}( u \cdot \bx)$ and $\E_{\bx \sim f}( u \cdot \bx)$ the same way,
+and does not affect $\Var_{\bx \sim f}(u \cdot \bx)$, so we may assume without loss
+of generality that $f$ has zero mean.  
+Let $f_B$ be the distribution
+obtained from $f$ by conditioning the choice of $x$ on the event that
+$| u \cdot x | \leq \sqrt{\Var_{\bx \sim f}(u \cdot \bx)} \cdot \frac{\ln (8 m)}{c}$ for all unit length $u$, where $c$ is a large constant.
+Lemma~5.17 of \citep{LovaszVempala07} implies that, for large
+enough $c$, the total variation
+distance between $f$ and $f_B$ is $1/(8m)$, so that the total variation
+distance between $m$ draws from $f$ and $m$ draws from $f_B$ is at most
+$1/8$.  We henceforth assume that the $m$ draws from $f$ are in fact drawn from $f_B$, and proceed to analyze $f_B$.
+
+For any unit length $u$, define $a_u$ by 
+$a_u(x) = \frac{| u \cdot x |}{\sqrt{\Var_{\bx \sim f}(u \cdot \bx)}}$.
+Lemma~\ref{l:pdim.mean} implies that $\{ a_u : u \in B(1) \}$
+has pseudo-dimension $O(d)$.  Furthermore, when $x$ is chosen
+from the support of $f_B$, each $a_u$ takes values in 
+an interval of size $O(\log m)$.  Thus we may apply Lemma~\ref{l:vc} to obtain
+Lemma~\ref{l:mean}. 
+\end{proof}
+
+Now we are ready to present and analyze the transformation.
+
+\begin{lemma}~\label{lem:scaling}
+There is an algorithm \textsf{rescale} such that given
+access to samples from a log-concave distribution $f$, and an error
+parameter $\epsilon>0$, the algorithm takes $O(d \log^3 d)$ samples
+from $f$ and with probability at least $1/2$
+% $d^{-O(d^2)}$ 
+produces a non-singular positive definite matrix $\tilde{\Sigma} \in \mathbb{R}^{d \times d}$
+such that, if $\Sigma$ is the covariance matrix of $f$, 
+for any unit vector $v$, 
+\[
+\frac{1}{2} \leq \frac{v^{T} \Sigma v}{v^T \tilde{\Sigma} v} 
+   \leq 2.
+\]
+\end{lemma}
+\begin{proof}
+% For a large constant $C$, 
+% $M_2 = C d \log^3 d$, and $M_1 = C M_2 d \log^2 d$,
+% the algorithm \textsf{rescale} first uses $M_1$ examples to
+% construct an estimate $\tilde{\mu}$ of the mean of $f$, and then
+% uses $\tmu$ with an additional $M_2$ samples to
+% estimate the covariance matrix.
+For a large constant $C$ and $M = C d \log^3 d$
+the algorithm \textsf{rescale} first uses $M$ examples to
+construct an estimate $\tilde{\bmu}$ of the mean of $f$, and then
+uses $\tilde{\bmu}$ to use the examples estimate the covariance matrix.
+
+Lemma~\ref{l:mean} implies that, if $C$ is large enough, then 
+with probability $3/4$, for all unit length $v$, we have
+\begin{equation}
+\label{e:means}
+\frac{| \mu \cdot v - \tilde{\bmu} \cdot v|}
+     {\sqrt{\Var_{\bx \sim f}[v \cdot \bx]}}
+   \leq 
+   \frac{1}{10}.
+\end{equation}
+Lemma~\ref{lem:Rudelson} implies that, with probability $3/4$ over a random i.i.d.~draw of $\bx_1,\dots,\bx_M \sim f,$ we have
+\begin{equation}
+\label{e:rudelson}
+9/10 \leq \frac{\frac{1}{M} \sum_{i=1}^{M} (v \cdot \bx_i - v \cdot \mu)^2}
+           {\Var_{\bx \sim f} [v \cdot \bx]} 
+     \leq 11/10.
+\end{equation}
+We henceforth assume that both (\ref{e:means}) and (\ref{e:rudelson}) hold (this happens with probability at least $1/2$), and we let $\tmu$ and $x_1,\dots,x_M$ denote the corresponding outcomes.
+
+Let $\Sigma$ be the true co-variance of $f$, 
+% $\bSigma$ be the estimate
+% that would have been obtained if $\mu$ was used instead of 
+% $\tmu$, 
+and let $\tSigma$
+be the estimate that was used (which depends on $\tilde{\mu}$).
+
+We have that
+% and $S$ is the
+% corresponding empirical distribution, 
+\begin{align*}
+\frac{v^T \tSigma v}{v^T \Sigma v}
+  & = \frac{\frac{1}{M} \sum_{i=1}^{M} (v \cdot x_i - v \cdot \tmu )^2}{v^T \Sigma v} \\
+  & = \frac{\frac{1}{M} \sum_{i=1}^{M} (v \cdot x_i - v \cdot \tmu )^2}{\Var_{\bx \sim f} [v \cdot \bx]} \\
+  & = \frac{\frac{1}{M} \sum_{i=1}^{M} (v \cdot x_i - v \cdot \mu + v \cdot \mu - v \cdot \tmu)^2}
+           {\Var_{\bx \sim f} [v \cdot \bx]} \\
+  & \leq \frac{\frac{1}{M} \sum_{i=1}^{M} (v \cdot x_i - v \cdot \mu)^2}
+           {\Var_{\bx \sim f} [v \cdot \bx]} 
+           + \frac{\frac{2 |v \cdot \mu - v \cdot \tmu|}{M} \sum_{i=1}^{M} |v \cdot x_i - v \cdot \mu|}
+           {\Var_{\bx \sim f} [v \cdot \bx]} 
+           + \frac{\frac{1}{M} \sum_{i=1}^{M} (v \cdot \mu - v \cdot \tmu)^2}
+           {\Var_{\bx \sim f} [v \cdot \bx]} 
+                \\
+  & = \frac{\frac{1}{M} \sum_{i=1}^{M} (v \cdot x_i - v \cdot \mu)^2}
+           {\Var_{\bx \sim f} [v \cdot \bx]} 
+           + \frac{2 |v \cdot \mu - v \cdot \tmu|}{M \sqrt{\Var_{\bx \sim f} [v \cdot \bx]}} 
+              \sum_{i=1}^{M} \frac{|v \cdot x_i - v \cdot \mu|}
+                                    {\sqrt{\Var_{\bx \sim f} [v \cdot \bx]}} 
+           + \frac{(v \cdot \mu - v \cdot \tmu)^2}
+           {\Var_{\bx \sim f} [v \cdot \bx]} 
+                \\
+  & \leq \frac{\frac{1}{M} \sum_{i=1}^{M} (v \cdot x_i - v \cdot \mu)^2}
+           {\Var_{\bx \sim f} [v \cdot \bx]} 
+           + \frac{2 |v \cdot \mu - v \cdot \tmu|}{M \sqrt{\Var_{\bx \sim f} [v \cdot \bx]}} 
+              \times \sqrt{M \sum_{i=1}^{M} \frac{(v \cdot x_i - v \cdot \mu)^2}
+                                    {\Var_{\bx \sim f} [v \cdot \bx]} }
+           + \frac{(v \cdot \mu - v \cdot \tmu)^2}
+           {\Var_{\bx \sim f} [v \cdot \bx]} 
+                \\
+  & = \frac{\frac{1}{M} \sum_{i=1}^{M} (v \cdot x_i - v \cdot \mu)^2}
+           {\Var_{\bx \sim f} [v \cdot \bx]} 
+           + \frac{2 |v \cdot \mu - v \cdot \tmu|}{\sqrt{\Var_{\bx \sim f} [v \cdot \bx]}} 
+              \times \sqrt{\frac{1}{M} \sum_{i=1}^{M} \frac{(v \cdot x_i - v \cdot \mu)^2}
+                                    {\Var_{\bx \sim f} [v \cdot \bx]} }
+           + \frac{(v \cdot \mu - v \cdot \tmu)^2}
+           {\Var_{\bx \sim f} [v \cdot \bx]} 
+                \\
+  & \leq 11/10 + 2 (1/10) \sqrt{11/10} + 1/100 \leq 2,
+\end{align*}
+where the second inequality is by Cauchy-Schwarz and the third inequality is
+by (\ref{e:rudelson}) and (\ref{e:means}).
+Similarly, 
+\begin{align*}
+\frac{v^T \tSigma v}{v^T \Sigma v}
+  & \geq \frac{\frac{1}{M} \sum_{i=1}^{M} (v \cdot x_i - v \cdot \mu)^2}
+           {\Var_{\bx \sim f} [v \cdot \bx]} 
+           - \frac{\frac{2 |v \cdot \mu - v \cdot \tmu|}{M} \sum_{i=1}^{M} |v \cdot x_i - v \cdot \mu|}
+           {\Var_{\bx \sim f} [v \cdot \bx]} 
+                \\
+  & \geq 9/10 - 2 (1/10) \sqrt{11/10} \geq 1/2,
+\end{align*}
+completing the proof.
+\end{proof}
+
+\medskip
+
+\begin{proofof}{Theorem~\ref{thm:log-concave}}
+The basic algorithm (for the noise-free setting) applies the procedure \textsf{rescale} from Lemma~\ref{lem:scaling} to find
+an estimate of the covariance matrix of $f$, rescales the axes so that the transformed distribution
+is $2$-nearly-isotropic, learns the transformed distribution, and then rescales the axes again to restore their
+original scales.
+
+In the presence of noise, Lemma~\ref{lem:scaling} succeeds with probability 1/2, if all the examples
+are not noisy.  But since the noise rate is at most $\epsilon$, and we may assume without loss of
+generality that $\epsilon < 1/10$, since the number of examples required in Lemma~\ref{lem:scaling}
+is independent of $\epsilon$, any invocation of the method succeeds in the presence of noise
+with probability $\Omega_d(1)$, which is at least some positive constant (since $d$ is a constant).  
+Thus, if an algorithm performs
+$O_d(\log(1/\delta))$ many repetitions, with probability at least $1 - \delta/2$ one of them will succeed.
+It can therefore call the algorithm of Theorem~\ref{thm:main-semiagnostic}
+$O(\log(1/\delta))$ times, and then applying the hypothesis testing procedure of
+Proposition~\ref{prop:log-cover-size} to the results, to achieve the claimed result.
+\end{proofof}

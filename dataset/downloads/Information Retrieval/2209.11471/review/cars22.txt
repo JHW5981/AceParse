@@ -1,0 +1,114 @@
+- To what extent this is generally useful for movies and books may not be fully clear. 
+> HC: Agree, but no more modification on the script. Can show some in slides.
+>> Min: ok.
+
+- In the context of the recommendation of learning materials, there should be a rich related literature on student modeling and sequential recommendation of suitable learning materials that match the learner's existing knowledge. 
+> HC: It's true, but I reject. If with SR introduced, the approach and baselines should be overly changed.
+>> Min: is this true?  We should have cited some of the work or at least group cited it.
+Do references count against your page quota?
+>>> 
+
+- it is not entirely clear from the abstract what the central term "prerequisite" refers to. An example would be good, maybe even in the abstract. Alternatively, an informal characterization of the problem seems required.
+> HC: Accept, and add a description in abstract.
+>> Ok.
+
+- In terms of the experimental evaluation, the authors unfortunately do not mention if they systematically tuned the hyperparameters of all the compared models.
+> HC: Accept, and modified the experiment setting part.
+>> Min: Ok.
+
+
+
+Minor:
+- "Prerequisite can play a crucial role in users’ decision making," -> this is very unclear at the beginning of the abstract and it seems also grammatically questionable.
+> HC: Accept. Modified. and added some description about the defition of context in our work -- background knowledge.
+>> Min: changed
+
+* "explicit auxiliary metadata about users and items [28] (termed context)." -> As mentioned above; this is usually not considered context. The authors could try to define their understanding of the term context somewhere.
+> HC: Rejected. Have described it in the 5. RW
+>> Min: Do you understand what the reviewer is saying about how context is usually defined?  I think fixing the definition later in RW is too late.  Needs work. 
+>>> HC: Generaly, the context is defined as a kind of circumstance that influence user decision. Our definition is different from the general definition.
+
+- Figure 2 could be larger
+> TODO?
+>> Min: do you have space?  What is the length of the CR?
+>>> HC: There is no limitation of 9page length of the CR.
+
+- "and inferring prerequisite relation between concepts from temporally ordered item documents" -> Not clear, what temporal order is meant here.
+> HC: accept. Deleted the temporal here to avoid confusion.
+
+* From a methodological perspective, the authors use sampled metrics with only 99 negative items. Recent works indicate that sampled metrics can be unreliable, in particular when the number of samples is small. (https://dl.acm.org/doi/abs/10.1145/3394486.3403226)
+> HC: Reject. The 99 sampling is still a well-accepted approach.
+
+* "Are prerequisite context beneficial for Cold-start Problem?" -> seems ungrammatical
+> HC. Accept. Modified.
+
+* "we also conduct an intrinsic evaluation" -> Unclear what intrinsic means here.
+> HC. Accept. intrinsic evaluation => quality evaluation to avoid mis-understanding.
+
+* "(+20 F1)" -> Unclear
+> HC. Accept. Modified as more specific value -- 15.68 F1.
+
+* Capitalization issues in many references.
+> HC: Confused
+>> Min: Not clear what you mean?  R is saying that you need to proofread your references and ensure capitalization in acronyms and other words are consistent.
+>>> HC: fixed
+
+- It will be extremely useful for future research if the authors could make the dataset publicly available. 
+>> Min: I thought you are doing this?
+
+-- Terminologically, a "prerequisite" is usually something that is required as a prior condition for something else to happen or exist. Therefore, prerequisites are often specified as a directed acyclic knowledge graph, as is the case in this paper. Often such knowledge graphs are specified externally; for example, course prerequisites are usually specified by academic programs; that is, they are not simply student preferences. However, in this paper, the authors seem to assume that the prerequisites can be learned from the consumption data (e.g., of movies). Hence, what the authors seem to be learning is more about the common consumption sequence patterns (rather than the actual prerequisites).
+>> Min: I agree with this statement.  Prerequisites are "required" (hence requisite).  They really cannot be just thought of as preferences.  We need to work on this.
+
+-- Based on the previous comment, it seems that the proposed approach would fit more into sequential recommender systems (than prerequisite-based/knowledge-based systems). There has been a lot of work in sequential recommender systems in the past few years, and the paper does not do a good job connecting to that literature (as part of the prior work discussions, positioning of the proposed approach in that literature, use of these types of baselines, ...).
+> HC: Partially accept. But no time to add baselines.
+>> Min: we need to address this.  I'm not sure we can discard this.  It requires rewriting and contextualising appropriately.
+>>> HC: Try to add words describing SR in intro, and how it different from our task settings.
+
+
+-- Two other important areas of relevant research literature are (i) knowledge-based recommender systems and (ii) personalized learning (e.g., recommending appropriate educational content to the students, as they are navigating their learning journeys). Both have been extensively explored in the RecSys literature in the past, and the paper should connect with them in a much more comprehensive manner.
+
+-- The proposed approach seems to assume that the users will know what their desired target concepts are (as illustrated in Fig. 1). It is not clear whether that is a realistic assumption in many applications.
+
+-- In terms of alternative methods (baselines) that incorporate the knowledge graph: why not use prerequisites as strict constraints (as would typically be the case in the real-world applications), as opposed to a complex latent embedding oriented approach?
+
+
+
+-- Another terminological issue: In the abstract, the authors state that "Traditional recommender systems [...] where the context consists of static user profiles and item descriptions..." That seems quite inconsistent with the use of term "context" in context-aware recommender systems literature. (For example, see the chapter on Context-Aware Recommender Systems in the "Recommender Systems Handbook" (2022) for an overview.)
+> HC: Writing...
+>> Min: Are you sure you have a good understanding of what a CARS is?  The reviewer is suggesting we misuse the terminology.  
+>>> HC: Try to describe what context is in our work again.
+| Generally, contextual information is incorporated to facilitate recommending items to users under certain circumstances, such as the temporal context.
+| The dynamicity of context would influence user decision under certain circumstances.
+| In this work, we aim to point out another specific context -- prerequisite context in the knowledge background, where different people at different stage handle different level of knowledge.
+
+
+
+- The statistical significance of the results is missing
+> HC. Accept. But no time to re-run the baselines and models for statistical analysis.
+>> Min: I think this needs to be taken care of.  You should be able to apply a z or t test quickly.
+
+- Details on the hyper-parameters used in the experiments are missing for both the proposed model as well as the baselines.
+> HC. Reject. The hyper-parameter analysis are shown in the appendix.
+>> Min: make this obvious in the experimental section with a cross-reference.
+>>>
+
+- Results and method used to evaluate accuracy in the new user cold-start setting is a bit unclear. I wonder how the baseline MF models (e.g. NeuMF) can generate recommendations for new users without any form of user side information.
+- The related work should include additional references, more closely related with presented approach to exploit dynamic and static context in the form of embeddings as in [Moshe Unger, Alexander Tuzhilin, and Amit Livne. 2020. Context-Aware Recommendations Based on Deep Learning Frameworks. ACM Trans. Manage. Inf. Syst. 11, 2, Article 8 (June 2020)]
+
+
+
+Other minor comments to improve the paper:
+- In Fig 2b, L_BEM should be L_KEM instead.
+> Fixed
+
+- In the sentence "When no side information is used, the model functions just as a simple MLP" perhaps I would use a more recsys-specific terminology like "just as a standard Matrix Factorisation (CF) model rather than simple MLP, which is very generic.
+> HC: accept. modified.
+
+- In the discussion of the ablation study, the authors should explain why there are some discrepancies between NDCG and HR results, in particular, in the results of the model with only Item context in movie and books dataset, and when comparing PDRS against the stronger baselines in the book dataset for NDCG@2
+> TODO
+
+- An interesting extension of this work might be incorporating other forms of dynamic context such as temporal or location-based.
+> HC. reject.
+>> Min: interesting suggestion but not actionable for now.  
+
+

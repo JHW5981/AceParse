@@ -1,0 +1,100 @@
+% !TEX root =  main.tex
+
+% \section{Fourier transform of high-dimensional distributions} \label{ap:fourier}
+
+
+While it is possible 
+to do Fourier analysis over $\mathbb{R}^d$, 
+in this paper, we will only do Fourier analysis for functions $f \in  L_1([-1,1]^d)$.  
+% We first recall the definition of the Fourier transform of a function over $\mathbb{R}^d$:
+\begin{definition}
+For any function $f \in L_1([-1,1]^d)$,
+% and $\xi \in \mathbb{R}^d$,
+we define
+$\widehat{f}: \mathbb{R}^d \rightarrow \mathbb{C}$
+by
+$
+\widehat{f}(\xi) = \int_{x \in \mathbb{R}^d} f(x) \cdot e^{ \pi i \cdot \langle \xi, x \rangle} dx.$
+\end{definition}
+
+Next, we recall the following standard claims about Fourier transforms of functions, which may be found,
+for example, in \citep{smith1995handbook}.
+\ignore{\pnote{I did not find the following in {\em Fourier Analysis}, by K\"orner.  
+Some of them are in \citep{smith1995handbook}, but, honestly, I'm only guessing that the others are there.  Do either of you have
+a reference handy that we could use? \red{Rocco:  Are we happy with this now?}}
+}
+\begin{claim}~\label{clm:convolution}
+For $f,g \in L_1([-1,1]^d)$  let   
+$
+{h}(x) = \int_{y \in \mathbb{R}^d} f(y) \cdot g(x-y) dy
+$ denote the convolution $h = f \ast g$ of $f$ and $g$.
+Then for any $\xi \in \mathbb{R}^n$, we have $\widehat{h}(\xi) = \widehat{f}(\xi) \cdot \widehat{g}(\xi)$. 
+\end{claim}
+
+Next, we recall Parseval's identity on the cube.
+
+\begin{claim}[Parseval's identity]~\label{clm:Parseval}
+For $f: [-1,1]^d \rightarrow \mathbb{R}$ such that $f \in L_2( [-1,1]^d)$, it holds that
+$
+ \int_{ [-1,1]^d} f(x)^2 dx = \frac{1}{2^d} \cdot \sum_{\xi  \in \mathbb{Z}^d} |\widehat{f}(\xi)|^2. 
+$
+\end{claim}
+The next claim says that the Fourier inversion formula can be applied to any sequence in $\ell_2(\mathbb{Z}^d)$ to obtain a function whose Fourier series is identical to the given sequence. 
+\begin{claim}[Fourier inversion formula] \label{clm:inversion}\
+For any $g: \mathbb{Z}^d \rightarrow \mathbb{C}$ such that $\sum_{\xi \in \mathbb{Z}^d} |{g}(\xi)^2| <\infty$, the function
+% $h: [-1,1]^d$, 
+$
+h(x) = \sum_{\xi \in \mathbb{Z}^d} \frac{1}{2^d} \cdot g(\xi) \cdot e^{ \pi i \cdot \langle \xi, x \rangle},
+$
+is well defined and satisfies $\widehat{h}(\xi) = g(\xi)$ for all $\xi \in \mathbb{Z}^d$. \end{claim}
+We will also use Young's inequality: 
+\begin{claim}[Young's inequality] \label{clm:Young}
+% \begin{claim} \label{clm:Young}
+Let $f \in L_p([-1,1]^d)$, $g \in L_q([-1,1]^d)$, $1 \le p,q ,r \le \infty$, 
+such that $1 + 1/r = 1/p + 1/q$. Then $\Vert f \ast g \Vert_r \le \Vert f \Vert_p \cdot \Vert g \Vert_q$. 
+\end{claim}
+
+\subsection{A useful mollifier} \label{sec:mollifier}
+
+
+Our algorithm and its analysis require the existence of a compactly supported distribution with fast decaying Fourier transform. Since the precise rate of decay is not very important, 
+% let us define the $C^{\infty}$ function $b: [-1,1] \rightarrow \mathbb{R}^+$ as fo% llows: 
+we use the $C^{\infty}$ function $b: [-1,1] \rightarrow \mathbb{R}^+$ as follows: 
+\begin{eqnarray}~\label{eq:b}
+b(x) = 
+\begin{cases}
+c_0 \cdot e^{-\frac{x^2}{1-x^2}} &\textrm{if } |x|<1 \\
+0 &\textrm{if } |x|=1.
+\end{cases}
+\end{eqnarray}
+Here $c_0 \approx 1.067$ is chosen so that 
+% $\int_{[-1,1]} b(x) dx=1$
+$b$ is a pdf;  by symmetry, its mean is $0$.
+(This function has previously been used as a
+mollifier \citep{kane2010exact,diakonikolas2010bounded}.)
+The following fact can be found in \cite{johnson2015saddle} (while it is proved only for $\xi \in \mathbb{Z}$, it is easy to see that the same proof holds if $\xi \in \mathbb{R}$). 
+%are easy to verify:\ignore{ (see e.g. \red{[cite]}
+% \begin{proposition}~\label{prop:b-properties}
+% $b(\cdot)$ defines a probability distribution with mean $0$.
+% %  and variance $\Omega(1)$. 
+% \pnote{Provisionally deleted ``and variance $\Omega(1)$'' because I cannot see what the variance is independent of.}
+% \end{proposition} }
+\ignore{\pnote{How is the following fact proved? \red{Rocco:  I think I missed part of the discussion on this on the recent phone call --- were we going to cite a paper of Jelani's or something?}}}
+\begin{fact}~\label{eq:FTB}
+For $b:[-1,1] \rightarrow \mathbb{R}^+$ defined in (\ref{eq:b}) and $\xi \in \mathbb{Z} \setminus \{0\}$,  we have that $|\widehat{b}(\xi)| \le e^{-\sqrt{|\xi|}} \cdot |\xi|^{-3/4}$. 
+\end{fact}
+
+Let us now define the function $b_{d,\gamma}: \mathbb{R}^d \rightarrow \mathbb{R}^+$ as 
+$b_{d,\gamma}(x_1, \ldots, x_d) = \frac{1}{\gamma^d} \cdot \prod_{j=1}^d b(x_j/\gamma).$
+Combining this definition and Fact~\ref{eq:FTB}, we have the following claim:\ignore{\rnote{Sorry to be dense but I don't see exactly how we get this from the definition of $b_{d,\gamma}$ and Fact~\ref{eq:FTB}}
+\anote{Rocco, I think the idea is that since $b(\cdot)$ integrates to $1$, its Fourier transform at any point is bounded by $1$. $b_{d,\gamma}$ is just the product distribution where each coordinate is $b$ (after a translation by $\gamma$).}}
+\begin{claim}\label{clm:Fourier-b}
+For $\xi \in \mathbb{Z}^d$ with $\Vert \xi \Vert_\infty \ge t$, we have $|\widehat{b_{d,\gamma}}(\xi)| \le e^{-\sqrt{\gamma \cdot t}} \cdot (\gamma \cdot t)^{-3/4}$. 
+\end{claim}
+The next fact is immediate from (\ref{eq:b}) and the definition of $b_{d,\gamma}$:
+\begin{fact}~\label{fact:b-sup-density}
+$\Vert b_{d,\gamma} \Vert_\infty = (c_0/\gamma)^d$ and as a consequence,
+ $\Vert b_{d,\gamma} \Vert_2^2 \le  (c_0/\gamma)^{2d}$.
+\end{fact}
+
+

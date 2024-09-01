@@ -1,0 +1,86 @@
+the paper seems to lack of comparison with the state of the art in that sense.
+
+- The practical difference between prerequisite knowledge at item and user level is not clear;
+- There seems to be a lack of comparison with methods to deal with prerequisite knowledge at item level, to assess if they can be a solution to the problem at user level;
+- Reproducibility can be limited due to the lack of shared source code.
+
+
+At a and practical level, it is not clear why modeling prerequisite knowledge at user level is different from doing that at item level. 
+
+
+========================
+-Figure 1 is complex and hard to follow. A legend in the figure would increase the readability of the figure. The image can be simplified. Also, the explanation for the figure does not really match with what is done in the study. Thus, the figure 1 creates more of a confusion.
+-It is unclear if the logistic regression model is sufficient to estimate the prerequisite linkage scores. There are no results evaluating this model.
+-The authors do not provide any insights to runtime or space complexity
+> HC: solved.
+-It is unclear for what happens at {Hits, NDHC}@N for examples where there as less than 10 items to evaluate.
+> HC: ignore
+-Using Movies as the third evaluation dataset is not convincing enough. It would be more appropriate to use a scenario like task completion
+-It is hard to quantify if the methods authors use to determine prerequisites is sufficient enough or how much noise and error it introduces to the PDRS framework.
+9. Detailed Evaluation (Contribution, Pros/Cons, Errors); please number each point and please provide as constructive feedback as possible.
+-The authors provide an approach to represent and extract prerequisites for recommendations with minimal human annotation
+-The PDRS method shows promising results for cold-start problems.
+-The PDRS method also appears to be useful for cases where modeling prerequisites is crucial (i.e., Courses) and where prerequisites could be beneficial (Books and Movies).
+
+Reviewer #4
+Questions
+1. Overall Rating
+Weak Accept
+2. Interest to Audience. Will this paper attract the interest of WSDM 2021 attendees? Will it be intriguing and inspiring? Might it be highlighted afterwards in the press as particularly innovative?
+Some interest to a large fraction of the attendees or a lot of interest to some attendees
+3. Significance: Does the paper contribute a major breakthrough or an incremental advance? Are other people (practitioners or researchers) likely to use these ideas or build on them? Is it clear how this work differs from previous contributions, and is related work adequately referenced?
+Moderate advance in methodology or understanding of phenomena, likely to be useful to others
+4. Experiments: Do the experiments support the claims made in the paper and justify the proposed techniques?
+OK, but certain claims are not covered by the experiments
+5. Paper Clarity. Is the paper clearly written? Is it well-organized? Is the result section (and or are the proofs, if applicable) clear enough so that expert readers will understand them and can reproduce the results?
+Good: most of the paper was understandable, with minor typos or details that could be improved
+6. Summary of the paper (what is being proposed and in what context) and a brief justification of your overall recommendation. (One solid paragraph)
+This paper studied the problem of better capturing and leveraging prerequisite knowledge in recommendation systems, which is interesting and practical. The authors proposed a two-stage framework to address the problem of inferring prerequisite knowledge and then encoding the prerequisite knowledge into recommendation models. The effectiveness of the proposed method is demonstrated with detailed ablation studies over different types of real datasets. The motivation of the paper is very interesting and the paper is mostly well-written and easy to follow. And the analysis and detailed ablation studies are really helpful. The paper could be further enhanced if the experimental comparison could be more comprehensive.
+7. Three (or more) strong points about the paper. Please be precise and explicit; clearly explain the value and nature of the contribution.
+(1) Studied an interesting and practical problem.
+(2) Proposed an end-to-end two-stage framework.
+(3) Detailed ablation studies and experimental analysis.
+8. Three (or more) weak points about the paper. Please clearly indicate whether the paper has any mistakes, missing related work, or results that cannot be considered a contribution. Please be polite, specific, and constructive.
+(1) An intuitive and simple way to leverage the prerequisite knowledge for recommendation is to filter the recommendation results w.r.t. prerequisite knowledge dependencies. Namely, it should be straightforward to derive the item dependencies via the concept dependencies, and then filter the recommendation results to remove items whose dependent items are not already occupied by the users. It would be great if the authors could compare the proposed approach with this simple baseline to better justify the modeling complexity of jointly modeling the prerequisite knowledge together with user preferences.
+(2) Experimental study could be more comprehensive. For example, one important baseline method, namely the two-tower approach to encode more metadata info on both user and item sides, is not included in experimental comparison. After all, the prerequisite knowledge is part of the user and item metadata.
+(3) It could be interesting to see some case studies on both the prerequisite knowledge inference part and the overall recommendation part. It would help demonstrate whether the modeling ideas are working as intended.
+(4) Some technical details were not well explained. For example, how the 30%/20% prior/target knowledge slicing is determined; how the hyperparameter tuning is performed for the proposed approach and the baseline approaches (e.s.p for the +KEM variates).
+(5) Some typos. For instance, in Sec 5.1., "Large, positive KPL scores indicate that knowledge concept is a prerequisite of 'machine learning'" shall be "Large, positive KPL scores indicate that 'machine learning' is a prerequisite of the knowledge concept".
+9. Detailed Evaluation (Contribution, Pros/Cons, Errors); please number each point and please provide as constructive feedback as possible.
+The motivation of the paper is very interesting and the paper is mostly well-written and easy to follow. And the analysis and detailed ablation studies are really helpful. The paper could be further improved in the following aspects:
+(1) An intuitive and simple way to leverage the prerequisite knowledge for recommendation is to filter the recommendation results w.r.t. prerequisite knowledge dependencies. Namely, it should be straightforward to derive the item dependencies via the concept dependencies, and then filter the recommendation results to remove items whose dependent items are not already occupied by the users. It would be great if the authors could compare the proposed approach with this simple baseline to better justify the modeling complexity of jointly modeling the prerequisite knowledge together with user preferences.
+(2) Experimental study could be more comprehensive. For example, one important baseline method, namely the two-tower approach to encode more metadata info on both user and item sides, is not included in experimental comparison. After all, the prerequisite knowledge is part of the user and item metadata.
+(3) It could be interesting to see more case studies on both the prerequisite knowledge inference part and the overall recommendation part. It would help demonstrate whether the modeling ideas are working as intended.
+(4) Some technical details were not well explained. For example, how the 30%/20% prior/target knowledge slicing is determined; how the hyper-parameter tuning is performed for the proposed approach and the baseline approaches (e.s.p for the +KEM variates).
+(5) Some typos. For instance, in Sec 5.1., "Large, positive KPL scores indicate that knowledge concept is a prerequisite of 'machine learning'" shall be "Large, positive KPL scores indicate that 'machine learning' is a prerequisite of the knowledge concept".
+10. Reviewer's confidence.
+Knowledgeable in this sub-area
+Reviewer #5
+Questions
+1. Overall Rating
+Weak Reject
+2. Interest to Audience. Will this paper attract the interest of WSDM 2021 attendees? Will it be intriguing and inspiring? Might it be highlighted afterwards in the press as particularly innovative?
+Interesting to a small group or sub-specialty
+3. Significance: Does the paper contribute a major breakthrough or an incremental advance? Are other people (practitioners or researchers) likely to use these ideas or build on them? Is it clear how this work differs from previous contributions, and is related work adequately referenced?
+Moderate advance in methodology or understanding of phenomena, likely to be useful to others
+4. Experiments: Do the experiments support the claims made in the paper and justify the proposed techniques?
+OK, but certain claims are not covered by the experiments
+5. Paper Clarity. Is the paper clearly written? Is it well-organized? Is the result section (and or are the proofs, if applicable) clear enough so that expert readers will understand them and can reproduce the results?
+Good: most of the paper was understandable, with minor typos or details that could be improved
+6. Summary of the paper (what is being proposed and in what context) and a brief justification of your overall recommendation. (One solid paragraph)
+This paper presents a recommendation framework by leveraging prerequisite knowledge. The authors emphasize three main contribution: 1) formalise the prerequisite knowledge via users’ prior knowledge, users’ target knowledge and the prerequisite graph, 2) develop a knowledge linking prediction method to extract prerequisite knowledge and 3) propose an joint training strategy to optimize knowledge linking prediction and recommendation tasks. Experiment are done on three datasets to demonstrate the proposed method.
+7. Three (or more) strong points about the paper. Please be precise and explicit; clearly explain the value and nature of the contribution.
+How to accurately model the user-item interactions with auxiliary side information is at the core of modern recommendation methods. One good point of the paper is the proposed prerequisite learning module. In particular, the author extract concepts and inferring prerequisite relation by several distance metric. Another good point is the joint training strategy to avoid weakening the prerequisite information.
+8. Three (or more) weak points about the paper. Please clearly indicate whether the paper has any mistakes, missing related work, or results that cannot be considered a contribution. Please be polite, specific, and constructive.
+The motivation of so-called “prerequisite knowledge” needs to be stated clearly.
+These baselines are outdated.
+Some important baselines are missing, which means the comparison might be unfair.
+9. Detailed Evaluation (Contribution, Pros/Cons, Errors); please number each point and please provide as constructive feedback as possible.
+1. In terms of motivation, the benefits of “prerequisite graph” are overstate.
+a. Taking “prerequisite graph” as side information for recommendation is similar to KG-based recommendation, e.g. Section 3.1, the PLM module, where Concept Extraction is like NER, and (k_i, r_{ij}, k_j) is like KG triple. And the work PGPR in sigir19 construct their KG by user-item reviews without any external KG. The authors are suggested to clarify their differences and where the prerequisite graph advantages are.
+b. In Section 6.1, paragraph 2, “……that prerequisites can be formalised as causal graphs”. While Section 3.1 shows that prerequisites are constructed by Sequential dependency(AsyD) and domain dependency(RefD). However, neither of them can represent causal relationship.
+2. In terms of experiments, there are several limitations.
+a. As for the dataset, SSG Courses dataset is not publicly available yet. However, no detail information of this dataset (say, the dataset’s scenarios and task). Without clear descriptions, the readers would be confused.
+b. Those compared baselines are outdated, and the latest method among them is done in 2017. For example, there are many graph-based recommendation methods beat GCMC nowadays. What’s more, as related works, the KG-based recommendations are ignored. The authors are strongly suggested to select some of them as baseline.
+10. Reviewer's confidence.
+Knowledgeable in this sub-area

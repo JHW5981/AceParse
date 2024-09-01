@@ -1,0 +1,128 @@
+\begin{thebibliography}{28}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bansal et~al.(2022)Bansal, Yin, Monajatipoor, and Chang]{bansal2022texttoimage}
+Hritik Bansal, Da Yin, Masoud Monajatipoor, and Kai-Wei Chang.
+\newblock How well can text-to-image generative models understand ethical natural language interventions?, 2022.
+
+\bibitem[Basu et~al.(2023)Basu, Babu, and Pruthi]{basu2023inspecting}
+Abhipsa Basu, R.~Venkatesh Babu, and Danish Pruthi.
+\newblock Inspecting the geographical representativeness of images from text-to-image models, 2023.
+
+\bibitem[Bianchi et~al.(2023)Bianchi, Kalluri, Durmus, Ladhak, Cheng, Nozza, Hashimoto, Jurafsky, Zou, and Caliskan]{sunandopaper}
+Federico Bianchi, Pratyusha Kalluri, Esin Durmus, Faisal Ladhak, Myra Cheng, Debora Nozza, Tatsunori Hashimoto, Dan Jurafsky, James Zou, and Aylin Caliskan.
+\newblock Easily accessible text-to-image generation amplifies demographic stereotypes at large scale.
+\newblock In \emph{2023 ACM Conference on Fairness, Accountability, and Transparency}. ACM, 2023.
+
+\bibitem[Bolukbasi et~al.(2016)Bolukbasi, Chang, Zou, Saligrama, and Kalai]{bolukbasi2016man}
+Tolga Bolukbasi, Kai-Wei Chang, James Zou, Venkatesh Saligrama, and Adam Kalai.
+\newblock Man is to computer programmer as woman is to homemaker? debiasing word embeddings, 2016.
+
+\bibitem[Bulat and Tzimiropoulos(2017)]{Bulat_2017}
+Adrian Bulat and Georgios Tzimiropoulos.
+\newblock How far are we from solving the 2d \& 3d face alignment problem? (and a dataset of 230,000 3d facial landmarks).
+\newblock In \emph{2017 IEEE International Conference on Computer Vision (ICCV)}. IEEE, 2017.
+
+\bibitem[Cho et~al.(2023)Cho, Zala, and Bansal]{cho2023dalleval}
+Jaemin Cho, Abhay Zala, and Mohit Bansal.
+\newblock Dall-eval: Probing the reasoning skills and social biases of text-to-image generation models, 2023.
+
+\bibitem[Chuang et~al.(2023)Chuang, Jampani, Li, Torralba, and Jegelka]{chuang2023debiasing}
+Ching-Yao Chuang, Varun Jampani, Yuanzhen Li, Antonio Torralba, and Stefanie Jegelka.
+\newblock Debiasing vision-language models via biased prompts, 2023.
+
+\bibitem[Dwork et~al.(2011)Dwork, Hardt, Pitassi, Reingold, and Zemel]{dwork2011fairness}
+Cynthia Dwork, Moritz Hardt, Toniann Pitassi, Omer Reingold, and Rich Zemel.
+\newblock Fairness through awareness, 2011.
+
+\bibitem[Feng et~al.(2022)Feng, Bolkart, Tesch, Black, and Abrevaya]{feng2022racially}
+Haiwen Feng, Timo Bolkart, Joachim Tesch, Michael~J. Black, and Victoria Abrevaya.
+\newblock Towards racially unbiased skin tone estimation via scene disambiguation, 2022.
+
+\bibitem[Friedrich et~al.(2023)Friedrich, Brack, Struppek, Hintersdorf, Schramowski, Luccioni, and Kersting]{friedrich2023fair}
+Felix Friedrich, Manuel Brack, Lukas Struppek, Dominik Hintersdorf, Patrick Schramowski, Sasha Luccioni, and Kristian Kersting.
+\newblock Fair diffusion: Instructing text-to-image generation models on fairness, 2023.
+
+\bibitem[Gaviria~Rojas et~al.(2022)Gaviria~Rojas, Diamos, Kini, Kanter, Janapa~Reddi, and Coleman]{NEURIPS2022_5474d9d4}
+William Gaviria~Rojas, Sudnya Diamos, Keertan Kini, David Kanter, Vijay Janapa~Reddi, and Cody Coleman.
+\newblock The dollar street dataset: Images representing the geographic and socioeconomic diversity of the world.
+\newblock In \emph{Advances in Neural Information Processing Systems}, pages 12979--12990. Curran Associates, Inc., 2022.
+
+\bibitem[Jain et~al.(2021)Jain, Olmo, Sengupta, Manikonda, and Kambhampati]{jain2021imperfect}
+Niharika Jain, Alberto Olmo, Sailik Sengupta, Lydia Manikonda, and Subbarao Kambhampati.
+\newblock Imperfect imaganation: Implications of gans exacerbating biases on facial data augmentation and snapchat selfie lenses, 2021.
+
+\bibitem[Li et~al.(2023)Li, Li, Savarese, and Hoi]{li2023blip2}
+Junnan Li, Dongxu Li, Silvio Savarese, and Steven Hoi.
+\newblock Blip-2: Bootstrapping language-image pre-training with frozen image encoders and large language models, 2023.
+
+\bibitem[Luccioni et~al.(2023)Luccioni, Akiki, Mitchell, and Jernite]{luccioni2023stable}
+Alexandra~Sasha Luccioni, Christopher Akiki, Margaret Mitchell, and Yacine Jernite.
+\newblock Stable bias: Analyzing societal representations in diffusion models, 2023.
+
+\bibitem[Mikolov et~al.(2013)Mikolov, Le, and Sutskever]{mikolov2013exploiting}
+Tomas Mikolov, Quoc~V. Le, and Ilya Sutskever.
+\newblock Exploiting similarities among languages for machine translation, 2013.
+
+\bibitem[Nicoletti and Bass(2023)]{bloomberg}
+Leonardo Nicoletti and Dina Bass.
+\newblock Humans are biased. generative ai is even worse.
+\newblock 2023.
+\newblock Accessed: 2023-09-10.
+
+\bibitem[Parmar et~al.(2022)Parmar, Zhang, and Zhu]{parmar2022aliased}
+Gaurav Parmar, Richard Zhang, and Jun-Yan Zhu.
+\newblock On aliased resizing and surprising subtleties in gan evaluation, 2022.
+
+\bibitem[Peng et~al.(2023)Peng, Wang, Dong, Hao, Huang, Ma, and Wei]{peng2023kosmos2}
+Zhiliang Peng, Wenhui Wang, Li Dong, Yaru Hao, Shaohan Huang, Shuming Ma, and Furu Wei.
+\newblock Kosmos-2: Grounding multimodal large language models to the world, 2023.
+
+\bibitem[Radford et~al.(2021)Radford, Kim, Hallacy, Ramesh, Goh, Agarwal, Sastry, Askell, Mishkin, Clark, Krueger, and Sutskever]{radford2021learning}
+Alec Radford, Jong~Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh, Sandhini Agarwal, Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark, Gretchen Krueger, and Ilya Sutskever.
+\newblock Learning transferable visual models from natural language supervision, 2021.
+
+\bibitem[Ramaswamy et~al.(2023)Ramaswamy, Lin, Zhao, Adcock, van~der Maaten, Ghadiyaram, and Russakovsky]{ramaswamy2023geode}
+Vikram~V. Ramaswamy, Sing~Yu Lin, Dora Zhao, Aaron~B. Adcock, Laurens van~der Maaten, Deepti Ghadiyaram, and Olga Russakovsky.
+\newblock Geode: a geographically diverse evaluation dataset for object recognition, 2023.
+
+\bibitem[Ramesh et~al.(2021)Ramesh, Pavlov, Goh, Gray, Voss, Radford, Chen, and Sutskever]{ramesh2021zeroshot}
+Aditya Ramesh, Mikhail Pavlov, Gabriel Goh, Scott Gray, Chelsea Voss, Alec Radford, Mark Chen, and Ilya Sutskever.
+\newblock Zero-shot text-to-image generation, 2021.
+
+\bibitem[Robertson(2024)]{verge2024gemini}
+Adi Robertson.
+\newblock Google's ai model gemini criticized for generating historically inaccurate images.
+\newblock \emph{The Verge}, 2024.
+
+\bibitem[Rombach et~al.(2022)Rombach, Blattmann, Lorenz, Esser, and Ommer]{rombach2022highresolution}
+Robin Rombach, Andreas Blattmann, Dominik Lorenz, Patrick Esser, and Björn Ommer.
+\newblock High-resolution image synthesis with latent diffusion models, 2022.
+
+\bibitem[Sagawa et~al.(2020)Sagawa, Koh, Hashimoto, and Liang]{sagawa2020distributionally}
+Shiori Sagawa, Pang~Wei Koh, Tatsunori~B. Hashimoto, and Percy Liang.
+\newblock Distributionally robust neural networks for group shifts: On the importance of regularization for worst-case generalization, 2020.
+
+\bibitem[Solbes-Canales et~al.(2020)Solbes-Canales, Valverde-Montesino, and Herranz-Hern{\'a}ndez]{SolbesCanales2020SocializationOG}
+Irene Solbes-Canales, Susana Valverde-Montesino, and Pablo Herranz-Hern{\'a}ndez.
+\newblock Socialization of gender stereotypes related to attributes and professions among young spanish school-aged children.
+\newblock \emph{Frontiers in Psychology}, 11, 2020.
+
+\bibitem[Vapnik and Chervonenkis(2015)]{Vapnik2015}
+V.~N. Vapnik and A.~Ya. Chervonenkis.
+\newblock \emph{On the Uniform Convergence of Relative Frequencies of Events to Their Probabilities}, pages 11--30.
+\newblock Springer International Publishing, 2015.
+
+\bibitem[Xu et~al.(2018)Xu, Yuan, Zhang, and Wu]{xu2018fairgan}
+Depeng Xu, Shuhan Yuan, Lu Zhang, and Xintao Wu.
+\newblock Fairgan: Fairness-aware generative adversarial networks, 2018.
+
+\bibitem[Zhang et~al.(2023)Zhang, Chen, Chai, Wu, Lagun, Beeler, and la~Torre]{zhang2023itigen}
+Cheng Zhang, Xuanbai Chen, Siqi Chai, Chen~Henry Wu, Dmitry Lagun, Thabo Beeler, and Fernando~De la Torre.
+\newblock Iti-gen: Inclusive text-to-image generation, 2023.
+
+\end{thebibliography}

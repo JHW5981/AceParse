@@ -1,0 +1,17 @@
+% Holden: @Min. I rewrite the whole section and need a proof reading.
+\section{Related Work}
+\textbf{Context-aware recommender systems} handle static metadata as auxiliary information, such as user profiles \cite{xu2018graphcar, lei2016comparative}
+and item attributes \cite{chen2019personalized}.
+Textual content is a typical form with rich contextual information to facilitate RS accuracy. Some works treat item content as raw features by hidden vectors \cite{zheng2017joint, sun2020dual},
+while others select important text pieces, such as item tags \cite{gong2016hashtag, li2016hashtag}, and  semantic clues \cite{wang2020fine}.
+However, few works focus on establishing context causality between user and item, where our approach uses prerequisite context.
+
+Proper \textbf{Prerequisite Relation Identification} is thus crucial for both intrinsic prerequisite representation task and our ultimate extrinsic task of recommendation. 
+Many works rely on statistical methods to determine prerequisites. 
+% such as, Bayesian Network, probabilistic association rule, 
+An early study by  \citet{vuong2011method} examined the effect of learning curriculum units in various orders. 
+\citet{chen2015discovering} treated prerequisite relations as a Bayesian network, which requires a mapping of courses to fine-grained skill and relevant student performance data. 
+\citet{chen2016joint} apply probabilistic association rule mining to infer student knowledge from performance data.  
+To make the prerequisite relation identification more feasible, others --- including ourselves --- tap into generic information sources. 
+\citet{pan2017prerequisite} utilize a Wikipedia corpus to learn semantic representation of concepts for detecting prerequisites in MOOC. \citet{talukdar2012crowdsourced} study how prerequisites can be inferred between Wikipedia entities. \citet{wang2016using} use Wikipedia articles and categories for Concept Graph Learning that uses observed prerequisite relation to learn unobserved ones.
+Although this task has mostly been applied to education \cite{yang2015concept}, our findings emphasize that prerequisites indeed generalize and do not need to be restricted to a particular context.  

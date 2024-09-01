@@ -1,0 +1,149 @@
+Dear Hengchang Hu,
+
+We are pleased to inform you that your submission 7865: "Modeling and Leveraging Prerequisite Context in Recommendation" has been conditionally accepted for a presentation at the Context-Aware Recommender Systems Workshop. Congratulations!
+
+Please find the reviews below that we hope will help you in preparing a final version.
+
+Your acceptance is contingent on the following conditions:
+
+1. You should revise your paper considering the suggestions of your reviewers by September 10, 2022. Please carefully read the comments from the review team and try to address them in the final version of your manuscript. Your paper has to adhere to the ACM Standard (SIGCONF) template (https://www.acm.org/publications/proceedings-template). You can submit the camera-ready paper on EasyChair by resubmitting your original submission. Please include the following copyright line as a bottom left footer on the first page of the submission:
+"Copyright held by the author(s)."
+
+2. At least one author of the paper must register and attend the workshop. The workshop will be held in person on September 23, 2022, between 2 pm - 5:30 pm, and will be co-located with RecSys 2022 in Seattle, WA, USA. Since the early registration for the conference has already ended, we are happy to provide a discount code for attending the workshop. Our hope is that this will boost in-person attendance. We advise you to use the early registration code and register before September 1, 2022.
+
+* The registration discount code is WKSHPEXT
+* It applies to in-person registration only
+* It will be active from Aug 27 until September 3
+
+Please send us (munger@stern.nyu.edu), as soon as possible (until September 1, 2022), the details (full name, affiliation and email) of the author that will attend the workshop.
+
+3. We would also like you to send us (munger@stern.nyu.edu) your presentation by September 10, 2022, so that we can give you feedback regarding the likelihood that your presentation will stay within the 15 minutes of allocated time. Presenters will have 15 minutes for the main presentation and 5 minutes for Q&A. In your email, please indicate if you give us your permission to upload your slides to the CARS Workshop website.
+
+Congratulations on the acceptance of your paper to CARS 2022.
+
+Best regards,
+CARS Workshop Program Committee
+Gediminas Adomavicius, Konstantin Bauman, Bamshad Mobasher, Francesco Ricci, Moshe Unger
+
+SUBMISSION: 7865
+TITLE: Modeling and Leveraging Prerequisite Context in Recommendation
+
+
+----------------------- REVIEW 1 ---------------------
+SUBMISSION: 7865
+TITLE: Modeling and Leveraging Prerequisite Context in Recommendation
+AUTHORS: Hengchang Hu, Liangming Pan, Yiding Ran and Min-Yen Kan
+
+----------- Overall evaluation -----------
+SCORE: -1 (weak reject)
+----- TEXT:
+This paper introduces a novel method that incorporates knowledge about meaningful or required prerequisites (in terms of user knowledge) in the recommendation process, e.g., knowledge that one learning course is only meaningful in case the user has already mastered another one. The knowledge about possible prerequisite relations can be based on the analysis of past interaction data and external knowledge. A neural approach is then proposed which considers this knowledge graph in the model. Experimental results indicate that using these additional pieces of information is beneficial in terms of prediction accuracy.
+
+The paper positions the work as being context-aware, but it actually does not match typical research works on context-aware recommender systems (CARS) in the literature. Actually, the claims that are made in the paper that classical CARS typically rely on user or item features are not true. In reality, typical CARS use factors that are independent of user and items (e.g., weather or time of the day) and change over time. In such a more classical interpretation, the presented work might not even be considered as a context-aware one, because it mainly matches user characteristics (existing user knowledge) with item characteristics (concepts related to the target items) considering a directed graph of prerequisites. Since these are sequential dependencies in terms of consumption, this work rather feels like falling into the class of sequence aware recommender systems (https://dl.acm.org/doi/10.1145/3190616) with soft sequence constraints.
+
+The general idea in the context of the recommendation of learning materials certainly makes sense. To what extent this is generally useful for movies and books may not be fully clear. In the context of the recommendation of learning materials, there should be a rich literature on student modeling and sequential recommendation of suitable learning materials that match the learner's existing knowledge. Unfortunately, this entire body of literature goes unnoticed.
+
+The presentation is generally okay. Unfortunately, it is not entirely clear from the abstract what the central term "prerequisite" refers to. An example would be good, maybe even in the abstract. Alternatively, an informal characterization of the problem seems required.
+
+In terms of the experimental evaluation, the authors unfortunately do not mention if they systematically tuned the hyperparameters of all the compared models. If this was not done, it is unclear if we can derive any insight from these computational experiments. Ultimately, in reality it may turn out to be very simple to show improvements over any existing method with many different mechanisms when the comparison method is not properly tuned for a given dataset.
+
+Unfortunately, the authors do not share the code and data that was used in the experiments. This limits the reproducibility of the work.
+
+In terms of baselines, it might be interesting see how a trivial constraint-based approach would fare, where recommendations are first created with a prerequisite-agnostic algorithm and where these recommendations are then pruned based on the prerequisite knowledge graph.
+
+
+Minor/Writing:
+* "Prerequisite can play a crucial role in users’ decision making," -> this is very unclear at the beginning of the abstract and it seems also grammatically questionable.
+* "explicit auxiliary metadata about users and items [28] (termed context)." -> As mentioned above; this is usually not considered context. The authors could try to define their understanding of the term context somewhere.
+* Figure 2 could be larger
+* "and inferring prerequisite relation between concepts from temporally ordered item documents" -> Not clear, what temporal order is meant here.
+* Not sure that BPR and SVD are weak baselines (https://dl.acm.org/doi/10.1145/3383313.3412488)
+* From a methodological perspective, the authors use sampled metrics with only 99 negative items. Recent works indicate that sampled metrics can be unreliable, in particular when the number of samples is small. (https://dl.acm.org/doi/abs/10.1145/3394486.3403226)
+* "Are prerequisite context beneficial for Cold-start Problem?" -> seems ungrammatical
+* "we also conduct an intrinsic evaluation" -> Unclear what intrinsic means here.
+* "(+20 F1)" -> Unclear
+* Capitalization issues in many references.
+
+
+
+----------------------- REVIEW 2 ---------------------
+SUBMISSION: 7865
+TITLE: Modeling and Leveraging Prerequisite Context in Recommendation
+AUTHORS: Hengchang Hu, Liangming Pan, Yiding Ran and Min-Yen Kan
+
+----------- Overall evaluation -----------
+SCORE: 2 (accept)
+----- TEXT:
+In this paper, the authors propose a generic context-aware framework called Prerequisite Driven Recommendation (PDR) to explicitly model the prerequisite context information in the recommendation process.
+Beyond the model, the authors also contribute a PDR dataset containing 75k+ high-quality knowledge concepts, spanning three domains, which will be extremely useful for future research if the authors could make the dataset publicly available. Through a set of experiments, the authors demonstrate that their proposed framework consistently outperforms baseline models in all three domains and that it performs especially well in cold-start scenarios. The idea presented in the paper is clearly articulated and the research problem is novel and important. The experiments are detailed and thorough. Overall, it is a nicely written paper on an important research topic, and I would recommend acceptance to the CARS workshop.
+
+Moving forward, here are some suggestions which I hope could help the reviewers to further improve this manuscript. First, the authors are encouraged to test for other instantiations of the PDR framework (beyond the neural network-based method) to further demonstrate the generalizability and robustness of the framework. Second, the authors might also want to study other ways to combine the prerequisite learning and recommendation tasks beyond the simple multi-layer perceptions, such as multi-task learning methods. Third, the authors can also present more experiment results on the quality of their prerequisite inference tasks.
+
+
+
+----------------------- REVIEW 3 ---------------------
+SUBMISSION: 7865
+TITLE: Modeling and Leveraging Prerequisite Context in Recommendation
+AUTHORS: Hengchang Hu, Liangming Pan, Yiding Ran and Min-Yen Kan
+
+----------- Overall evaluation -----------
+SCORE: -1 (weak reject)
+----- TEXT:
+The paper proposes an approach to incorporate information about "prerequisites" into the recommendation process. For example, it sometimes makes sense to recommend a specific item to a user only if the user has consumed another certain item before that. A canonical example (that is also given in the paper) is the course recommendation: a specific course (containing some new concepts) can be recommended only if the user has learned the necessary prerequisite concepts from his/her previous courses. The authors' proposed approach extracts concepts from item descriptions, infers "prerequisite" relationships from sequential consumption data, and then incorporates that information into recommendation process by taking into account the user's prior knowledge concepts and target/desired knowledge concepts as contextual information using a neural network approach.
+
+The paper explores an interesting topic that should be relevant to the workshop attendees. However, the paper has a number of limitations as well.
+
+-- Terminologically, a "prerequisite" is usually something that is required as a prior condition for something else to happen or exist. Therefore, prerequisites are often specified as a directed acyclic knowledge graph, as is the case in this paper. Often such knowledge graphs are specified externally; for example, course prerequisites are usually specified by academic programs; that is, they are not simply student preferences. However, in this paper, the authors seem to assume that the prerequisites can be learned from the consumption data (e.g., of movies). Hence, what the authors seem to be learning is more about the common consumption sequence patterns (rather than the actual prerequisites).
+
+-- Based on the previous comment, it seems that the proposed approach would fit more into sequential recommender systems (than prerequisite-based/knowledge-based systems). There has been a lot of work in sequential recommender systems in the past few years, and the paper does not do a good job connecting to that literature (as part of the prior work discussions, positioning of the proposed approach in that literature, use of these types of baselines, ...).
+
+-- Two other important areas of relevant research literature are (i) knowledge-based recommender systems and (ii) personalized learning (e.g., recommending appropriate educational content to the students, as they are navigating their learning journeys). Both have been extensively explored in the RecSys literature in the past, and the paper should connect with them in a much more comprehensive manner.
+
+-- The proposed approach seems to assume that the users will know what their desired target concepts are (as illustrated in Fig. 1). It is not clear whether that is a realistic assumption in many applications.
+
+-- In terms of alternative methods (baselines) that incorporate the knowledge graph: why not use prerequisites as strict constraints (as would typically be the case in the real-world applications), as opposed to a complex latent embedding oriented approach?
+
+-- Another terminological issue: In the abstract, the authors state that "Traditional recommender systems [...] where the context consists of static user profiles and item descriptions..." That seems quite inconsistent with the use of term "context" in context-aware recommender systems literature. (For example, see the chapter on Context-Aware Recommender Systems in the "Recommender Systems Handbook" (2022) for an overview.)
+
+
+
+----------------------- REVIEW 4 ---------------------
+SUBMISSION: 7865
+TITLE: Modeling and Leveraging Prerequisite Context in Recommendation
+AUTHORS: Hengchang Hu, Liangming Pan, Yiding Ran and Min-Yen Kan
+
+----------- Overall evaluation -----------
+SCORE: 3 (strong accept)
+----- TEXT:
+This paper presents a method to incorporate the concept of “prerequisites” in recommender systems. The paper develops an algorithm for this purpose, and tests it on a number of datasets, in domains where the concept of prerequisites is very prominent (courses) as well as domains where the concept has a more “fuzzy” meaning (movies and books). The authors show that explicitly incorporating a prerequisite graph in the recommendation process improves performance over traditional algorithms, and even over deep learning algorithms that use prerequisite embeddings. Moreover, the results are consistent across datasets, and are particularly prominent for cold user and cold item situations.
+
+I really enjoyed reading the paper. The idea is meaningful, the evaluation is thorough, and I particularly liked the “common sense” analysis of a few example prerequisite predictions to show that the method really works.
+
+I think that in a future paper the authors could take this last part even further, and develop a system that directly shows the pre-requisite graph to the end-user. This would be a great way to motivate the system’s recommendations (and for novice users to learn some valuable insights about the prerequisite structure of the domain).
+
+
+
+----------------------- REVIEW 5 ---------------------
+SUBMISSION: 7865
+TITLE: Modeling and Leveraging Prerequisite Context in Recommendation
+AUTHORS: Hengchang Hu, Liangming Pan, Yiding Ran and Min-Yen Kan
+
+----------- Overall evaluation -----------
+SCORE: 1 (weak accept)
+----- TEXT:
+This paper proposes a novel context-aware recommender based on neural network architecture able to learn and exploit conceptual prerequisite context, which is extracted from item's textual fields like title, to improve the ranking accuracy. The offline experiments shows that the proposed model outperforms all the evaluated baselines consistently on several datasets and accuracy metrics.
+
+I think the paper is well written and structured, and with a good level of detail to understand fully the main contributions. The main novelties of the paper are: (1) an approach to acquire the domain-specific prerequisite knowledge, which can be seen as an advanced knowledge representation extracted from item's textual metadata, that is, static item context/content; and (2) a novel approach to to jointly learn the context, user and item embeddings that are then used to generate context-aware recommendations. The paper also presents a relatively complete offline evaluation, including a good variety of baseline algorithms, a diverse set of publicly available datasets and a detailed discussion of the results with several interesting insights and potential future extensions. Overall, I believe the paper can be a good contribution to the CARS workshop, but for me is a "weak accept" because of the following limitations:
+- The statistical significance of the results is missing
+- Datasets are all relatively small, which could favour some type of models more than others.
+- Details on the hyper-parameters used in the experiments are missing for both the proposed model as well as the baselines.
+- Results and method used to evaluate accuracy in the new user cold-start setting is a bit unclear. I wonder how the baseline MF models (e.g. NeuMF) can generate recommendations for new users without any form of user side information.
+- The related work should include additional references, more closely related with presented approach to exploit dynamic and static context in the form of embeddings as in [Moshe Unger, Alexander Tuzhilin, and Amit Livne. 2020. Context-Aware Recommendations Based on Deep Learning Frameworks. ACM Trans. Manage. Inf. Syst. 11, 2, Article 8 (June 2020)]
+
+
+
+Other minor comments to improve the paper:
+- In Fig 2b, L_BEM should be L_KEM instead.
+- In the sentence "When no side information is used, the model functions just as a simple MLP" perhaps I would use a more recsys-specific terminology like "just as a standard Matrix Factorisation (CF) model rather than simple MLP, which is very generic.
+- In the discussion of the ablation study, the authors should explain why there are some discrepancies between NDCG and HR results, in particular, in the results of the model with only Item context in movie and books dataset, and when comparing PDRS against the stronger baselines in the book dataset for NDCG@2
+- An interesting extension of this work might be incorporating other forms of dynamic context such as temporal or location-based.

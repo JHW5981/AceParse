@@ -1,0 +1,294 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{DKK{\etalchar{+}}18}
+
+\bibitem[AB83]{AB83}
+P.~Assouad and C.~Birge.
+\newblock {Deux remarques sur l'estimation}.
+\newblock {\em C. R. Acad. Sci. Paris S\'{e}r. I}, 296:1021--1024, 1983.
+
+\bibitem[ADK15]{AcharyaDK15}
+Jayadev Acharya, Constantinos Daskalakis, and Gautam Kamath.
+\newblock Optimal testing for properties of distributions.
+\newblock In {\em Advances in Neural Information Processing Systems 28 (NIPS)},
+  pages 3591--3599, 2015.
+
+\bibitem[ADLS17]{acharya2017sample}
+Jayadev Acharya, Ilias Diakonikolas, Jerry Li, and Ludwig Schmidt.
+\newblock Sample-optimal density estimation in nearly-linear time.
+\newblock In {\em Proceedings of the Twenty-Eighth Annual ACM-SIAM Symposium on
+  Discrete Algorithms}, pages 1278--1289. SIAM, 2017.
+
+\bibitem[AJOS14]{AJOS14}
+J.~Acharya, A.~Jafarpour, A.~Orlitsky, and A.T. Suresh.
+\newblock Near-optimal-sample estimators for spherical gaussian mixtures.
+\newblock Technical Report http://arxiv.org/abs/1402.4746, ArXiV, 19 Feb 2014.
+
+\bibitem[BC91]{barron1991minimum}
+Andrew~R Barron and Thomas~M Cover.
+\newblock Minimum complexity density estimation.
+\newblock {\em IEEE transactions on information theory}, 37(4):1034--1054,
+  1991.
+
+\bibitem[Bes59]{besov1959family}
+OV~Besov.
+\newblock On a family of function spaces. embedding and extension theorems.
+\newblock {\em Dokl. Akad. Nauk SSSR}, 126(6):1163--1165, 1959.
+
+\bibitem[BL13]{balcan2013active}
+Maria-Florina Balcan and Philip~M Long.
+\newblock Active and passive learning of linear separators under log-concave
+  distributions.
+\newblock In {\em Conference on Learning Theory}, pages 288--316, 2013.
+
+\bibitem[BSZ15]{bhaskara2015sparse}
+Aditya Bhaskara, Ananda Suresh, and Morteza Zadimoghaddam.
+\newblock Sparse solutions to nonnegative linear systems and applications.
+\newblock In {\em Artificial Intelligence and Statistics}, pages 83--92, 2015.
+
+\bibitem[BX99]{barbour1999poisson}
+Andrew~D Barbour and Aihua Xia.
+\newblock Poisson perturbations.
+\newblock {\em ESAIM: Probability and Statistics}, 3:131--150, 1999.
+
+\bibitem[CDGR16]{CanonneDGR16}
+Cl{\'{e}}ment~L. Canonne, Ilias Diakonikolas, Themis Gouleakis, and Ronitt
+  Rubinfeld.
+\newblock Testing shape restrictions of discrete distributions.
+\newblock In {\em 33rd Symposium on Theoretical Aspects of Computer Science,
+  {STACS} 2016}, pages 25:1--25:14, 2016.
+
+\bibitem[CDSS13]{CDSS13}
+S.~Chan, I.~Diakonikolas, R.~Servedio, and X.~Sun.
+\newblock Learning mixtures of structured distributions over discrete domains.
+\newblock In {\em SODA}, pages 1380--1394, 2013.
+
+\bibitem[CDSS14]{CDSS14}
+S.~Chan, I.~Diakonikolas, R.~Servedio, and X.~Sun.
+\newblock Efficient density estimation via piecewise polynomial approximation.
+\newblock In {\em STOC}, pages 604--613, 2014.
+
+\bibitem[CDSS18]{carpenter2018}
+Timothy Carpenter, Ilias Diakonikolas, Anastasios Sidiropoulos, and Alistair
+  Stewart.
+\newblock {Near-Optimal Sample Complexity Bounds for Maximum Likelihood
+  Estimation of Multivariate Log-concave Densities}.
+\newblock {\em CoRR}, abs/1802.10575, 2018.
+
+\bibitem[CGS11]{CGS11}
+L.~Chen, L.~Goldstein, and Q.-M. Shao.
+\newblock {\em Normal Approximation by Stein's Method}.
+\newblock Springer, 2011.
+
+\bibitem[Das99]{Dasgupta:99}
+S.~Dasgupta.
+\newblock {Learning mixtures of Gaussians}.
+\newblock In {\em Proceedings of the 40th Annual Symposium on Foundations of
+  Computer Science}, pages 634--644, 1999.
+
+\bibitem[DDKT16]{DDKT16}
+Constantinos Daskalakis, Anindya De, Gautam Kamath, and Christos Tzamos.
+\newblock A size-free {CLT} for poisson multinomials and its applications.
+\newblock In {\em Proceedings of the 48th Annual {ACM} {SIGACT} Symposium on
+  Theory of Computing, {STOC} 2016}, pages 1074--1086, 2016.
+
+\bibitem[DDO{\etalchar{+}}13]{daskalakis2013learning}
+Constantinos Daskalakis, Ilias Diakonikolas, Ryan O'Donnell, Rocco~A. Servedio,
+  and Li-Yang Tan.
+\newblock Learning sums of independent integer random variables.
+\newblock In {\em Foundations of Computer Science (FOCS), 2013 IEEE 54th Annual
+  Symposium on}, pages 217--226. IEEE, 2013.
+
+\bibitem[DDS12]{DDS12stoc}
+C.~Daskalakis, I.~Diakonikolas, and R.A. Servedio.
+\newblock {Learning Poisson Binomial Distributions}.
+\newblock In {\em STOC}, pages 709--728, 2012.
+
+\bibitem[DDS15]{DDS15}
+A.~De, I.~Diakonikolas, and R.~Servedio.
+\newblock {Learning from Satisfying Assignments}.
+\newblock In {\em {Proc. ACM-SIAM Symposium on Discrete Algorithms (SODA)}},
+  pages 478--497, 2015.
+
+\bibitem[DG85]{DG85}
+L.~Devroye and L.~Gy\"{o}rfi.
+\newblock {\em {Nonparametric Density Estimation: The $L_1$ View}}.
+\newblock John Wiley \& Sons, 1985.
+
+\bibitem[DK14]{DaskalakisKamath14}
+C.~Daskalakis and G.~Kamath.
+\newblock Faster and sample near-optimal algorithms for proper learning
+  mixtures of gaussians.
+\newblock In {\em COLT}, pages 1183--1213, 2014.
+
+\bibitem[DKK{\etalchar{+}}16]{DKKLMNS16}
+Ilias Diakonikolas, Gautam Kamath, Daniel~M. Kane, Jerry Li, Ankur Moitra, and
+  Alistair Stewart.
+\newblock Robust estimators in high dimensions without the computational
+  intractability.
+\newblock In {\em {IEEE} 57th Annual Symposium on Foundations of Computer
+  Science, {FOCS}}, pages 655--664, 2016.
+
+\bibitem[DKK{\etalchar{+}}18]{DKKLMS18}
+Ilias Diakonikolas, Gautam Kamath, Daniel~M. Kane, Jerry Li, Ankur Moitra, and
+  Alistair Stewart.
+\newblock Robustly learning a gaussian: Getting optimal error, efficiently.
+\newblock In {\em Proceedings of the Twenty-Ninth Annual {ACM-SIAM} Symposium
+  on Discrete Algorithms, {SODA}}, pages 2683--2702, 2018.
+
+\bibitem[DKN10]{diakonikolas2010bounded}
+Ilias Diakonikolas, Daniel~M Kane, and Jelani Nelson.
+\newblock Bounded independence fools degree-2 threshold functions.
+\newblock In {\em FOCS}, 2010.
+
+\bibitem[DKS16a]{DKS16a}
+Ilias Diakonikolas, Daniel~M. Kane, and Alistair Stewart.
+\newblock Efficient robust proper learning of log-concave distributions.
+\newblock {\em CoRR}, abs/1606.03077, 2016.
+
+\bibitem[DKS16b]{diakonikolas2016learning}
+Ilias Diakonikolas, Daniel~M Kane, and Alistair Stewart.
+\newblock Learning multivariate log-concave distributions.
+\newblock In {\em Conference on Learning Theory (COLT)}, pages 711--727, 2016.
+
+\bibitem[DKS16c]{diakonikolas2016optimal}
+Ilias Diakonikolas, Daniel~M Kane, and Alistair Stewart.
+\newblock {Optimal learning via the Fourier transform for sums of independent
+  integer random variables}.
+\newblock In {\em Conference on Learning Theory}, pages 831--849, 2016.
+
+\bibitem[DKS16d]{diakonikolas2016fourier}
+Ilias Diakonikolas, Daniel~M Kane, and Alistair Stewart.
+\newblock {The Fourier transform of Poisson multinomial distributions and its
+  algorithmic applications}.
+\newblock In {\em Proceedings of the forty-eighth annual ACM symposium on
+  Theory of Computing}, pages 1060--1073. ACM, 2016.
+
+\bibitem[DL12]{devroye2012combinatorial}
+Luc Devroye and G{\'a}bor Lugosi.
+\newblock {\em Combinatorial methods in density estimation}.
+\newblock Springer Science \& Business Media, 2012.
+
+\bibitem[DLS18]{DLS18asums}
+A.~De, P.~M. Long, and R.~A. Servedio.
+\newblock Learning sums of independent random variables with sparse collective
+  support.
+\newblock {\em FOCS}, 2018.
+
+\bibitem[DS93]{devore1993besov}
+Ronald~A DeVore and Robert~C Sharpley.
+\newblock Besov spaces on domains in {$\Re^d$}.
+\newblock {\em Transactions of the American Mathematical Society},
+  335(2):843--864, 1993.
+
+\bibitem[HK92]{holmstrom1992asymptotic}
+Lasse Holmstr{\"o}m and Jussi Klemel{\"a}.
+\newblock Asymptotic bounds for the expected l1 error of a multivariate kernel
+  density estimator.
+\newblock {\em Journal of multivariate analysis}, 42(2):245--266, 1992.
+
+\bibitem[Hub67]{huber1967behavior}
+P.~Huber.
+\newblock The behavior of maximum likelihood estimates under nonstandard
+  conditions.
+\newblock In {\em Proceedings of the fifth Berkeley symposium on mathematical
+  statistics and probability}, volume~1, pages 221--233. Berkeley, CA, 1967.
+
+\bibitem[Ibr56]{ibragimov1956composition}
+Il’dar~Abdullovich Ibragimov.
+\newblock On the composition of unimodal distributions.
+\newblock {\em Theory of Probability \& Its Applications}, 1(2):255--260, 1956.
+
+\bibitem[IH81]{IK79}
+I.A. Ibragimov and R.Z. Has'minskii.
+\newblock {\em {Statistical estimation, asymptotic theory (Applications of
+  Mathematics, vol. 16)}}.
+\newblock Springer-Verlag, New York, 1981.
+
+\bibitem[Joh15]{johnson2015saddle}
+S.~Johnson.
+\newblock Saddle-point integration of c-infinity ``bump'' functions.
+\newblock arXiv preprint arXiv:1508.04376, 2015.
+
+\bibitem[Kle09]{kle2009smoothing}
+Jussi Klemel{\"a}.
+\newblock {\em Smoothing of Multivariate Data: Density Estimation and
+  Visualization}.
+\newblock Wiley Publishing, 2009.
+
+\bibitem[KLS09]{KLS:09jmlr}
+A.~Klivans, P.~Long, and R.~Servedio.
+\newblock {Learning Halfspaces with Malicious Noise}.
+\newblock {\em Journal of Machine Learning Research}, 10:2715--2740, 2009.
+
+\bibitem[KMV10]{KMV:10}
+A.~T. Kalai, A.~Moitra, and G.~Valiant.
+\newblock {Efficiently learning mixtures of two Gaussians}.
+\newblock In {\em STOC}, pages 553--562, 2010.
+
+\bibitem[KNW10]{kane2010exact}
+Daniel~M Kane, Jelani Nelson, and David~P Woodruff.
+\newblock On the exact space complexity of sketching and streaming small norms.
+\newblock In {\em SODA}, 2010.
+
+\bibitem[KS14]{KimSamworth14}
+A.K.H. Kim and R.J. Samworth.
+\newblock Global rates of convergence in log-concave density estimation.
+\newblock Available at http://arxiv.org/abs/1404.2298, 2014.
+
+\bibitem[LV07]{LovaszVempala07}
+L{\'{a}}szl{\'{o}} Lov{\'{a}}sz and Santosh Vempala.
+\newblock The geometry of logconcave functions and sampling algorithms.
+\newblock {\em Random Struct. Algorithms}, 30(3):307--358, 2007.
+
+\bibitem[Mas97]{masry1997multivariate}
+Elias Masry.
+\newblock Multivariate probability density estimation by wavelet methods:
+  Strong consistency and rates for stationary time series.
+\newblock {\em Stochastic processes and their applications}, 67(2):177--193,
+  1997.
+
+\bibitem[MV10]{MoitraValiant:10}
+A.~Moitra and G.~Valiant.
+\newblock {Settling the polynomial learnability of mixtures of Gaussians}.
+\newblock In {\em FOCS}, pages 93--102, 2010.
+
+\bibitem[SCV18]{Steinhardt18}
+Jacob Steinhardt, Moses Charikar, and Gregory Valiant.
+\newblock Resilience: {A} criterion for learning in the presence of arbitrary
+  outliers.
+\newblock In {\em 9th Innovations in Theoretical Computer Science Conference,
+  {ITCS}}, pages 45:1--45:21, 2018.
+
+\bibitem[Sob63]{sobolev1963theorem}
+Sergej~Lvovich Sobolev.
+\newblock On a theorem of functional analysis.
+\newblock {\em Am. Math. Soc. Transl.}, 34:39--68, 1963.
+
+\bibitem[SS95]{smith1995handbook}
+Winthrop~W Smith and Joanne~M Smith.
+\newblock Handbook of real-time fast fourier transforms.
+\newblock {\em IEEE, New York}, 1995.
+
+\bibitem[SW14]{SaumardWellner14}
+A.~Saumard and J.A. Wellner.
+\newblock Log-concavity and strong log-concavity: a review.
+\newblock Technical Report https://arxiv.org/pdf/1404.5886.pdf, 23 April 2014.
+
+\bibitem[Tal94]{Tal94}
+M.~Talagrand.
+\newblock Sharper bounds for {Gaussian} and empirical processes.
+\newblock {\em Annals of Probability}, 22:28--76, 1994.
+
+\bibitem[WN07]{willett2007multiscale}
+Rebecca~M Willett and Robert~D Nowak.
+\newblock Multiscale poisson intensity and density estimation.
+\newblock {\em IEEE Transactions on Information Theory}, 53(9):3171--3187,
+  2007.
+
+\bibitem[Yat85]{Yatracos85}
+Y.~G. Yatracos.
+\newblock {Rates of convergence of minimum distance estimators and Kolmogorov's
+  entropy}.
+\newblock {\em Annals of Statistics}, 13:768--774, 1985.
+
+\end{thebibliography}

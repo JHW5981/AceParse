@@ -1,0 +1,167 @@
+% !TEX root =  main.tex
+
+
+\section{Learning shift-invariant densities over $\mathbb{R}^d$ with bounded support requires $\Omega(1/\eps^d)$ samples}
+\label{sec:lowerbound}
+
+In this section we give a simple lower bound which shows that\ignore{the sample complexity of the algorithm of Lemma~\ref{lem:finite-support} is information-theoretically optimal:}  $\Omega(1/\eps^d)$ samples are required for $\eps$-accurate density estimation even of shift-invariant $d$-dimensional densities with bounded support.  As discussed in the introduction, densities with bounded support may be viewed as satisfying the strongest possible rate of tail decay as they have zero tail mass outside of a bounded region.
+
+\begin{theorem} \label{thm:lb}
+Given $d \geq 1$, there is a constant $c_d=\Theta(\sqrt{d})$ such that the following holds:  For all sufficiently small $\eps$,
+let $A$ be an algorithm with the following property:  given access to $m$ i.i.d. samples from an arbitrary (and unknown) finitely supported density $f \in {\cal C}_\si(c_d,d)$, with probability at least $99/100$, $A$ outputs a hypothesis density $h$ such that $\dtv(f,h) \leq \eps.$  Then $m \geq \Omega((1/\eps)^d)$.
+\end{theorem}
+
+Since an algorithm that achieves a small error with high probability can be used to achieve small error in expectation, to prove Theorem~\ref{thm:lb} it suffices to show that any algorithm that achieves expected error $O(\eps)$ must use
+$\Omega((1/\eps)^d)$ samples.  To establish this we use  Lemma~\ref{fano} (given below), which provides a lower bound on the number of examples needed for small expected error.  
+
+To obtain the desired lower bound from Lemma~\ref{fano}, we establish the existence of a family ${\cal F}$ of densities ${\cal F} = \{f_1,\dots,f_N\} \in {\cal C}_\si(c_d,d)$, where $N= \exp(\Omega((1/\eps)^d))$.  These densities will be shown to satisfy the following two properties: for any  $i \neq j \in [N]$ we have (1) $\dtv(f_i,f_j) = \Omega(\eps)$, and (2) the Kullback-Leibler divergence $D_{KL}(f_i || f_j)$ is at most $O(1)$, yielding Theorem~\ref{thm:lb}. 
+
+\subsection{Fano's inequality}
+
+The main tool we use for our lower bound is Fano's inequality, or more precisely, the following extension of it
+given by 
+% Ibragimov and Khasminskii \cite{IK79} and Assouad and Birge \cite{AB83}:
+\citep{IK79} and \citep{AB83}:
+
+\begin{theorem}[Generalization of Fano's Inequality.] \label{fano}
+Let $f_1,\dots,f_{N+1}$ be a collection of $N+1$ distributions such that for any $i \neq j \in [N+1]$, we
+have (i) $\dtv(f_i,f_j) \geq \alpha/2$, and (ii) $D_{KL}(f_i || f_j) \leq \beta$, where $D_{KL}$ denotes Kullback-Leibler divergence.  Then for any algorithm that makes $m$ draws from an unknown target distribution $f_i$, $i \in [N+1]$, and outputs a hypothesis distribution $\tilde{f}$, there is some $i \in [t+1]$ such that if the target distribution is $f_i$, then 
+\[
+\E[\dtv(f,\tilde{f})] \geq {\frac \alpha 2} \left(1 - {\frac {m \beta + \ln 2}{\ln N}}\right).
+% \geq {\frac \alpha 2} e^{-{\frac {m \beta + \ln 2}{\ln t}}}.
+\]
+% In particular, to achieve expected error at most $\eps$, any learning algorithm must have sample complexity
+% $\Omega \left((\ln t)(\ln {\frac {\alpha}{2 \eps}}) / \beta \right).$
+In particular, to achieve expected error at most $\alpha/4$, any learning algorithm must have sample complexity
+%\red{$\Omega \left((\ln t)(\ln {\frac {\alpha}{2 \eps}}) / \beta \right).$}
+$m=\Omega \left(\frac{\ln N}{\beta}\right).$
+\end{theorem}
+
+\subsection{The family of densities we analyze} \label{sec:family}
+
+Let $T$ be a positive integer that is $T=\lceil C/\epsilon\rceil$ for a large constant $C$.
+We consider probability densities over $\mathbb{R}^d$ which  (i) are supported on $[-T,T)^d,$ and (ii) are piecewise constant on each of the $(2T)^d$ many disjoint unit cubes whose union is $[-T,T)^d.$  Writing $A$ to denote the set $\{-T,-T+1,\dots,-1,0,1,\dots,T-1\}^d,$ each of the $(2T)^d$ many disjoint unit cubes mentioned above is indexed by a unique element $a=(a_1,\dots,a_d) \in A$ in the obvious way.  We write $\cube(a)$ to denote the unit cube indexed by $a$.  Given $x \in [-T,T)^d$ we write $a(x)$ to denote the unique element $a \in A$ such that $x \in \cube(a).$
+
+For any $z \in \{0,1\}^{A}$, we define a probability density $f_z$ over $[-T,T)^d$ as $f_z(x) = (T+z_{a(x)})/Z,$
+\ignore{\[f_z(x) = \begin{cases}
+(T+1)/Z 		& \text{~if~}z_{a(x)}=1,\\
+T/Z	& \text{~if~}z_{a(x)}=0,
+\end{cases}
+\]
+}where $Z=\Theta((2T)^{(d+1)})$ is a normalizing factor so that $f_z$ is indeed a density (i.e. it integrates to 1).
+
+It is well known (via an elementary probabilistic argument) that there is a subset $S \subset \{0,1\}^A$ of size $2^{\Theta(|A|)}$ such that any two distinct strings $z,z' \in S$ differ in $\Theta(|A|)$ many coordinates.  We define the set ${\cal F}$ of densities to be ${\cal F} = \{f_z: z \in S\}.$
+
+
+\subsection{Membership in ${\cal C}_\si(c_d,d)$}
+
+It is obvious that every density in $\cF$ is finitely supported. In this subsection we prove that $\cF \ss \cC_\si(c_d,d)$.  
+First, we bound the variation distance incurred by shifting along a coordinate axis:
+\begin{lemma}
+\label{l:coord.shift}
+For any $f \in \cF$, $i \in [d]$, and $\kappa \in (0,1)$, we have
+$
+\int | f(x + \kappa e_i) - f(x) | \;dx \leq \Theta(\kappa \eps).
+$
+\end{lemma}
+\begin{proof}
+We have
+\begin{align*}
+\int | f(x + \kappa e_i) - f(x) | \;dx  
+& = \int_{\{ x: x_i < -T \}} | f(x + \kappa e_i) - f(x) | \;dx   
+ + \int_{\{ x: x_i > T-\kappa \}} | f(x + \kappa e_i) - f(x) | \;dx   \\
+& \hspace{0.5in} + \int_{\{ x: x_i \in [-T, T-\kappa]\}} | f(x + \kappa e_i) - f(x) | \;dx.
+\end{align*}
+If $x_i < -T-\kappa$, then $f(x + \kappa e_i) = f(x) = 0$.  When
+${-T-\kappa  \leq x_i  < -T}$, we have $| f(x + \kappa e_i) - f(x) | \leq (T+1)/Z$.  Thus
+\[
+\int_{\{ x: x_i < -T \}} | f(x + \kappa e_i) - f(x) | \;dx  \leq (\kappa (2T)^{d-1}) (T+1)/Z = {\Theta(\kappa \eps)}.
+\]
+A similar argument gives that
+$
+\int_{\{ x: x_i > T-\kappa \}} | f(x + \kappa e_i) - f(x) | \;dx \leq \Theta(\kappa \eps).$
+Finally,
+\begin{align*} \int_{\{ x: x_i \in [-T, T-\kappa]\}} | f(x + \kappa e_i) - f(x) | \;dx 
+& = \int_{\{ x: x_i \in [-T, T-\kappa], \lceil x_i \rceil - x_i \leq \kappa\}} | f(x + \kappa e_i) - f(x) | \;dx \\
+& \leq \int_{\{ x: x_i \in [-T, T-\kappa], \lceil x_i \rceil - x_i \leq \kappa\}} (1/Z) \;dx.
+\end{align*}
+The set $\{ x: x_i \in [-T, T-\kappa], \lceil x_i \rceil - x_i \leq \kappa\}$ is made up of $2T-1$ ``slabs'' that are each of width $\kappa$, and consequently
+$\int_{\{ x: x_i \in [-T, T-\kappa], \lceil x_i \rceil - x_i \leq \kappa\}} \leq (2 T - 1) \kappa (2T)^{d-1}/Z = \Theta(\kappa/T)
+{=\Theta(\kappa \eps)}$,
+recalling that $Z = \Theta((2T)^{d+1})$.  This completes the proof.
+\end{proof} 
+
+\ignore{
+%Consider a binary error correcting code $B$ on the space $\{0,1\}^{(2T)^d}$ which is at a constant fractional distance and %consider the density family $\{D_z\}_{z \in B}$. Then by using the earlier claims, setting $T=1/\epsilon$ and using %Fano's inequality, we will get $(1/\epsilon)^d$ sample complexity lower bound. 
+}
+
+Given Lemma~\ref{l:coord.shift}, it is easy to bound the variation distance incurred by shifting in an arbitrary direction:
+\begin{lemma}
+\label{l:unit.length.shift}
+For any $f \in \cF$, for any unit vector $v$, for any $\kappa < 1$, we have
+$
+\int | f(x + \kappa v) - f(x) | \;dx \leq c \kappa \eps \sqrt{d}
+$
+for a universal constant $c>0.$
+%for a constant $c$ depending only on $d$.
+\end{lemma}
+\begin{proof}
+Writing the unit vector $v$ as $\sum_{j=1}^d v_j e_j$, we have
+\begin{align*}
+\int | f(x + \kappa v) - f(x) | \;dx 
+& = \int \left| \sum_{i=1}^d 
+          f\left(x + \kappa \sum_{j=1}^i v_j e_j \right) - f\left(x + \kappa \sum_{j=1}^{i-1} v_j e_j \right) \right| \;dx  \\
+& \leq \sum_{i=1}^d \int \left| f\left(x + \kappa \sum_{j=1}^i v_j e_j\right) - f\left(x + \kappa \sum_{j=1}^{i-1} v_je_j\right) \right| \;dx \tag{triangle inequality}\\
+& = \sum_{i=1}^d \int | f\left(x + \kappa |v_i| e_i\right) - f\left(x \right) | \;dx \tag{variable substitution} \\
+%& \leq \sum_{i=1}^d \int | f\left(x + \kappa |v_i| e_i\right) - f\left(x \right) | \;dx \\
+& \leq {c \kappa \eps} \sum_{i=1}^d | v_i | \leq c \kappa \eps \sqrt{d}, \tag{Lemma~\ref{l:coord.shift} and Cauchy-Schwarz}\\
+\end{align*}
+completing the proof.
+\end{proof}
+
+As an easy consequence of Lemma~\ref{l:unit.length.shift}, Lemma~\ref{l:var} and the definition of $\si(f,v,\kappa)$ we obtain the following:
+
+\begin{corollary} \label{cor:si}
+There is a constant $c_d{=\Theta(\sqrt{d})}$ such that for any $f \in {\cal F}$ and any unit vector $v\in \mathbb{R}^d$, we have $\si(f,v) \leq
+c_d.$  Hence $\cF \ss \cC_\si(c_d,d)$.
+\end{corollary}
+
+
+
+\subsection{The upper bound on $KL$ divergence and lower bound on variation distance}
+
+Recall that if $f$ and $g$ are probability density functions supported on a set $S \subseteq \mathbb{R}^d$, then the \emph{Kullback Leibler divergence} between $f$ and $g$ is defined as
+$
+D_{KL}(f || g) = \int_S f(x) \ln {\frac {f(x)}{g(x)}} dx.
+$
+As an immediate consequence of this definition, we have the following claim:
+
+\begin{claim} Let $f,g$ be two densities such that for some absolute constant $C > 1$ we have that every $x$  satisfies ${\frac 1 C} f(x) \leq g(x) \leq C f(x).$  Then $D_{KL}(f || g) \leq O(1).$
+\end{claim}
+
+It is easy to see that any $f_i,f_j$ in the family ${\cal F}$ of densities described in Section~\ref{sec:family} are such that 
+${\frac 1 C} f_i(x) \leq f_j(x) \leq C f_i(x).$  Thus we have:
+
+\begin{lemma} \label{lem:KL}
+$D_{KL}(f_i || f_j) \leq O(1)$ for all $i \neq j \in [N]$.
+\end{lemma}
+
+Finally, we need a lower bound on the total variation distance between any pair of elements of $\cF$:
+\begin{lemma}
+\label{l:tv}
+There is an absolute constant $c>0$ such that,
+for any $f_u, f_v \in \cF$, $\dtv(f_u, f_v) = \Omega(\eps)$.
+\end{lemma}
+\begin{proof}
+We have $
+\dtv (f_u, f_v) = (1/Z) |\{ a \in A : u_a \neq v_a \}| = (1/Z) \Omega(|A|) = \Omega(1/T) = \Omega(\eps).
+$
+\end{proof}
+
+\subsection{Putting it together}
+
+By Lemma~\ref{l:tv}, each pair of elements of $\cF$ are separated by $\Omega(\epsilon)$ in
+total variation distance.  Since Lemma~\ref{lem:KL} implies that each pair of elements of $\cF$ has KL-divergence $O(1)$, Theorem~\ref{fano} implies that $\Omega(\ln |{\cal F}|) = \Omega((1/\eps)^d)$ examples are needed to achieve expected error at most $O(\eps).$  Since Corollary~\ref{cor:si} gives that $\cF \ss \cC_\si(c_d,d)$ for a constant $c_d=\Theta(\sqrt{d})$, this proves
+Theorem~\ref{thm:lb}.
+
+

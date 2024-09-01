@@ -1,0 +1,56 @@
+\section{Problem Formulation}
+\label{sec:problem_formulation}
+
+% PDR has the recommendation task as a subgoal: to recommend an item $v$ for user $u$ as estimating $u$'s preference by interaction history stored in $\mathbf{Y}$, where $y_{uv}=1$ means $u$ has interacted with $v$.
+
+% \vspace{0.1cm}
+
+\noindent \textit{Definition 1. Prerequisite Context.}
+The context of each user $u$ can be seen as a personal concept repository consisting of a set of mastered prior concepts and a set of target concepts to be acquired, represented as sets $\{\mathcal{C}_u^p, \mathcal{C}_u^t\} \subseteq \mathcal{C}$, respectively. 
+Items then contain these concepts: each item $v$'s context are denoted as $\mathcal{C}_v^i$.  Importantly, items manifest concepts in a latent, implicit manner, such that the item concept inventory must be inferred. 
+% where ideal items to be recommended should include concepts bridge the prior to the target. 
+
+% Through the prerequisite graph, they can be linked to the knowledge concepts contained in each item $v$'s context, denoted as $\mathcal{K}_v^i$. The linkages include prerequisite strength from user's prior knowledge and the target knowledge, where ideal items to be recommended bridge the prior to the target. 
+
+\vspace{0.1cm}
+\noindent \textit{Definition 2. Prerequisite Graph.} We represent prerequisite context as a graph $\mathcal{G}$, having concepts $\mathcal{C}$ as nodes, and prerequisite relations $\mathcal{R}$ among them as edges, where $r \in \mathcal{R}$ represents the confidence towards prerequisite relation linking knowledge $c_p$ to knowledge $c_q$. % ($c_p, c_q \in \mathcal{C}$).  
+$\mathcal{G}$ can thus be represented as a series of edge tuples;
+for example, \textit{(logic, 0.99, python)} means that \textit{logic} is prior knowledge required for \textit{python}
+with a confidence score of 0.99.
+
+% \begin{table}[t]
+%     \centering
+%     \small
+%     \begin{tabular}{cc || cc}
+%     % \hline
+%     \toprule
+%     {\bf Notation} & {\bf Explanation} & {\bf Notation} & {\bf Explanation} \\
+%     % \hline
+%     % \hline
+%     \midrule
+%     $\mathcal{U} = \{u_1, \cdots, u_n\} $ & Set of users  &  
+%     $\mathcal{R} = \{r_1, \cdots\} $ & Set of relations over knowledge pairs\\
+%     $\mathcal{V} = \{v_1, \cdots, v_m\} $ & Set of items &
+%     $\mathcal{G} = (\mathcal{K}, \mathcal{R}) $ & Prerequisite graph for storing dependencies \\
+%     $\mathbf{Y} $ & User--item interaction matrix &
+%     $\mathcal{K}_u^p, \mathcal{K}_u^t \subseteq \mathcal{K} $ & Prior and Target knowledge set for user $u$\\
+%     $\mathcal{H}_u \subseteq \mathcal{V}$ & $u$'s historical interaction sequence &
+%     $\mathcal{K}_v^i \subseteq \mathcal{K} $ & Knowledge contained in or related to item $v$\\
+%     $\mathcal{K} = \{k_1, \cdots, k_h\} $ & Set of all knowledge concepts &
+%     $\mathcal{D}_v $ & Document of item $v$\\
+    
+%     \bottomrule
+%     \end{tabular}
+%     \caption{Notation used for prerequisite representations.} 
+%     \label{tab:symbol} 
+%     \vspace{-7mm}
+% \end{table}
+
+% \vspace{0.1cm}
+
+% \noindent \textit{Definition 3. Prerequisite-driven recommendation (PDR)}. 
+The task of Prerequisite-Driven Recommendation (PDR) aims to learn the latent factors not only from user--item interactions $\mathbf{Y}$ (where $y_{uv}=1$ means $u$ has interacted with $v$), but also from prerequisite context.
+We can view PDR as combining the knowledge linkage prediction task $g$ and context-aware recommendation prediction task $f$. 
+Specifically, it can be formalized as: 1) inferring latent prerequisites $\hat{r}_{c_ic_j}=g(c_i,c_j|\Phi,\mathcal{G})$, where $\hat{r}_{c_ic_j}$ represents the predicted prerequisite confidence from concept $c_i$ to $c_j$; and 2) prerequisite-driven recommendation $\hat{y}_{uv}=f(u,v,\{c|c\in (\mathcal{C}_u^p \cup \mathcal{C}_u^t \cup \mathcal{C}_v^i)\} |\Theta,\Phi, \mathbf{Y},\mathcal{G})$.  Here, $\Phi$ and $\Theta$ are the parameters for encoding knowledge concepts and users/items. 
+
+% \vspace{0.1cm}
