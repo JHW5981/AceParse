@@ -167,6 +167,7 @@ def extract_tar_gz(infile: Path, dest: Path):
 def get_args():
     parser = argparse.ArgumentParser(description="Parameters")
     
+    parser.add_argument('--request_num', default=2, help='number of source files you want to download')
     parser.add_argument('--arxiv_ids', default="./arxiv_ids.txt", help='path to arxiv_ids file')
     parser.add_argument('--source_path', default="./downloads", help="where to save source")
     parser.add_argument('--tex_path', default="./TEX", help="where to save .tex files")
@@ -179,7 +180,7 @@ if __name__ == "__main__":
     
     # download source
     download_base_dir = Path(args.source_path)
-    request_num = 2 # test
+    request_num = args.request_num
     doi_list = get_doi(Path(args.arxiv_ids))
     random_doi_list = random.sample(doi_list, request_num) # random choose for diversity
     with Progress() as progress:
