@@ -167,7 +167,7 @@ def extract_tar_gz(infile: Path, dest: Path):
 def get_args():
     parser = argparse.ArgumentParser(description="Parameters")
     
-    parser.add_argument('--request_num', default=2, help='number of source files you want to download')
+    parser.add_argument('--request_num', default=2, type=int, help='number of source files you want to download')
     parser.add_argument('--arxiv_ids', default="./arxiv_ids.txt", help='path to arxiv_ids file')
     parser.add_argument('--source_path', default="./downloads", help="where to save source")
     parser.add_argument('--tex_path', default="./TEX", help="where to save .tex files")
