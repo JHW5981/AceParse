@@ -14,7 +14,7 @@ def generate_uuid_filename(extension=''):
     unique_filename = str(uuid.uuid4())
     return unique_filename + extension
 
-def extract_elements(tex_path, save_path="./data.json"):
+def extract_elements(tex_path, save_path="./dataset/data.json"):
     
     data_all = {
         "algorithms": [],
