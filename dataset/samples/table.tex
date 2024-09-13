@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{graphicx}
+
+\begin{document}
+\pagenumbering{gobble}
+
+ Pooling in this way fuses features under four different pyramid scales.
+
+\begin{table}
+    \caption{Statistics of Attention Output SAEs}
+    
+    \begin{tabular}{lllll}
+        \toprule
+        SAE & Var. Explained & L0 Loss & Reconstruction CE Score & Reconstruction CE Loss \\
+        \midrule
+        L0A & 92.25\% & 29.66 & 99.24\% & 3.2327 \\
+        L1A & 82.48\% & 65.57 & 97.19\% & 3.2138 \\
+        L2A & 83.39\% & 69.85 & 94.29\% & 3.2150 \\
+        L3A & 69.23\% & 53.59 & 87.00\% & 3.2173 \\
+        L4A & 74.91\% & 87.35 & 89.99\% & 3.2171 \\
+        L5A & 82.12\% & 127.18 & 97.81\% & 3.2145 \\
+        L6A & 76.63\% & 100.89 & 94.31\% & 3.2158 \\
+        L7A & 78.51\% & 103.30 & 91.32\% & 3.2182 \\
+        L8A & 79.94\% & 122.46 & 88.67\% & 3.2172 \\
+        L9A & 81.62\% & 107.81 & 89.55\% & 3.2187 \\
+        L10A & 83.75\% & 100.44 & 87.70\% & 3.2201 \\
+        L11A & 84.81\% & 22.69 & 85.49\% & 3.2418 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+\end{document}

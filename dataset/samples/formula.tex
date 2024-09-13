@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{graphicx}
+
+\begin{document}
+\pagenumbering{gobble}
+
+Note that in the case $N = 144$, significant overfitting is present, though adding dropout (i.e., zeroing-out power in some of the ports) after the first ONN layer might be one method to ``regularize'' the physical ONN and therefore reduce this overfitting..
+
+\begin{align*}R_x(\theta)&= e^{-i\frac{\theta}{2}\sigma_x}=\begin{pmatrix}
+\cos(\frac{\theta}{2}) & -i\sin(\frac{\theta}{2})\\
+-i\sin(\frac{\theta}{2})  &\cos(\frac{\theta}{2})
+\end{pmatrix}\\
+R_y(\theta)&= e^{-i\frac{\theta}{2}\sigma_y}=\begin{pmatrix}
+\cos(\frac{\theta}{2}) & -\sin(\frac{\theta}{2})\\
+\sin(\frac{\theta}{2})  &\cos(\frac{\theta}{2})
+\end{pmatrix}\\
+R_z(\theta)&= e^{-i\frac{\theta}{2}\sigma_z}=\begin{pmatrix}
+e^{-i\frac{\theta}{2}} & 0\\
+0&e^{i\frac{\theta}{2}}
+\end{pmatrix}.
+\end{align*}
+
+   \caption{\textbf{Additional Diverse Skills for the Box Push Obstacle Task learned by Di-SkilL.} We fix the contexts and sample experts which we subsequently execute.
+
+
+\end{document}

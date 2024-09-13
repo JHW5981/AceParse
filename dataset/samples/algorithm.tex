@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\begin{algorithm}[!htb]
+	\caption{\small Model-Free Unsupervised Learning (Deterministic)}\
+	\small
+	\begin{algorithmic}[1]
+		\STATE Initialize neural networks $\tilde J$, $\tilde {\mathbf g}$, $\tilde {\mathbf c}$, $\tilde {\mathbf f}$, $\tilde{\bm \lambda}$ with random parameters $\bm \theta_{J}$, $\bm \theta_{g}$, $\bm \theta_c$, $\bm \theta_f$, $\bm \theta_\lambda$ and initialize multiplier $\bm \xi$.
+		\STATE Initialize replay memory $\mathcal{D}$.
+		\FOR{ $t = 1, 2, \cdots$}
+		\STATE Observe $\mathbf h^{(t)}$ from the environment.
+		\STATE Execute $\mathbf x^{(t)} = \tilde{\mathbf f}(\mathbf h^{(t)};\bm \theta_f^{(t)}) + \tilde{\mathbf n}^{(t)}$.
+		\STATE Observe values of $J^{(t)} = J(\mathbf x^{(t)}, \mathbf h^{(t)})$, $\mathbf g^{(t)} = \mathbf g(\mathbf x^{(t)}, \mathbf h^{(t)})$, and $\mathbf c^{(t)} = \mathbf c(\mathbf x^{(t)}, \mathbf h^{(t)})$ from the system.
+		\STATE Store $\mathbf e^{(t)} = [\mathbf h^{(t)}, \mathbf{x}^{(t)}, J^{(t)}, \mathbf g^{(t)}, \mathbf c^{(t)}]$  in $\mathcal D$.
+		\STATE Randomly sample a batch of training samples from~$\mathcal{D}$ as $\mathcal{B}$.
+		\STATE Update  $\bm \theta_{J}$, $\bm \theta_{g}$, $\bm \theta_c$ by~[14] and update  $\bm \theta_f$, $\bm \theta_\lambda$, $\bm \xi$ by~(eqn:up2).
+		\ENDFOR
+	\end{algorithmic}
+\end{algorithm}
+
+
+\end{document}
