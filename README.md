@@ -13,9 +13,12 @@
 
 This is the official repository for AceParse, a comprehensive dataset with diverse structured texts for academic literature parsing.
 
-Project page: https://facebookresearch.github.io/nougat/
+Project page: https://github.com/JHW5981/AceParse/
 
 ## Overview
+AceParse includes various types of structured text, such as formulas, tables, algorithms, lists, and sentences embedded with mathematical expressions, among others. We provide examples of several dataset samples to give you a better understanding of our dataset.
+
+![samples](./assets/samples.png)
 
 ## Data Engine
 
