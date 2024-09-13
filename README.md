@@ -11,6 +11,33 @@
   </p>
 </p>
 
+This is the official repository for AceParse, a comprehensive dataset with diverse structured texts for academic literature parsing.
 
+Project page: https://facebookresearch.github.io/nougat/
 
+## Overview
 
+## Data Engine
+
+## Example of Loading and Displaying the Data
+
+## Training
+
+## Evaluation
+
+## Citation
+
+```
+@misc{huawei2024aceparse,
+      title={AceParse: A Comprehensive Dataset with Diverse Structured Texts for Academic Literature Parsing}, 
+      author={Huawei Ji and Cheng Deng and Bo Xue and Zhouyang Jin and Jiaxin Ding and Xiaoying Gan and Luoyi Fu and Xinbing Wang and Chenghu Zhou},
+      year={2024},
+      eprint={2409.},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+```
+
+## Acknowledgments
+
+This repository builds on top of the [Florence-2](https://huggingface.co/microsoft/Florence-2-base/tree/main) repository.
