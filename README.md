@@ -76,7 +76,7 @@ dataset/
 └── samples # samples of AceParse
 ```
 
-## Example of Loading and Displaying the Data
+## Loading and Displaying the Data
 
 We have uploaded the AceParse dataset to [huggingface🤗](https://huggingface.co/datasets/jihuawei/AceParse). You can directly import our dataset using the following code:
 
@@ -108,7 +108,7 @@ print("Label:", label)
 ```
 
 ## Training
-If you want to train your AceParser, you can run it directly:
+If you want to train your AceParser, you can run code:
 
 ```
 python ./model/train_aceparser.py --train_img_paths ./dataset/data/images/train_images.txt --train_label_paths ./dataset/data/labels/train_labels.txt --eval_img_paths ./dataset/data/images/val_images.txt --output_dir ./model/weights
