@@ -78,11 +78,48 @@ dataset/
 
 ## Example of Loading and Displaying the Data
 
-We have uploaded the AceParse dataset to Hugging Face. You can directly import our dataset using the following code:
+We have uploaded the AceParse dataset to [huggingface🤗](https://huggingface.co/datasets/jihuawei/AceParse). You can directly import our dataset using the following code:
+
+```
+from datasets import load_dataset
+from PIL import Image
+import io
+import numpy as np
+import matplotlib.pyplot as plt
+
+ds = load_dataset("jihuawei/AceParse", split='train')
+
+# convert binary image to PIL image
+image = Image.open(io.BytesIO(ds[0]['image']))
+
+# get numpy image
+image_array = np.array(image)
+
+# label
+label = ds[0]['label']
+
+# show picture
+plt.imshow(image_array)
+plt.axis('off') 
+plt.show()
+
+# print label
+print("Label:", label)
+```
 
 ## Training
+If you want to train your AceParser, you can run it directly:
 
-## Evaluation
+```
+python ./model/train_aceparser.py --train_img_paths ./dataset/data/images/train_images.txt --train_label_paths ./dataset/data/labels/train_labels.txt --eval_img_paths ./dataset/data/images/val_images.txt --output_dir ./model/weights
+```
+
+## Inference
+To use AceParser for inferring, you can run:
+
+```
+python ./model/inference_aceparser.py --img_path ./model/sample.png
+```
 
 ## Citation
 

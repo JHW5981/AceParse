@@ -1,9 +1,7 @@
 from transformers import AutoProcessor, AutoModelForCausalLM
-from tqdm import tqdm
-import json
 from PIL import Image
-import time
 import torch
+import argparse
 
 # model
 model_id = "jihuawei/AcaParser"
@@ -39,7 +37,16 @@ def acaparser(image_path):
 
 print("Acaparser initializes over.")
 
-if __name__ == "__main__":
-    img_path = "./model/sample.png"
-    text = acaparser(img_path)
-    print(text['<OCR>'])
+def get_args():
+    parser = argparse.ArgumentParser(description="Parameters")
+
+    parser.add_argument('--img_path', default="./model/sample.png")
+  
+    args = parser.parse_args()
+    return args
+
+args = get_args()
+
+img_path = args.img_path
+text = acaparser(img_path)
+print(text['<OCR>'])
