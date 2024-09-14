@@ -6,8 +6,8 @@
   <p align="center">
     <a href=''><img src='https://img.shields.io/badge/Paper-ArXiv-C71585'></a> 
     <a href="https://github.com/JHW5981/AceParse/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/JHW5981/AceParse?color=blue"></a>
-    <a href='https://huggingface.co/jihuawei/AcaParser'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging Face-AceParser-red'></a>  
     <a href='https://huggingface.co/datasets/jihuawei/AceParse'><img src='https://img.shields.io/badge/Dataset-AceParse-4169E1'></img></a>
+    <a href='https://huggingface.co/jihuawei/AcaParser'><img src='https://img.shields.io/badge/Model-AceParser-red'></a>  
   </p>
 </p>
 
@@ -124,7 +124,7 @@ import torch
 
 # model
 model_id = "jihuawei/AcaParser"
-acaparser_model = AutoModelForCausalLM.from_pretrained(model_id, trust_remote_code=True).eval().to('cuda:1')
+acaparser_model = AutoModelForCausalLM.from_pretrained(model_id, trust_remote_code=True).eval().to('cuda:0')
 acaparser_processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True)  
 def acaparser(image_path):
     image = Image.open(image_path)
