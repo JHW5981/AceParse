@@ -1,0 +1,8 @@
+@misc{huawei2024aceparse,
+      title={AceParse: A Comprehensive Dataset with Diverse Structured Texts for Academic Literature Parsing}, 
+      author={Huawei Ji and Cheng Deng and Bo Xue and Zhouyang Jin and Jiaxin Ding and Xiaoying Gan and Luoyi Fu and Xinbing Wang and Chenghu Zhou},
+      year={2024},
+      eprint={2409.},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
