@@ -4,7 +4,7 @@
     AceParse: A Comprehensive Dataset with Diverse Structured Texts for Academic Literature Parsing
   </h3>
   <p align="center">
-    <a href=''><img src='https://img.shields.io/badge/Paper-ArXiv-C71585'></a> 
+    <a href='https://arxiv.org/abs/2409.10016'><img src='https://img.shields.io/badge/Paper-ArXiv-C71585'></a> 
     <a href="https://github.com/JHW5981/AceParse/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/JHW5981/AceParse?color=blue"></a>
     <a href='https://huggingface.co/datasets/jihuawei/AceParse'><img src='https://img.shields.io/badge/Dataset-AceParse-4169E1'></img></a>
     <a href='https://huggingface.co/jihuawei/AcaParser'><img src='https://img.shields.io/badge/Model-AceParser-red'></a>  
@@ -169,7 +169,7 @@ if __name__ == "__main__":
       title={AceParse: A Comprehensive Dataset with Diverse Structured Texts for Academic Literature Parsing}, 
       author={Huawei Ji and Cheng Deng and Bo Xue and Zhouyang Jin and Jiaxin Ding and Xiaoying Gan and Luoyi Fu and Xinbing Wang and Chenghu Zhou},
       year={2024},
-      eprint={2409.},
+      eprint={2409.10016},
       archivePrefix={arXiv},
       primaryClass={cs.CL}
 }
